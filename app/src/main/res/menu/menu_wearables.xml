@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuBackToScan"
+        android:title="@string/menu_back_to_scan" />
+
+    <item
+        android:id="@+id/menuDisconnectDevice"
+        android:title="@string/menu_disconnect" />
+
+    <item
+        android:id="@+id/menuInfo"
+        android:title="@string/menu_info" />
+
+</menu>
