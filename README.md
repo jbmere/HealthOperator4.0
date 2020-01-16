@@ -10,3 +10,8 @@ including
 * Higher stability
 * Usage of a middleware for ingesting data streams in mongoDB
 
+Once downloaded, you sould use Android-Studio to interact and to generate the proper versions 
+according to the interesting Android releases.
+
+=====
+Madrid 16/01/2020
