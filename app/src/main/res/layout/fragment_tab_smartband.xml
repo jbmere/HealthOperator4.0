@@ -1,13 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.fragments.tabs.PlaceholderFragment">
-
+    tools:context=".ui.main.fragments.tabs.PlaceholderFragment"
+    android:keepScreenOn="true">
 
     <!--SmartBand Layout goes here-->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin">
+                <TextView
+                    android:id="@+id/smartband_mac"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="@string/data_from"
+                    android:textAlignment="viewStart"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/smartband_value_mac"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/smartband_mac"
+                    android:text="@string/ellipsis"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
+                    />
+
+                <Button
+                    android:id="@+id/smartband_acc_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/smartband_value_mac"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/start_button" />
+
+                <Button
+                    android:id="@+id/smartband_acc_stop"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/smartband_acc_start"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/stop_button"
+                    android:layout_marginBottom="12dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/smartband_time_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/smartband_acc_stop"
+                    android:layout_gravity="start"
+                    android:text="@string/time_tv"
+                    android:textAlignment="viewStart"
+                    android:textSize="24sp"
+                    />
+
+                <TextView
+                    android:id="@+id/smartband_value_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/smartband_acc_stop"
+                    android:layout_toRightOf="@id/smartband_time_now"
+                    android:text="@string/waiting_tv"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:id="@+id/smartband_iv_heart"
+                    android:src="@drawable/heart_icon"
+                    android:layout_below="@id/smartband_time_now"
+                    />
+
+                <TextView
+                    android:id="@+id/smartband_heart_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_value_time"
+                    android:layout_toRightOf="@id/smartband_iv_heart"
+                    android:text="@string/heart_rate_tv"
+                    android:layout_gravity="start"
+                    android:textAlignment="viewStart"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/smartband_value_hr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_value_time"
+                    android:layout_toRightOf="@id/smartband_heart_rate"
+                    android:text="@string/waiting_tv"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/smartband_bp_high"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_heart_rate"
+                    android:text="@string/high_blood_pressure_tv"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/smartband_value_bph"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_heart_rate"
+                    android:layout_toRightOf="@id/smartband_bp_high"
+                    android:text="@string/ellipsis"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/smartband_bp_low"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/smartband_value_bph"
+                    android:text="@string/low_blood_pressure_tv"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/smartband_value_bpl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/smartband_value_bph"
+                    android:layout_toRightOf="@id/smartband_bp_low"
+                    android:text="@string/ellipsis"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:id="@+id/smartband_iv_steps"
+                    android:layout_below="@id/smartband_bp_low"
+                    android:src="@drawable/steps"/>
+
+                <TextView
+                    android:id="@+id/smartband_steps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_bp_low"
+                    android:layout_toRightOf="@id/smartband_iv_steps"
+                    android:text="@string/steps_tv"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/smartband_value_steps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_bp_low"
+                    android:layout_toRightOf="@id/smartband_steps"
+                    android:text="@string/minus_eins_tv"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:id="@+id/smartband_iv_distance"
+                    android:layout_below="@id/smartband_iv_steps"
+                    android:src="@drawable/distance1"/>
+
+                <TextView
+                    android:id="@+id/smartband_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_iv_steps"
+                    android:layout_toRightOf="@id/smartband_iv_distance"
+                    android:text="@string/distance_tv"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/smartband_value_distance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_iv_steps"
+                    android:layout_toRightOf="@id/smartband_distance"
+                    android:text="@string/minus_eins_tv"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:padding="4dp"
+                    android:id="@+id/smartband_iv_calories"
+                    android:layout_below="@id/smartband_iv_distance"
+                    android:src="@drawable/flame_orange"/>
+
+                <TextView
+                    android:id="@+id/smartband_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_iv_distance"
+                    android:layout_toRightOf="@id/smartband_iv_calories"
+                    android:text="@string/calories_tv"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/smartband_value_calories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_iv_distance"
+                    android:layout_toRightOf="@id/smartband_calories"
+                    android:text="@string/minus_eins_tv"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:padding="2dp"
+                    android:id="@+id/smartband_iv_sleep"
+                    android:layout_below="@id/smartband_iv_calories"
+                    android:src="@drawable/sleepzzz"/>
+
+                <TextView
+                    android:id="@+id/smartband_sleep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_iv_calories"
+                    android:layout_toRightOf="@id/smartband_iv_sleep"
+                    android:text="@string/sleeping_hours_tv"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/smartband_value_sleep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/smartband_iv_calories"
+                    android:layout_toRightOf="@id/smartband_sleep"
+                    android:text="@string/waiting_tv"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabSmartBandfav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="@dimen/fab_margin"
+                    app:srcCompat="@android:drawable/btn_star_big_off" />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

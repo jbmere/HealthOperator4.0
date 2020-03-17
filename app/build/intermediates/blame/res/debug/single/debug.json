@@ -204,6 +204,10 @@
         "source": "C:\\Users\\garga\\.gradle\\caches\\transforms-2\\files-2.1\\697f71c0c12135256cbfe98df498a7e4\\appcompat-1.0.2\\res\\drawable-xxhdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
     },
     {
+        "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable_sleepzzz.png.flat",
+        "source": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\src\\main\\res\\drawable\\sleepzzz.png"
+    },
+    {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_half_black_16dp.png.flat",
         "source": "C:\\Users\\garga\\.gradle\\caches\\transforms-2\\files-2.1\\697f71c0c12135256cbfe98df498a7e4\\appcompat-1.0.2\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_16dp.png"
     },
@@ -294,6 +298,10 @@
     {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_fab_show_motion_spec.xml.flat",
         "source": "C:\\Users\\garga\\.gradle\\caches\\transforms-2\\files-2.1\\c7eb9cd3508ac3959447c14fd76c9fb9\\material-1.0.0\\res\\animator\\mtrl_fab_show_motion_spec.xml"
+    },
+    {
+        "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_choose_favourite_device.xml.flat",
+        "source": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\src\\main\\res\\layout\\activity_choose_favourite_device.xml"
     },
     {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
@@ -572,12 +580,20 @@
         "source": "C:\\Users\\garga\\.gradle\\caches\\transforms-2\\files-2.1\\697f71c0c12135256cbfe98df498a7e4\\appcompat-1.0.2\\res\\drawable\\abc_btn_borderless_material.xml"
     },
     {
+        "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_item_fav_devices.xml.flat",
+        "source": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\src\\main\\res\\layout\\adapter_item_fav_devices.xml"
+    },
+    {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_focused_holo.9.png.flat",
         "source": "C:\\Users\\garga\\.gradle\\caches\\transforms-2\\files-2.1\\697f71c0c12135256cbfe98df498a7e4\\appcompat-1.0.2\\res\\drawable-xhdpi-v4\\abc_list_focused_holo.9.png"
     },
     {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_avd_hide_password.xml.flat",
         "source": "C:\\Users\\garga\\.gradle\\caches\\transforms-2\\files-2.1\\c7eb9cd3508ac3959447c14fd76c9fb9\\material-1.0.0\\res\\drawable-v21\\avd_hide_password.xml"
+    },
+    {
+        "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable_heart_icon.png.flat",
+        "source": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\src\\main\\res\\drawable\\heart_icon.png"
     },
     {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_template_custom_big.xml.flat",
@@ -964,6 +980,10 @@
         "source": "C:\\Users\\garga\\.gradle\\caches\\transforms-2\\files-2.1\\697f71c0c12135256cbfe98df498a7e4\\appcompat-1.0.2\\res\\drawable-mdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png"
     },
     {
+        "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable_distance1.png.flat",
+        "source": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\src\\main\\res\\drawable\\distance1.png"
+    },
+    {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_edit_text_material.xml.flat",
         "source": "C:\\Users\\garga\\.gradle\\caches\\transforms-2\\files-2.1\\697f71c0c12135256cbfe98df498a7e4\\appcompat-1.0.2\\res\\drawable-v21\\abc_edit_text_material.xml"
     },
@@ -1002,6 +1022,10 @@
     {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
         "source": "C:\\Users\\garga\\.gradle\\caches\\transforms-2\\files-2.1\\697f71c0c12135256cbfe98df498a7e4\\appcompat-1.0.2\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable_steps.png.flat",
+        "source": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\src\\main\\res\\drawable\\steps.png"
     },
     {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_alert_dialog_material.xml.flat",
@@ -1046,6 +1070,10 @@
     {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "C:\\Users\\garga\\.gradle\\caches\\transforms-2\\files-2.1\\1dc374b804e19bfc1a649ab91d374966\\core-1.1.0-rc01\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable_flame_orange.png.flat",
+        "source": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\src\\main\\res\\drawable\\flame_orange.png"
     },
     {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_star_black_48dp.png.flat",
@@ -2034,6 +2062,10 @@
     {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_half_black_48dp.png.flat",
         "source": "C:\\Users\\garga\\.gradle\\caches\\transforms-2\\files-2.1\\697f71c0c12135256cbfe98df498a7e4\\appcompat-1.0.2\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png"
+    },
+    {
+        "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_tab_smartband.xml.flat",
+        "source": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\src\\main\\res\\layout\\content_tab_smartband.xml"
     },
     {
         "merged": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",

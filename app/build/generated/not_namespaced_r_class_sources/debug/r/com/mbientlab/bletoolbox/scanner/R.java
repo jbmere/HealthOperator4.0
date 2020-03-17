@@ -12,30 +12,30 @@ public final class R {
     public static final class drawable {
         private drawable() {}
 
-        public static final int ic_rssi_level = 0x7f070069;
+        public static final int ic_rssi_level = 0x7f07006c;
     }
     public static final class id {
         private id() {}
 
-        public static final int ble_device = 0x7f08004d;
-        public static final int ble_mac_address = 0x7f08004e;
-        public static final int ble_rssi_png = 0x7f08004f;
-        public static final int ble_rssi_value = 0x7f080050;
-        public static final int blescan_control = 0x7f080051;
-        public static final int blescan_devices = 0x7f080052;
-        public static final int blescan_entry_layout = 0x7f080053;
-        public static final int button_ok = 0x7f080057;
-        public static final int instructions_text = 0x7f080093;
-        public static final int invalid_mac_address_text = 0x7f080094;
-        public static final int mac_address_string = 0x7f08009f;
-        public static final int title_text = 0x7f08011b;
+        public static final int ble_device = 0x7f080054;
+        public static final int ble_mac_address = 0x7f080055;
+        public static final int ble_rssi_png = 0x7f080056;
+        public static final int ble_rssi_value = 0x7f080057;
+        public static final int blescan_control = 0x7f080058;
+        public static final int blescan_devices = 0x7f080059;
+        public static final int blescan_entry_layout = 0x7f08005a;
+        public static final int button_ok = 0x7f08005e;
+        public static final int instructions_text = 0x7f08009f;
+        public static final int invalid_mac_address_text = 0x7f0800a0;
+        public static final int mac_address_string = 0x7f0800ad;
+        public static final int title_text = 0x7f080144;
     }
     public static final class layout {
         private layout() {}
 
-        public static final int blescan_device_list = 0x7f0b0024;
-        public static final int blescan_entry = 0x7f0b0025;
-        public static final int mac_address_entry = 0x7f0b0039;
+        public static final int blescan_device_list = 0x7f0b0026;
+        public static final int blescan_entry = 0x7f0b0027;
+        public static final int mac_address_entry = 0x7f0b003c;
     }
     public static final class mipmap {
         private mipmap() {}
@@ -52,15 +52,15 @@ public final class R {
         public static final int app_name = 0x7f0e002e;
         public static final int ble_scan = 0x7f0e0034;
         public static final int ble_scan_cancel = 0x7f0e0035;
-        public static final int dialog_title_error = 0x7f0e003c;
-        public static final int error_invalid_mac_address = 0x7f0e003e;
-        public static final int error_location_access = 0x7f0e003f;
-        public static final int error_no_bluetooth_adapter = 0x7f0e0040;
-        public static final int error_scanner_listener = 0x7f0e0041;
-        public static final int instruction_enter_mac_address = 0x7f0e0049;
-        public static final int label_unknown_device = 0x7f0e004a;
-        public static final int title_mac_address = 0x7f0e0065;
-        public static final int title_request_permission = 0x7f0e0067;
-        public static final int title_scanned_devices = 0x7f0e0068;
+        public static final int dialog_title_error = 0x7f0e003d;
+        public static final int error_invalid_mac_address = 0x7f0e0040;
+        public static final int error_location_access = 0x7f0e0041;
+        public static final int error_no_bluetooth_adapter = 0x7f0e0042;
+        public static final int error_scanner_listener = 0x7f0e0043;
+        public static final int instruction_enter_mac_address = 0x7f0e004e;
+        public static final int label_unknown_device = 0x7f0e004f;
+        public static final int title_mac_address = 0x7f0e0070;
+        public static final int title_request_permission = 0x7f0e0072;
+        public static final int title_scanned_devices = 0x7f0e0073;
     }
 }

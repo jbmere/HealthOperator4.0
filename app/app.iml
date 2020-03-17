@@ -103,9 +103,9 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:core:1.1.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:monitor:1.1.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.espresso:espresso-idling-resource:3.1.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\garga\Desktop\HealthyWear\app\libs\gson-2.2.4.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\garga\Desktop\HealthyWear\app\libs\vpbluetooth_1.0.3.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\garga\Desktop\HealthyWear\app\libs\vpprotocol_1.2.3.0.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\garga\Desktop\HealthyWear_clean\app\libs\gson-2.2.4.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\garga\Desktop\HealthyWear_clean\app\libs\vpbluetooth_1.0.3.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\garga\Desktop\HealthyWear_clean\app\libs\vpprotocol_1.2.3.0.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.0.0@jar" level="project" />

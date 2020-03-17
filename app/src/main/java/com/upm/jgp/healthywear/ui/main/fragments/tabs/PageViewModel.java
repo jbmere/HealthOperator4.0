@@ -14,7 +14,23 @@ public class PageViewModel extends ViewModel {
     private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
         @Override
         public String apply(Integer input) {
-            return "Hello world from section: " + input;
+            String aux = null;
+            switch (input){
+                case 1:
+                    aux = "There is no wearable connected  for this tab (" + input + ")\n" + "Press + to add SmartBand.";
+                    break;
+                case 2:
+                    aux = "There is no wearable connected  for this tab (" + input + ")\n" + "Press + to add MMR device.";
+                    break;
+                case 3:
+                    aux = "There is no wearable connected  for this tab (" + input + ")\n" + "Press + to add other device.";
+                    break;
+
+                default:
+                    aux = "There is no wearable connected  for this tab (" + input + ")\n";
+                    break;
+            }
+            return aux;
         }
     });
 

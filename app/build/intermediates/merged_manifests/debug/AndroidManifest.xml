@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.upm.jgp.healthywear"
-    android:versionCode="2"
-    android:versionName="1.1" >
+    android:versionCode="154"
+    android:versionName="1.5.4" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -18,16 +18,13 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <!-- Those should be also soft permissions -->
-    <!-- uses-permission android:name="android.permission.INTERNET" / -->
-    <!-- uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" / -->
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
-        android:required="true" />
-
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- From API28 Apps wanting to use foreground services must now request the FOREGROUND_SERVICE permission first -->
+        android:required="true" /> <!-- From API28 Apps wanting to use foreground services must now request the FOREGROUND_SERVICE permission first -->
     <application
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -36,8 +33,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:testOnly="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true" > <!-- Starting with Android 9.0 (API level 28), cleartext support is disabled by default. -->
+
         <service android:name="com.mbientlab.metawear.android.BtleService" />
 
         <activity
@@ -54,8 +52,13 @@
         <activity android:name="com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity" />
         <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ChooseDeviceToScanActivity" />
         <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ScanMMRActivity" />
+        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.FavouriteDevices" />
 
         <service android:name="com.upm.jgp.healthywear.ui.main.fragments.mmr.MyService" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <provider
             android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"

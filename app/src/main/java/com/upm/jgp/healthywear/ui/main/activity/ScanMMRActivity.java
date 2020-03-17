@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 
@@ -32,6 +33,7 @@ public class ScanMMRActivity extends AppCompatActivity implements BleScannerFrag
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_mmr);
 
@@ -138,9 +140,12 @@ public class ScanMMRActivity extends AppCompatActivity implements BleScannerFrag
                     if (!task.isCancelled()) {
                         runOnUiThread(connectDialog::dismiss);
                         MainActivity.setMmrConnected(true); //Sets MMR device as connected
+                        MainActivity.setMmr_device_global(device);   //Set device's MAC
+
                         Intent navActivityIntent = new Intent(ScanMMRActivity.this, TabWearablesActivity.class);
                         navActivityIntent.putExtra(TabWearablesActivity.DEVICE_TYPE, local_device_type);
                         navActivityIntent.putExtra(TabWearablesActivity.EXTRA_BT_DEVICE, device);
+                        navActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivityForResult(navActivityIntent, REQUEST_START_APP);
                     }
 

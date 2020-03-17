@@ -31,11 +31,12 @@ import com.inuker.bluetooth.library.utils.BluetoothUtils;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 import com.upm.jgp.healthywear.R;
-import com.upm.jgp.healthywear.ui.main.adapter.DeviceCompare;
 import com.upm.jgp.healthywear.ui.main.adapter.BleScanViewAdapter;
 import com.upm.jgp.healthywear.ui.main.adapter.CustomLogAdapter;
+import com.upm.jgp.healthywear.ui.main.adapter.DeviceCompare;
 import com.upm.jgp.healthywear.ui.main.adapter.DividerItemDecoration;
 import com.upm.jgp.healthywear.ui.main.adapter.OnRecycleViewClickCallback;
+import com.upm.jgp.healthywear.ui.main.fragments.smartband.SmartBandSetupActivityFragment;
 import com.veepoo.protocol.VPOperateManager;
 import com.veepoo.protocol.listener.base.IABleConnectStatusListener;
 import com.veepoo.protocol.listener.base.IABluetoothStateListener;
@@ -46,6 +47,8 @@ import com.veepoo.protocol.util.VPLogger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static java.lang.Thread.sleep;
 
 public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, OnRecycleViewClickCallback {
     private final static String TAG = MainActivity.class.getSimpleName();
@@ -126,6 +129,24 @@ public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRef
                 Logger.t(TAG).i("STATUS_CONNECTED");
             } else if (status == Constants.STATUS_DISCONNECTED) {
                 Logger.t(TAG).i("STATUS_DISCONNECTED");
+
+                if(MainActivity.isSmartbandConnected()) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(mContext, "Device disconnected", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    try {
+                        sleep(5);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    SmartBandSetupActivityFragment.deviceDisconnected();
+                    MainActivity.setSmartbandConnected(false);
+
+                    reconnectDevice(mac);
+                }
             }
         }
     };
@@ -315,6 +336,7 @@ public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRef
                     mIsOadModel = isoadModel;
                 } else {
                     Logger.t(TAG).i("CONNECTION FAILED");
+                    reconnectDevice(mac);
                 }
             }
         }, new INotifyResponse() {
@@ -324,10 +346,13 @@ public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRef
                     //Bluetooth connection status with the device
                     Logger.t(TAG).i("Listener set up. Ready for operations!");
                     MainActivity.setSmartbandConnected(true);   //Set SmartBand connected
+                    MainActivity.setSmartband_mac_global(mac);  //Set device's mac
+
                     Intent intent = new Intent(mContext, TabWearablesActivity.class);
                     intent.putExtra(TabWearablesActivity.DEVICE_TYPE, local_device_type);
                     intent.putExtra("isoadmodel", mIsOadModel);
                     intent.putExtra("deviceaddress", mac);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                 } else {
                     Logger.t(TAG).i("Listener failed. Reconnect!");
@@ -344,6 +369,21 @@ public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRef
                 if(checkBLE())
                     scanDevice();
                 break;
+        }
+    }
+
+    //tries to reconnect the device every x time (current 1 minute)
+    private void reconnectDevice(final String mac){
+        MainActivity.setReconnectingSmartband(true);
+
+        if(!MainActivity.isSmartbandConnected()) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(mContext, "Reconnecting...", Toast.LENGTH_SHORT).show();
+                }
+            });
+            connectDevice(mac);
         }
     }
 

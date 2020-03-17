@@ -83,7 +83,9 @@
             android:paddingEnd="10dp"
             android:text="@string/fav_button"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:onClick="onClick"
+            />
 
     </RelativeLayout>
 

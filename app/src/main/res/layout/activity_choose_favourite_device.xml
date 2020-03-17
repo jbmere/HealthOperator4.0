@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+    android:id="@+id/favDev_myToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:background="@color/colorPrimary"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <RelativeLayout
+        android:id="@+id/favDev_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/favDev_myToolbar"
+        android:background="@android:color/black">
+
+        <TextView
+            android:id="@+id/_favDev_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/favDev_mainTitle"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_favouriteDevices"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/favDev_buttons"
+        android:layout_below="@id/favDev_header"
+        android:choiceMode="singleChoice"
+        android:listSelector="#96E7FF"/>
+
+    <RelativeLayout
+        android:id="@+id/favDev_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/favDev_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/activity_main_buttons"
+            android:drawableStart="@android:drawable/ic_menu_delete"
+            android:paddingStart="10dp"
+            android:paddingEnd="20dp"
+            android:text="@string/remove_button"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/favDev_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/activity_main_buttons"
+            android:drawableEnd="@android:drawable/stat_sys_data_bluetooth"
+            android:paddingStart="15dp"
+            android:paddingEnd="10dp"
+            android:text="@string/connect_button"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:onClick="onClick" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

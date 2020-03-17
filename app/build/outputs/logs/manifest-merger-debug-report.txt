@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:2:1-49:12
-INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:2:1-49:12
-INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:2:1-49:12
-INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:2:1-49:12
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:2:1-55:12
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\c7eb9cd3508ac3959447c14fd76c9fb9\material-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\697f71c0c12135256cbfe98df498a7e4\appcompat-1.0.2\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\4fe44ae24daa7cfa2dd483a5d3b65a2f\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -41,61 +41,71 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\garga\.gradle\ca
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\f582580d3eb247a74d915a27810a4674\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\c75155371656c04dff3a027cdeb13e8a\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\53b4a4cf87c0ff501a8c414cec884555\print-1.0.0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:2:1-49:12
-INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:2:1-49:12
-INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:2:1-49:12
+INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:2:1-55:12
 	package
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:3:5-38
-		INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:3:5-38
+		INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:2:1-49:12
-		INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:2:1-55:12
+		INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:2:1-49:12
-		INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:2:1-55:12
+		INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:5:5-81
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:5:5-81
 MERGED from [com.mbientlab.bletoolbox:scanner:0.2.3] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\a667c07d72486c900551dc4c63e26bdd\scanner-0.2.3\AndroidManifest.xml:13:5-81
 MERGED from [com.mbientlab.bletoolbox:scanner:0.2.3] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\a667c07d72486c900551dc4c63e26bdd\scanner-0.2.3\AndroidManifest.xml:13:5-81
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:5:22-78
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:5:22-78
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:6:5-79
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:6:5-79
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:6:22-76
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:6:22-76
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:8:5-81
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:8:5-81
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:8:22-78
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:8:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:9:5-79
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:9:5-79
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:9:22-77
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:9:22-77
 uses-permission#android.permission.BLUETOOTH
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:12:5-67
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:12:5-67
 MERGED from [com.mbientlab:metawear:3.7.1] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\788a9649d4242ca4207ee3403900100e\metawear-3.7.1\AndroidManifest.xml:38:5-68
 MERGED from [com.mbientlab:metawear:3.7.1] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\788a9649d4242ca4207ee3403900100e\metawear-3.7.1\AndroidManifest.xml:38:5-68
 MERGED from [com.mbientlab.bletoolbox:scanner:0.2.3] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\a667c07d72486c900551dc4c63e26bdd\scanner-0.2.3\AndroidManifest.xml:11:5-68
 MERGED from [com.mbientlab.bletoolbox:scanner:0.2.3] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\a667c07d72486c900551dc4c63e26bdd\scanner-0.2.3\AndroidManifest.xml:11:5-68
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:12:22-65
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:12:22-65
 uses-permission#android.permission.BLUETOOTH_ADMIN
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:13:5-74
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:13:5-74
 MERGED from [com.mbientlab.bletoolbox:scanner:0.2.3] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\a667c07d72486c900551dc4c63e26bdd\scanner-0.2.3\AndroidManifest.xml:12:5-74
 MERGED from [com.mbientlab.bletoolbox:scanner:0.2.3] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\a667c07d72486c900551dc4c63e26bdd\scanner-0.2.3\AndroidManifest.xml:12:5-74
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:13:22-71
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:13:22-71
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:16:5-67
+MERGED from [com.mbientlab:metawear:3.7.1] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\788a9649d4242ca4207ee3403900100e\metawear-3.7.1\AndroidManifest.xml:39:5-67
+MERGED from [com.mbientlab:metawear:3.7.1] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\788a9649d4242ca4207ee3403900100e\metawear-3.7.1\AndroidManifest.xml:39:5-67
+	android:name
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:16:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:17:5-79
+	android:name
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:17:22-76
 uses-permission#android.permission.FOREGROUND_SERVICE
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:19:5-77
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:19:5-77
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:19:22-74
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:19:22-74
 application
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:21:5-47:19
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:21:5-53:19
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\c7eb9cd3508ac3959447c14fd76c9fb9\material-1.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\c7eb9cd3508ac3959447c14fd76c9fb9\material-1.0.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\3ec6fa8458ddbe732478393a9f9e6c77\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
@@ -111,63 +121,75 @@ MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0-rc01] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\1dc374b804e19bfc1a649ab91d374966\core-1.1.0-rc01\AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:26:9-35
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:26:9-35
 	android:label
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:24:9-41
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:24:9-41
 	android:roundIcon
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:25:9-54
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:25:9-54
 	android:icon
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:23:9-43
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:23:9-43
 	android:allowBackup
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:22:9-35
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:22:9-35
 	android:theme
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:27:9-40
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:27:9-40
+	android:usesCleartextTraffic
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:28:9-44
 service#com.mbientlab.metawear.android.BtleService
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:29:9-78
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:30:9-78
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:29:18-75
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:30:18-75
 activity#com.upm.jgp.healthywear.ui.main.activity.MainActivity
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:30:9-39:20
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:31:9-40:20
 	android:label
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:32:13-45
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:33:13-45
 	android:theme
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:33:13-56
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:34:13-56
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:31:13-58
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:32:13-58
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:34:13-38:29
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:35:13-39:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:35:17-69
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:36:17-69
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:35:25-66
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:36:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:37:17-77
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:38:17-77
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:37:27-74
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:38:27-74
 activity#com.upm.jgp.healthywear.ui.main.activity.ScanSmartBandActivity
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:40:9-76
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:41:9-76
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:40:19-73
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:41:19-73
 activity#com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:9-75
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:42:9-75
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:19-72
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:42:19-72
 activity#com.upm.jgp.healthywear.ui.main.activity.ChooseDeviceToScanActivity
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:42:9-81
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:43:9-81
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:42:19-78
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:43:19-78
 activity#com.upm.jgp.healthywear.ui.main.activity.ScanMMRActivity
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:43:9-70
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:44:9-70
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:43:19-67
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:44:19-67
+activity#com.upm.jgp.healthywear.ui.main.activity.FavouriteDevices
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:45:9-71
+	android:name
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:45:19-68
 service#com.upm.jgp.healthywear.ui.main.fragments.mmr.MyService
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:45:9-76
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:47:9-76
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:45:18-65
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:47:18-65
+uses-library#org.apache.http.legacy
+ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:49:9-51:39
+	android:required
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:51:13-37
+	android:name
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:50:13-50
 uses-sdk
-INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\c7eb9cd3508ac3959447c14fd76c9fb9\material-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\c7eb9cd3508ac3959447c14fd76c9fb9\material-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\697f71c0c12135256cbfe98df498a7e4\appcompat-1.0.2\AndroidManifest.xml:20:5-44
@@ -242,26 +264,22 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\User
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\c75155371656c04dff3a027cdeb13e8a\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\53b4a4cf87c0ff501a8c414cec884555\print-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\53b4a4cf87c0ff501a8c414cec884555\print-1.0.0\AndroidManifest.xml:20:5-44
-INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
 uses-feature#android.hardware.bluetooth_le
 ADDED from [com.mbientlab:metawear:3.7.1] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\788a9649d4242ca4207ee3403900100e\metawear-3.7.1\AndroidManifest.xml:34:5-36:35
 	android:required
 		ADDED from [com.mbientlab:metawear:3.7.1] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\788a9649d4242ca4207ee3403900100e\metawear-3.7.1\AndroidManifest.xml:36:9-32
 	android:name
 		ADDED from [com.mbientlab:metawear:3.7.1] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\788a9649d4242ca4207ee3403900100e\metawear-3.7.1\AndroidManifest.xml:35:9-53
-uses-permission#android.permission.INTERNET
-ADDED from [com.mbientlab:metawear:3.7.1] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\788a9649d4242ca4207ee3403900100e\metawear-3.7.1\AndroidManifest.xml:39:5-67
-	android:name
-		ADDED from [com.mbientlab:metawear:3.7.1] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\788a9649d4242ca4207ee3403900100e\metawear-3.7.1\AndroidManifest.xml:39:22-64
 provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
 ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\6fbf654d3db04d7d9e48eb73ccf59f45\lifecycle-process-2.0.0\AndroidManifest.xml:23:9-27:43
 	android:authorities

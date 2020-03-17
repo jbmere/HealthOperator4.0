@@ -45,7 +45,7 @@
         android:rowCount="3"
         android:alignmentMode="alignMargins"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="40dp"
         android:background="@color/colorPrimaryDark"
         android:layout_centerInParent="true"
@@ -54,13 +54,14 @@
 
     <!--Row 1-->
     <androidx.cardview.widget.CardView
+        android:id="@+id/CV_card_selection_1"
         android:layout_columnWeight="1"
         android:layout_rowWeight="0"
         android:layout_margin="16dp"
         android:onClick="onClick"
         >
         <LinearLayout
-            android:id="@+id/card_selection_1"
+            android:id="@+id/LL_card_selection_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="onClick"
@@ -87,13 +88,14 @@
 
     <!--Row 2-->
     <androidx.cardview.widget.CardView
+        android:id="@+id/CV_card_selection_2"
         android:layout_columnWeight="1"
         android:layout_rowWeight="0"
         android:layout_margin="16dp"
         android:onClick="onClick"
         >
         <LinearLayout
-            android:id="@+id/card_selection_2"
+            android:id="@+id/LL_card_selection_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="onClick"
@@ -120,12 +122,13 @@
 
         <!--Row 3-->
     <androidx.cardview.widget.CardView
+        android:id="@+id/CV_card_selection_3"
         android:layout_columnWeight="1"
         android:layout_rowWeight="0"
         android:layout_margin="16dp"
         >
         <LinearLayout
-            android:id="@+id/card_selection_3"
+            android:id="@+id/LL_card_selection_3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -136,7 +139,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="16dp"
-                android:src="#37000000"
+                android:src="@color/grey"
                 />
             <TextView
                 android:layout_width="match_parent"

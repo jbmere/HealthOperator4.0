@@ -13,8 +13,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <!--Those should be also soft permissions -->
-    <!--uses-permission android:name="android.permission.INTERNET" /-->
-    <!--uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- From API28 Apps wanting to use foreground services must now request the FOREGROUND_SERVICE permission first -->
 
@@ -24,7 +24,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">  <!-- Starting with Android 9.0 (API level 28), cleartext support is disabled by default.-->
 
         <service android:name="com.mbientlab.metawear.android.BtleService" />
         <activity
@@ -41,8 +42,13 @@
         <activity android:name=".ui.main.activity.TabWearablesActivity" />
         <activity android:name=".ui.main.activity.ChooseDeviceToScanActivity" />
         <activity android:name=".ui.main.activity.ScanMMRActivity" />
+        <activity android:name=".ui.main.activity.FavouriteDevices" />
 
         <service android:name=".ui.main.fragments.mmr.MyService"></service>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false"/>
 
     </application>
 

@@ -10,6 +10,7 @@ import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,13 +22,12 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.mbientlab.metawear.MetaWearBoard;
 import com.mbientlab.metawear.android.BtleService;
@@ -45,10 +45,15 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
     PopupWindow popupInfo = null;
     ImageButton closeButton;
     private String incoming_device_type;
+    private TabLayout tabs;
+
+    /////SmartBand App/////
+    private static String mac_address_smartBand;
 
     /////MMRData App/////
     public final static String EXTRA_BT_DEVICE= "com.mbientlab.metawear_mmr.starter.DeviceSetupActivity.EXTRA_BT_DEVICE";
     public static String mac_address_mmr;
+
     public static class ReconnectDialogFragment extends DialogFragment implements  ServiceConnection {
         private static final String KEY_BLUETOOTH_DEVICE = "com.mbientlab.metawear_mmr.starter.DeviceSetupActivity.ReconnectDialogFragment.KEY_BLUETOOTH_DEVICE";
 
@@ -66,6 +71,7 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
             return newFragment;
         }
 
+        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             btDevice = getArguments().getParcelable(KEY_BLUETOOTH_DEVICE);
@@ -116,25 +122,21 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
+        tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        incoming_device_type = getIntent().getStringExtra(DEVICE_TYPE);
+        //TODO add favourites
+        //checkFavourites();
 
-        String incoming_device_type = getIntent().getStringExtra(DEVICE_TYPE);
         /////SmartBand App/////
         if(incoming_device_type.equals("SmartBand")) {
             //if(MainActivity.isSmartbandConnected()) {
-
+            mac_address_smartBand = getIntent().getStringExtra("deviceaddress");
+            System.out.println("ADDRESS: " + mac_address_smartBand);
             //}
         }
+        /////SmartBand App/////
 
         /////MMRData App/////
         if(incoming_device_type.equals("MMR")) {
@@ -144,8 +146,15 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
             //}
         }
         /////MMRData App/////
+
+        //TODO more kind of wearables
+
     }
 
+    @Override
+    public View onCreateView(String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
+    }
 
     /////MENU/////
     @Override
@@ -166,12 +175,49 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
 
             case R.id.menuDisconnectDevice:
                 //TODO code to disconnect current device
+                int selectedTab = tabs.getSelectedTabPosition();
+                switch (selectedTab) {
+                    case 0: //SmartBand
+                        if (MainActivity.isSmartbandConnected()){
+                            Toast.makeText(this, "SmartBand disconnected", Toast.LENGTH_SHORT).show();
+                            //MainActivity.setSmartbandConnected(false);
+                            //TODO case for disconnection of 1st device
+                        }else{
+                            Toast.makeText(this, "No SmartBand is connected", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case 1: //MMR
+                        if(MainActivity.isMmrConnected()) {
+                            Toast.makeText(this, "MMR device disconnected", Toast.LENGTH_SHORT).show();
+                            MainActivity.setMmrConnected(false);
+                            MainActivity.setMmr_device_global(null);   //Set device's MAC
 
-                //TAB2
-                //metawear_mmr.disconnectAsync();
-                //finish();
-                //TAB2
-                Toast.makeText(this, "Disconnecting device", Toast.LENGTH_SHORT).show();
+                            metawear_mmr.disconnectAsync();
+                            //TODO change the view of that tab to device disconnected
+                        }else{
+                            Toast.makeText(this, "No MMR device is connected", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+                    case 2: //Others
+                        //TODO case for disconnection of 3rd device
+                        break;
+                }
+
+                //TODO if there is no wearable connected... go back
+                if((!MainActivity.isSmartbandConnected())&&(!MainActivity.isMmrConnected())) {
+                    //Toast.makeText(this, "Nodeviceconnecteeeeed", Toast.LENGTH_SHORT).show();
+                    if (popupInfo != null){
+                        popupInfo.dismiss();
+                    }
+                    //TODO android.view.WindowLeaked jumps but it is not affecting behavior
+                    Intent mainActivityIntent = new Intent(this, ChooseDeviceToScanActivity.class);
+                    mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(mainActivityIntent);
+
+                }else{
+                    //TODO change the view of the tabs?
+                }
                 break;
 
             case R.id.menuInfo:
@@ -210,6 +256,16 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
 
     }
 
+    private void checkFavourites(){
+
+        if(MainActivity.isSmartbandConnected()){
+            //boolean
+        }
+        if(MainActivity.isMmrConnected()) {
+            //boolean
+        }
+    }
+
     private View.OnClickListener closeButton_listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -227,35 +283,59 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
         }
     }
 
-
     /////MMRData App/////
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
+        /////SmartBand App/////
+        //if(incoming_device_type.equals("SmartBand")) {
+            if(MainActivity.isSmartbandConnected()) {
+
+            }
+        //}
+        /////SmartBand App/////
+
+        /////MMRData App/////
+        if(MainActivity.isMmrConnected()) {
             metawear_mmr = ((BtleService.LocalBinder) service).getMetaWearBoard(btDevice_mmr);
             mac_address_mmr = metawear_mmr.getMacAddress();
             metawear_mmr.onUnexpectedDisconnect(status -> {
                 ReconnectDialogFragment dialogFragment = ReconnectDialogFragment.newInstance(btDevice_mmr);
                 dialogFragment.show(getSupportFragmentManager(), RECONNECT_DIALOG_TAG);
-
                 metawear_mmr.connectAsync().continueWithTask(task -> task.isCancelled() || !task.isFaulted() ? task : MainActivity.reconnect(metawear_mmr))
                         .continueWith((Continuation<Void, Void>) task -> {
                             if (!task.isCancelled()) {
                                 runOnUiThread(() -> {
                                     ((DialogFragment) getSupportFragmentManager().findFragmentByTag(RECONNECT_DIALOG_TAG)).dismiss();
-                                    ((MMRSetupActivityFragment) getSupportFragmentManager().findFragmentById(R.id.mmr_setup_fragment)).reconnected();
+                                    //TODO this was giving NullPointerException, but the call to this function is not necessary right now because it is currently empty
+                                    //((MMRSetupActivityFragment) getSupportFragmentManager().findFragmentById(R.id.mmr_setup_fragment)).reconnected();
                                 });
                             } else {
-                                finish();
+                                MainActivity.setMmrConnected(false);
+                                MainActivity.setMmr_device_global(null);   //Set device's MAC
+                                //finish();
                             }
 
                             return null;
                         });
             });
+        }
+        /////MMRData App/////
+
     }
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
+        /////SmartBand App/////
+        if(!MainActivity.isSmartbandConnected()) {
 
+        }
+        /////SmartBand App/////
+
+        /////MMRData App/////
+        if(!MainActivity.isMmrConnected()) {
+
+        }
+        /////MMRData App/////
     }
 
     @Override
@@ -263,4 +343,9 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
         return btDevice_mmr;
     }
     /////MMRData App/////
+
+    public static String getMac_address_smartBand() {
+        return mac_address_smartBand;
+    }
+
 }

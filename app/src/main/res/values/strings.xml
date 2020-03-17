@@ -20,7 +20,7 @@
     <string name="ib_close_description">CloseButton</string>
     <string name="available_mmr_devices">Available MMR Devices</string>
     <string name="available_smartband_devices">Available SmartBands</string>
-    <string name="menu_back_to_scan">Back to Scan</string>
+    <string name="menu_back_to_scan">Scan new wearable</string>
     <string name="menu_disconnect">Disconnect device</string>
     <string name="menu_info">Info</string>
     <string name="choose_device">Which device would you like to connect?</string>
@@ -39,6 +39,7 @@
     <string name="data_from">Data from:&#160;&#160;&#160;</string>
     <string name="ellipsis">...</string>
     <string name="triple_0">000</string>
+    <string name="favDev_mainTitle">Favourite Devices</string>
 
 
 
@@ -49,4 +50,18 @@
     <string name="title_reconnect_attempt">Reconnecting</string>
     <string name="message_wait">Please wait</string>
     <string name="action_disconnect">Disconnect</string>
+    <string name="remove_button">Remove</string>
+
+    <string name="time_tv">Time:&#160;&#160;</string>
+    <string name="waiting_tv">waiting</string>
+    <string name="heart_rate_tv">Heart Rate:&#160;&#160;</string>
+    <string name="high_blood_pressure_tv">Blood Pressure (High):&#160;&#160;</string>
+    <string name="low_blood_pressure_tv">Blood Pressure (Low):&#160;&#160;</string>
+    <string name="steps_tv">Steps:&#160;&#160;</string>
+    <string name="minus_eins_tv">-1</string>
+    <string name="distance_tv">Distance (Km):&#160;&#160;</string>
+    <string name="calories_tv">Calories:&#160;&#160;</string>
+    <string name="sleeping_hours_tv">Sleeping hours:&#160;&#160;</string>
+
+
 </resources>
