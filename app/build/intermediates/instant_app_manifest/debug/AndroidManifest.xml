@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.upm.jgp.healthywear"
     android:targetSandboxVersion="2"
-    android:versionCode="154"
-    android:versionName="1.5.4" >
+    android:versionCode="159"
+    android:versionName="1.5.9" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -34,6 +34,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" > <!-- Starting with Android 9.0 (API level 28), cleartext support is disabled by default. -->
 

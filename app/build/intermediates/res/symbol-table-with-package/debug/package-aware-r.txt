@@ -1310,6 +1310,7 @@ id smartband_iv_distance
 id smartband_iv_heart
 id smartband_iv_sleep
 id smartband_iv_steps
+id smartband_lab_gps
 id smartband_mac
 id smartband_setup_fragment
 id smartband_sleep
@@ -1319,6 +1320,7 @@ id smartband_value_bph
 id smartband_value_bpl
 id smartband_value_calories
 id smartband_value_distance
+id smartband_value_gps
 id smartband_value_hr
 id smartband_value_mac
 id smartband_value_sleep

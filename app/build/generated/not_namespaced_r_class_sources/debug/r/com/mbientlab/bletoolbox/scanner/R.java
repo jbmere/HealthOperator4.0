@@ -28,7 +28,7 @@ public final class R {
         public static final int instructions_text = 0x7f08009f;
         public static final int invalid_mac_address_text = 0x7f0800a0;
         public static final int mac_address_string = 0x7f0800ad;
-        public static final int title_text = 0x7f080144;
+        public static final int title_text = 0x7f080146;
     }
     public static final class layout {
         private layout() {}

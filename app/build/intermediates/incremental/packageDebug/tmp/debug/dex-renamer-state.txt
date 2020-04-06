@@ -1,4 +1,4 @@
-#Fri Mar 06 21:00:07 CET 2020
+#Sat Apr 04 00:07:57 CEST 2020
 base.0=C\:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex

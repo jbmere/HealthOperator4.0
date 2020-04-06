@@ -1,46 +1,46 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.upm.jgp.healthywear"
-4    android:versionCode="154"
-5    android:versionName="1.5.4" >
+4    android:versionCode="159"
+5    android:versionName="1.5.9" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
+8-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="28" />
-9-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml
+9-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-11-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:5:5-81
-11-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:5:22-78
+11-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:5:5-81
+11-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:5:22-78
 12    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-12-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:6:5-79
-12-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:6:22-76
+12-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:6:5-79
+12-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:6:22-76
 13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-13-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:8:5-81
-13-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:8:22-78
+13-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:8:5-81
+13-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:8:22-78
 14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-14-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:9:5-79
-14-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:9:22-77
+14-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:9:5-79
+14-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:9:22-77
 15
 16    <!-- Bluetooth Permission (soft) -->
 17    <uses-permission android:name="android.permission.BLUETOOTH" />
-17-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:12:5-67
-17-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:12:22-65
+17-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:12:5-67
+17-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:12:22-65
 18    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-18-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:13:5-74
-18-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:13:22-71
+18-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:13:5-74
+18-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:13:22-71
 19
 20    <!-- Those should be also soft permissions -->
 21    <uses-permission android:name="android.permission.INTERNET" />
-21-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:16:5-67
-21-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:16:22-64
+21-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:16:5-67
+21-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:16:22-64
 22    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-22-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:17:5-79
-22-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:17:22-76
+22-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:17:5-79
+22-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:17:22-76
 23    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-23-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:19:5-77
-23-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:19:22-74
+23-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:19:5-77
+23-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:19:22-74
 24
 25    <uses-feature
 25-->[com.mbientlab:metawear:3.7.1] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\788a9649d4242ca4207ee3403900100e\metawear-3.7.1\AndroidManifest.xml:34:5-36:35
@@ -49,85 +49,86 @@
 27        android:required="true" /> <!-- From API28 Apps wanting to use foreground services must now request the FOREGROUND_SERVICE permission first -->
 27-->[com.mbientlab:metawear:3.7.1] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\788a9649d4242ca4207ee3403900100e\metawear-3.7.1\AndroidManifest.xml:36:9-32
 28    <application
-28-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:21:5-53:19
+28-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:21:5-53:19
 29        android:allowBackup="true"
-29-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:22:9-35
+29-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:22:9-35
 30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 30-->[androidx.core:core:1.1.0-rc01] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\1dc374b804e19bfc1a649ab91d374966\core-1.1.0-rc01\AndroidManifest.xml:24:18-86
 31        android:debuggable="true"
 32        android:icon="@mipmap/ic_launcher"
-32-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:23:9-43
+32-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:23:9-43
 33        android:label="@string/app_name"
-33-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:24:9-41
+33-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:24:9-41
 34        android:roundIcon="@mipmap/ic_launcher_round"
-34-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:25:9-54
+34-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:25:9-54
 35        android:supportsRtl="true"
-35-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:26:9-35
-36        android:theme="@style/AppTheme"
-36-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:27:9-40
-37        android:usesCleartextTraffic="true" > <!-- Starting with Android 9.0 (API level 28), cleartext support is disabled by default. -->
-37-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:28:9-44
-38
-39        <service android:name="com.mbientlab.metawear.android.BtleService" />
-39-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:30:9-78
-39-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:30:18-75
-40
-41        <activity
-41-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:31:9-40:20
-42            android:name="com.upm.jgp.healthywear.ui.main.activity.MainActivity"
-42-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:32:13-58
-43            android:label="@string/app_name"
-43-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:33:13-45
-44            android:theme="@style/AppTheme.NoActionBar" >
-44-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:34:13-56
-45            <intent-filter>
-45-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:35:13-39:29
-46                <action android:name="android.intent.action.MAIN" />
-46-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:36:17-69
-46-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:36:25-66
-47
-48                <category android:name="android.intent.category.LAUNCHER" />
-48-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:38:17-77
-48-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:38:27-74
-49            </intent-filter>
-50        </activity>
-51        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ScanSmartBandActivity" />
-51-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:41:9-76
-51-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:41:19-73
-52        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity" />
-52-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:42:9-75
-52-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:42:19-72
-53        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ChooseDeviceToScanActivity" />
-53-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:43:9-81
-53-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:43:19-78
-54        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ScanMMRActivity" />
-54-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:44:9-70
-54-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:44:19-67
-55        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.FavouriteDevices" />
-55-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:45:9-71
-55-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:45:19-68
-56
-57        <service android:name="com.upm.jgp.healthywear.ui.main.fragments.mmr.MyService" />
-57-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:47:9-76
-57-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:47:18-65
-58
-59        <uses-library
-59-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:49:9-51:39
-60            android:name="org.apache.http.legacy"
-60-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:50:13-50
-61            android:required="false" />
-61-->C:\Users\garga\Desktop\HealthyWear_clean\app\src\main\AndroidManifest.xml:51:13-37
-62
-63        <provider
-63-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\6fbf654d3db04d7d9e48eb73ccf59f45\lifecycle-process-2.0.0\AndroidManifest.xml:23:9-27:43
-64            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-64-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\6fbf654d3db04d7d9e48eb73ccf59f45\lifecycle-process-2.0.0\AndroidManifest.xml:24:13-79
-65            android:authorities="com.upm.jgp.healthywear.lifecycle-process"
-65-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\6fbf654d3db04d7d9e48eb73ccf59f45\lifecycle-process-2.0.0\AndroidManifest.xml:25:13-69
-66            android:exported="false"
-66-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\6fbf654d3db04d7d9e48eb73ccf59f45\lifecycle-process-2.0.0\AndroidManifest.xml:26:13-37
-67            android:multiprocess="true" />
-67-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\6fbf654d3db04d7d9e48eb73ccf59f45\lifecycle-process-2.0.0\AndroidManifest.xml:27:13-40
-68    </application>
-69
-70</manifest>
+35-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:26:9-35
+36        android:testOnly="true"
+37        android:theme="@style/AppTheme"
+37-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:27:9-40
+38        android:usesCleartextTraffic="true" > <!-- Starting with Android 9.0 (API level 28), cleartext support is disabled by default. -->
+38-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:28:9-44
+39
+40        <service android:name="com.mbientlab.metawear.android.BtleService" />
+40-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:30:9-78
+40-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:30:18-75
+41
+42        <activity
+42-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:31:9-40:20
+43            android:name="com.upm.jgp.healthywear.ui.main.activity.MainActivity"
+43-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:32:13-58
+44            android:label="@string/app_name"
+44-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:33:13-45
+45            android:theme="@style/AppTheme.NoActionBar" >
+45-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:34:13-56
+46            <intent-filter>
+46-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:35:13-39:29
+47                <action android:name="android.intent.action.MAIN" />
+47-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:36:17-69
+47-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:36:25-66
+48
+49                <category android:name="android.intent.category.LAUNCHER" />
+49-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:38:17-77
+49-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:38:27-74
+50            </intent-filter>
+51        </activity>
+52        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ScanSmartBandActivity" />
+52-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:9-76
+52-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:19-73
+53        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity" />
+53-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:42:9-75
+53-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:42:19-72
+54        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ChooseDeviceToScanActivity" />
+54-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:43:9-81
+54-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:43:19-78
+55        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ScanMMRActivity" />
+55-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:44:9-70
+55-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:44:19-67
+56        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.FavouriteDevices" />
+56-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:45:9-71
+56-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:45:19-68
+57
+58        <service android:name="com.upm.jgp.healthywear.ui.main.fragments.mmr.MyService" />
+58-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:47:9-76
+58-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:47:18-65
+59
+60        <uses-library
+60-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:49:9-51:39
+61            android:name="org.apache.http.legacy"
+61-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:50:13-50
+62            android:required="false" />
+62-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:51:13-37
+63
+64        <provider
+64-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\6fbf654d3db04d7d9e48eb73ccf59f45\lifecycle-process-2.0.0\AndroidManifest.xml:23:9-27:43
+65            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+65-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\6fbf654d3db04d7d9e48eb73ccf59f45\lifecycle-process-2.0.0\AndroidManifest.xml:24:13-79
+66            android:authorities="com.upm.jgp.healthywear.lifecycle-process"
+66-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\6fbf654d3db04d7d9e48eb73ccf59f45\lifecycle-process-2.0.0\AndroidManifest.xml:25:13-69
+67            android:exported="false"
+67-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\6fbf654d3db04d7d9e48eb73ccf59f45\lifecycle-process-2.0.0\AndroidManifest.xml:26:13-37
+68            android:multiprocess="true" />
+68-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\garga\.gradle\caches\transforms-2\files-2.1\6fbf654d3db04d7d9e48eb73ccf59f45\lifecycle-process-2.0.0\AndroidManifest.xml:27:13-40
+69    </application>
+70
+71</manifest>
