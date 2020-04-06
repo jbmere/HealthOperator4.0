@@ -1,5 +1,5 @@
 # HealthOperator4.0
-Repository holding the sensor fusion and proposed architecture
+Repository holding the sensor fusion and proposed architecture created within the WISEST RFCS funded EU project.
 
 The first version of this repository was created by Dr Xiaochen Zheng and Dr Joaquín Ordieres-Meré early in 2017.
 The current version was worked out by Mr Jorge Garcia Paredes early in 2020. This release includes several innovations
@@ -14,4 +14,4 @@ Once downloaded, you sould use Android-Studio to interact and to generate the pr
 according to the interesting Android releases.
 
 =====
-Madrid 16/01/2020
+Madrid 6/04/2020
