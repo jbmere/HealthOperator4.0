@@ -53,6 +53,7 @@ import com.mbientlab.metawear.module.SensorFusionBosch.Mode;
 import com.mbientlab.metawear.module.Temperature;
 import com.upm.jgp.healthywear.R;
 import com.upm.jgp.healthywear.ui.main.activity.MainActivity;
+import com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -95,7 +96,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         BluetoothDevice getBtDevice_mmr();
     }
 
-    private MetaWearBoard metawear = null;
+    private static MetaWearBoard metawear = null;
     private FragmentSettings settings;
     private String mmrMAC = null;
     private final int TYPEMMR = 2;
@@ -167,7 +168,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
     private String ILLUM="0"; //Illumnition
     private String ALT="0"; //ALTITUDE
     private String armangle ="0";
-    private String location = "'lat':'000.000000','lng':'000.000000'";
+    private String location = "'lat':'-000.000000','lng':'-000.000000'";
     private String GYRO ="000";
     private Double arm;
 
@@ -246,6 +247,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                     tv_mac.setTextColor(Color.parseColor("#FF99CC00"));
                     tv_mac.setText(mmrMAC);
                 }
+
                 //accelerometer
                 accelerometer.acceleration().addRouteAsync(new RouteBuilder() {
                     @Override
@@ -301,14 +303,13 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                                     new Handler(Looper.getMainLooper()).post(new Runnable(){
                                         @Override
                                         public void run() {
-                                            location=getLocation(); //get location
+                                            location= refresh_phone_Location(); //get location
                                             tv_gps.setText(location); //update UI
                                         }
                                     });
                                     String shortname=getUintAsTimestamp(time_now); //timestam
-                                    //mongo --host IPAddress:Port USER -u USER -p PASSWORD
-                                    String toplines="{'us':'USER','pass':'PASSWORD','db':'USER','collection':'mmr_acc'}\n"+
-                                            "{'mac':'"+metawear.getMacAddress()+"'," + location + ",'alt':'" + ALT + "','t_end':'" +shortname+ "','temp':'" + TEMP+ "','illum':'" + ILLUM+"'}\n";
+                                    String toplines="{'us':'USER','pass':'PASSWORDxx','db':'IoT','collection':'mmr_acc'}\n"+
+                                            "{'mac':'"+metawear.getMacAddress() + "','appversion':'" + MainActivity.getStringAppVersion() + "'," + location + ",'alt':'" + ALT + "','t_end':'" +shortname+ "','temp':'" + TEMP+ "','illum':'" + ILLUM+"'}\n";
                                     Log.i("Toplines:", toplines);
 
                                     String input=toplines+sb.toString();
@@ -545,25 +546,27 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         view.findViewById(R.id.mmr_acc_stop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accelerometer.stop();
-                accelerometer.acceleration().stop();
-                //sensorFusion.quaternion().stop();
-                //sensorFusion.stop();
-                //logging.stop(); //stop logging
-                metawear.tearDown();
+
                 if(timer!=null)
                     timer.cancel();
-
-                baroBosch.altitude().stop();
-                baroBosch.stop();
-                alsLtr329.illuminance().stop();
-
                 //change color to red if stop on click
                 tv_mac.setTextColor(Color.parseColor("#FFCC0000"));
+
                 if(metawear.isConnected()) {
-                    tv_mac.setText("Stopped");
+                    tv_mac.setText("Stopped");accelerometer.stop();
+
+                    accelerometer.acceleration().stop();
+                    //sensorFusion.quaternion().stop();
+                    //sensorFusion.stop();
+                    //logging.stop(); //stop logging
+                    metawear.tearDown();
+
+                    baroBosch.altitude().stop();
+                    baroBosch.stop();
+                    alsLtr329.illuminance().stop();
                 }else{
                     tv_mac.setText("Disconnected");
+                    onServiceDisconnected();
                 }
             }
         });
@@ -731,6 +734,8 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
+        Log.i("OnServiceDisconnected:", name.toString());
+
         MainActivity.setMmrConnected(false);
         MainActivity.setMmr_device_global(null);   //Set device's MAC
 
@@ -738,8 +743,17 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         timer.cancel();
     }
 
+    public void onServiceDisconnected() {
+        MainActivity.setMmrConnected(false);
+        MainActivity.setMmr_device_global(null);   //Set device's MAC
 
+        tv_mac.setText("Disconnected");
+        timer.cancel();
+    }
 
+    public static void disconnection(){
+        metawear.disconnectAsync();
+    }
 
     /**
      * Called when the app has reconnected to the board
@@ -758,6 +772,76 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         timer.schedule(timerTask, 5000, 60000);
     }
 
+    //Function to Get the GPS information from the phone. //Reference: http://blog.csdn.net/cjjky/article/details/6557561
+    private String refresh_phone_Location(){
+        double latitude=0.0;
+        double longitude =0.0;
+        double altitude =0.0;
+        float accuracy=0;
+        long t_gps=0;
+        long utcTime = System.currentTimeMillis();
+        //t_gps=utcTime+tmadrid.getOffset(utcTime);
+
+        t_gps=utcTime;
+        //TODO attach this fragment to Activity, when disconnecting smartband and connecting again, the getActivity method is retuning null object
+        //solved by getting the LocationManager from TabWearablesActivity
+        LocationManager locationManager = TabWearablesActivity.getLocationManager();
+        LocationListener locationListener = new LocationListener() {
+            // Provider的状态在可用、暂时不可用和无服务三个状态直接切换时触发此函数
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+            }
+            // Provider被enable时触发此函数，比如GPS被打开
+            @Override
+            public void onProviderEnabled(String provider) {
+            }
+            // Provider被disable时触发此函数，比如GPS被关闭
+            @Override
+            public void onProviderDisabled(String provider) {
+            }
+            //当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
+            @Override
+            public void onLocationChanged(Location location) {
+                //TODO uncomment?
+    			/*if (location != null) {
+    				Log.e("Map", "Location changed : Lat: "
+    				+ location.getLatitude() + " Lng: "  + location.getLongitude()+ " Alt: "
+    				+ location.getAltitude()+" Acc: " + location.getAccuracy()+" t_gps:"+location.getTime());
+    			}	   */
+                //t_gps=location.getTime(); //timestamp
+            }
+        };
+
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,300, 0,locationListener);
+                Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                if(location != null){
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
+                    altitude = location.getAltitude();
+                    accuracy=location.getAccuracy();
+                }
+            }else{
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,300, 0,locationListener);
+                Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                if(location != null){
+                    latitude = location.getLatitude(); //经度
+                    longitude = location.getLongitude(); //纬度
+                    altitude=location.getAltitude(); //海拔
+                    accuracy=location.getAccuracy(); //精度, in meters
+                }
+            }
+        }
+
+        //String location="'lat':'"+String.format("%.6f",(latitude))+"','lng':'"+String.format("%.6f",(longitude)) +"','t_gps':'"+getUintAsTimestampGPS(t_gps)+"'";
+        location ="'lat':'"+String.format("%.6f",(latitude))+"','lng':'"+String.format("%.6f",(longitude)) +"'";
+        //Toast.makeText(this, location, Toast.LENGTH_SHORT).show();
+        return location;
+    }
 
     //task to zip data files
     public void initializeTimerTask() {
@@ -933,75 +1017,6 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         //uint=uint+tmadrid.getOffset(uint);
         //DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("GMT+1"));
         return DATE_FORMAT.format(new Date(uint)).toString();
-    }
-
-    //Function to Get the GPS information from the phone. //Reference: http://blog.csdn.net/cjjky/article/details/6557561
-    public String getLocation(){
-        double latitude=0.0;
-        double longitude =0.0;
-        double altitude =0.0;
-        float accuracy=0;
-        long t_gps=0;
-        long utcTime = System.currentTimeMillis();
-        //t_gps=utcTime+tmadrid.getOffset(utcTime);
-
-        t_gps=utcTime;
-        //TODO attach this fragment to Activity, when disconnecting smartband and connecting again, the getActivity method is retuning null object
-        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        LocationListener locationListener = new LocationListener() {
-            // Provider的状态在可用、暂时不可用和无服务三个状态直接切换时触发此函数
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            }
-            // Provider被enable时触发此函数，比如GPS被打开
-            @Override
-            public void onProviderEnabled(String provider) {
-            }
-            // Provider被disable时触发此函数，比如GPS被关闭
-            @Override
-            public void onProviderDisabled(String provider) {
-            }
-            //当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
-            @Override
-            public void onLocationChanged(Location location) {
-                //TODO uncomment?
-    			/*if (location != null) {
-    				Log.e("Map", "Location changed : Lat: "
-    				+ location.getLatitude() + " Lng: "  + location.getLongitude()+ " Alt: "
-    				+ location.getAltitude()+" Acc: " + location.getAccuracy()+" t_gps:"+location.getTime());
-    			}	   */
-                //t_gps=location.getTime(); //timestamp
-            }
-        };
-
-        if (ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,300, 0,locationListener);
-                Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                if(location != null){
-                    latitude = location.getLatitude();
-                    longitude = location.getLongitude();
-                    altitude = location.getAltitude();
-                    accuracy=location.getAccuracy();
-                }
-            }else{
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,300, 0,locationListener);
-                Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                if(location != null){
-                    latitude = location.getLatitude(); //经度
-                    longitude = location.getLongitude(); //纬度
-                    altitude=location.getAltitude(); //海拔
-                    accuracy=location.getAccuracy(); //精度, in meters
-                }
-            }
-        }
-
-        //String location="'lat':'"+String.format("%.6f",(latitude))+"','lng':'"+String.format("%.6f",(longitude)) +"','t_gps':'"+getUintAsTimestampGPS(t_gps)+"'";
-        String location="'lat':'"+String.format("%.6f",(latitude))+"','lng':'"+String.format("%.6f",(longitude)) +"'";
-        return location;
     }
 
     private static final DateFormat DATE_FORMAT_GPS = new SimpleDateFormat("yyyyMMddHHmmssSSS"); //Set the format of the .txt file name.

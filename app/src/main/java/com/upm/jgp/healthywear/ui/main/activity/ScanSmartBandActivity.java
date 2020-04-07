@@ -320,7 +320,6 @@ public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRef
         return false;
     }
 
-
     private void connectDevice(final String mac) {
 
         mVpoperateManager.registerConnectStatusListener(mac, mBleConnectStatusListener);

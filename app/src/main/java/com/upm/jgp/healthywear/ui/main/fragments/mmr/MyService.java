@@ -219,12 +219,7 @@ class RetrieveFeedTask_mmr extends AsyncTask<String, Void, Void> {
 				//http://stackoverflow.com/questions/2017414/post-multipart-request-with-android-sdk
 				HttpClient client = new DefaultHttpClient(); //https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-not-permitted
 				try {
-					//HttpPost httpPost = new HttpPost("http://apiinas02.etsii.upm.es/pebble/carga_pebble.py"); //check the upload result here: http://IPAddress.IPAddress.82.184/tmp/
-					//HttpPost httpPost = new HttpPost("http://pebble.etsii.upm.es/pebble/carga_pebble.py");
-                    //mongo --host IPAddress.IPAddress.82.181:Port USER -u USER -p PASSWORD
-					//HttpPost httpPost = new HttpPost("http://apii01.etsii.upm.es/mmr/carga_mmr.py"); //http://IPAddress.IPAddress.82.181/mmr/carga_mmr.py
-                    HttpPost httpPost = new HttpPost("http://IPAddress.IPAddress.82.181/mmr/carga_mmr.py");
-					//HttpPost httpPost = new HttpPost("http://IPAddress.IPAddress.110.150/mmr/carga_mmr.py");
+                    HttpPost httpPost = new HttpPost("http://SERVER_ADDRESS/mmr/carga_mmr.py");
 					MultipartEntityBuilder builder = MultipartEntityBuilder
 							.create();
 					builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
@@ -274,12 +269,7 @@ class RetrieveFeedTask_SmartBand extends AsyncTask<String, Void, Void> {
 				//http://stackoverflow.com/questions/2017414/post-multipart-request-with-android-sdk
 				HttpClient client = new DefaultHttpClient(); //https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-not-permitted
 				try {
-					//HttpPost httpPost = new HttpPost("http://apiinas02.etsii.upm.es/pebble/carga_pebble.py"); //check the upload result here: http://IPAddress.IPAddress.82.184/tmp/
-					//HttpPost httpPost = new HttpPost("http://pebble.etsii.upm.es/pebble/carga_pebble.py");
-					//mongo --host IPAddress.IPAddress.82.181:Port USER -u USER -p PASSWORD
-					//HttpPost httpPost = new HttpPost("http://apii01.etsii.upm.es/mmr/carga_mmr.py"); //http://IPAddress.IPAddress.82.181/mmr/carga_mmr.py
-					HttpPost httpPost = new HttpPost("http://IPAddress.IPAddress.82.181/mmr/carga_heart.py");
-					//HttpPost httpPost = new HttpPost("http://IPAddress.IPAddress.110.150/mmr/carga_mmr.py");
+					HttpPost httpPost = new HttpPost("http://SERVER_ADDRESS/mmr/carga_heart.py");
 					MultipartEntityBuilder builder = MultipartEntityBuilder
 							.create();
 					builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);

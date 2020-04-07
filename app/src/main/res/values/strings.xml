@@ -5,7 +5,7 @@
 ]>
 <resources>
     <string name="app_name">&app_name;</string>
-    <string name="tab_text_1">SmartBand</string>
+    <string name="tab_text_1">SmartBnd</string>
     <string name="tab_text_2">MMR</string>
     <string name="tab_text_3">Others</string>
     <string name="scan_button">&scan_button;</string>

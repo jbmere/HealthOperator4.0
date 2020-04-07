@@ -54,7 +54,8 @@ import bolts.Task;
 public class MainActivity extends AppCompatActivity implements ServiceConnection {
 
     Context mContext = MainActivity.this;
-    TextView mAppVersion;
+    private static TextView mAppVersion;
+    private static String stringAppVersion = "0.0";
     FloatingActionButton helpFAB;
     PopupWindow popupInfo = null;
     ImageButton closeButton;
@@ -287,6 +288,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
             PackageManager manager = context.getPackageManager();
             PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
             version = info.versionName;
+            stringAppVersion = version;
             return version;
         } catch (Exception e) {
             e.printStackTrace();
@@ -497,4 +499,9 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     public static void setReconnectingSmartband(boolean reconnectingSmartband) {
         MainActivity.reconnectingSmartband = reconnectingSmartband;
     }
+
+    public static String getStringAppVersion() {
+        return stringAppVersion;
+    }
+
 }

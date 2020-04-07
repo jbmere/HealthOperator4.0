@@ -291,6 +291,25 @@
                     android:textColor="@android:color/holo_blue_light"
                     android:textSize="24sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/smartband_lab_gps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/smartband_value_sleep"
+                    android:text="@string/location"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/smartband_value_gps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/smartband_lab_gps"
+                    android:text="'lat':'0.000000', 'lng':'0.000000'"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabSmartBandfav"
                     android:layout_width="wrap_content"

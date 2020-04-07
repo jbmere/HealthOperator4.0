@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.AttributeSet;
@@ -33,6 +34,7 @@ import com.mbientlab.metawear.MetaWearBoard;
 import com.mbientlab.metawear.android.BtleService;
 import com.upm.jgp.healthywear.R;
 import com.upm.jgp.healthywear.ui.main.fragments.mmr.MMRSetupActivityFragment;
+import com.upm.jgp.healthywear.ui.main.fragments.smartband.SmartBandSetupActivityFragment;
 import com.upm.jgp.healthywear.ui.main.fragments.tabs.SectionsPagerAdapter;
 
 import bolts.Continuation;
@@ -46,9 +48,13 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
     ImageButton closeButton;
     private String incoming_device_type;
     private TabLayout tabs;
+    private static String location = "'lat':'-000.000000','lng':'-000.000000'";
 
     /////SmartBand App/////
     private static String mac_address_smartBand;
+
+    //Location
+    private static LocationManager locationManager;
 
     /////MMRData App/////
     public final static String EXTRA_BT_DEVICE= "com.mbientlab.metawear_mmr.starter.DeviceSetupActivity.EXTRA_BT_DEVICE";
@@ -149,6 +155,8 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
 
         //TODO more kind of wearables
 
+        //Load device's Location
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
     }
 
     @Override
@@ -179,21 +187,29 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
                 switch (selectedTab) {
                     case 0: //SmartBand
                         if (MainActivity.isSmartbandConnected()){
+                            //TODO case for disconnection of smartband device
+                            SmartBandSetupActivityFragment.deviceDisconnected();
                             Toast.makeText(this, "SmartBand disconnected", Toast.LENGTH_SHORT).show();
-                            //MainActivity.setSmartbandConnected(false);
-                            //TODO case for disconnection of 1st device
+
                         }else{
                             Toast.makeText(this, "No SmartBand is connected", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 1: //MMR
                         if(MainActivity.isMmrConnected()) {
+
+                            //When SmartBand is connected first, then metawear_mmr is null
+                            if(metawear_mmr!=null){
+                                metawear_mmr.disconnectAsync();
+                            }else{
+                                MMRSetupActivityFragment.disconnection();
+                            }
+
                             Toast.makeText(this, "MMR device disconnected", Toast.LENGTH_SHORT).show();
                             MainActivity.setMmrConnected(false);
                             MainActivity.setMmr_device_global(null);   //Set device's MAC
-
-                            metawear_mmr.disconnectAsync();
                             //TODO change the view of that tab to device disconnected
+
                         }else{
                             Toast.makeText(this, "No MMR device is connected", Toast.LENGTH_SHORT).show();
                         }
@@ -346,6 +362,10 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
 
     public static String getMac_address_smartBand() {
         return mac_address_smartBand;
+    }
+
+    public static LocationManager getLocationManager() {
+        return locationManager;
     }
 
 }
