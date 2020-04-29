@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.upm.jgp.healthywear"
     android:targetSandboxVersion="2"
-    android:versionCode="161"
-    android:versionName="1.6.1" >
+    android:versionCode="173"
+    android:versionName="1.7.3" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -49,13 +49,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ScanSmartBandActivity" />
+        <activity android:name="com.upm.jgp.healthywear.ui.main.fragments.smartband.ScanSmartBandActivity" />
         <activity android:name="com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity" />
         <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ChooseDeviceToScanActivity" />
-        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ScanMMRActivity" />
+        <activity android:name="com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMRActivity" />
         <activity android:name="com.upm.jgp.healthywear.ui.main.activity.FavouriteDevices" />
 
-        <service android:name="com.upm.jgp.healthywear.ui.main.fragments.mmr.MyService" />
+        <service android:name="com.upm.jgp.healthywear.ui.main.fragments.common.MyService" />
 
         <uses-library
             android:name="org.apache.http.legacy"

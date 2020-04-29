@@ -156,10 +156,10 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:38:17-77
 	android:name
 		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:38:27-74
-activity#com.upm.jgp.healthywear.ui.main.activity.ScanSmartBandActivity
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:9-76
+activity#com.upm.jgp.healthywear.ui.main.fragments.smartband.ScanSmartBandActivity
+ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:9-87
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:19-73
+		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:19-84
 activity#com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity
 ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:42:9-75
 	android:name
@@ -168,18 +168,18 @@ activity#com.upm.jgp.healthywear.ui.main.activity.ChooseDeviceToScanActivity
 ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:43:9-81
 	android:name
 		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:43:19-78
-activity#com.upm.jgp.healthywear.ui.main.activity.ScanMMRActivity
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:44:9-70
+activity#com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMRActivity
+ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:44:9-75
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:44:19-67
+		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:44:19-72
 activity#com.upm.jgp.healthywear.ui.main.activity.FavouriteDevices
 ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:45:9-71
 	android:name
 		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:45:19-68
-service#com.upm.jgp.healthywear.ui.main.fragments.mmr.MyService
-ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:47:9-76
+service#com.upm.jgp.healthywear.ui.main.fragments.common.MyService
+ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:47:9-79
 	android:name
-		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:47:18-65
+		ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:47:18-68
 uses-library#org.apache.http.legacy
 ADDED from C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:49:9-51:39
 	android:required

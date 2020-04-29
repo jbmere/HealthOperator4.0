@@ -12,7 +12,7 @@
     <string name="fav_button">&fav_button;</string>
     <string name="main_title">Healthy Wear</string>
     <string name="app_version">&app_name; App version </string>
-    <string name="app_description">The &app_name; app lets the user connect his smartphone with multiple wearable devices. The app will periodically send data to a MongoDB identified by the Mac address of the phone.
+    <string name="app_description">The &app_name; app let the user connect his smartphone with multiple wearable devices. The app will periodically send data to a MongoDB identified by the Mac address of the phone.
         <br/>It works as follows:</string>
     <string name="scan_button_description"><b><i>&scan_button; button</i></b>: pressing this button brings you to a new screen where you will be able to look for the available wearable devices near you.</string>
     <string name="fav_button_description"><b><i>&fav_button; button</i></b>: pressing this button brings you to a new screen where you will be able to check your favourite wearable devices.</string>

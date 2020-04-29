@@ -11,6 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.upm.jgp.healthywear.R;
+import com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMRActivity;
+import com.upm.jgp.healthywear.ui.main.fragments.smartband.ScanSmartBandActivity;
 
 public class ChooseDeviceToScanActivity extends AppCompatActivity {
 

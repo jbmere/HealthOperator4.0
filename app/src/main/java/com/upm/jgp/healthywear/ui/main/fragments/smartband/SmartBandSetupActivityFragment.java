@@ -1,6 +1,6 @@
 package com.upm.jgp.healthywear.ui.main.fragments.smartband;
 
-import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -8,7 +8,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
@@ -24,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -34,7 +32,7 @@ import com.orhanobut.logger.Logger;
 import com.upm.jgp.healthywear.R;
 import com.upm.jgp.healthywear.ui.main.activity.MainActivity;
 import com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity;
-import com.upm.jgp.healthywear.ui.main.fragments.mmr.MyService;
+import com.upm.jgp.healthywear.ui.main.fragments.common.MyService;
 import com.veepoo.protocol.VPOperateManager;
 import com.veepoo.protocol.listener.base.IBleNotifyResponse;
 import com.veepoo.protocol.listener.base.IBleWriteResponse;
@@ -85,39 +83,39 @@ public class SmartBandSetupActivityFragment extends Fragment {
     private final static String TAG = SmartBandSetupActivityFragment.class.getSimpleName();
     static TextView tv_time, tv_hr, tv_bpl, tv_bph, tv_mac, tv_steps, tv_distance, tv_calories, tv_sleep, tv_location;
     static Context mContext = null;
-    private String smartbandAddress = null;
+    private static String smartbandAddress = null;
     private final int TYPESMARTBAND = 1;
-    Activity owner;
+    static Activity owner;
 
     static WriteResponse writeResponse = new WriteResponse();
 
     //timer task to measure HR and BP
     private static int FREQUENCY = 1; //Measure every n minutes
     static Timer timer;
-    TimerTask timerTask;
+    static TimerTask timerTask;
     Timer UItimer;
     TimerTask UIupdate;
-    private String heartrate = "measuring";
-    private String bphigh = "...";
-    private String bplow = "...";
-    private String time_now;
-    private String date_now;
-    private String location = "'lat':'-000.000000','lng':'-000.000000'";
-    private int steps_value = -1;
-    private final double STEPSTOKM = 0.0008; //Smartband uses aprox. 0.00082
-    private double distance_value = -1.1;
-    private final double STEPTOCALORIES = 0.05; //Smartband uses aprox. 0.053
-    private double calories_value = -1.1;
-    private String sleep_value = "unknown";
+    private static String heartrate = "measuring";
+    private static String bphigh = "...";
+    private static String bplow = "...";
+    private static String time_now;
+    private static String date_now;
+    private static String location = "'lat':'-000.000000','lng':'-000.000000'";
+    private static int steps_value = -1;
+    private static final double STEPSTOKM = 0.0008; //Smartband uses aprox. 0.00082
+    private static double distance_value = -1.1;
+    private static final double STEPTOCALORIES = 0.05; //Smartband uses aprox. 0.053
+    private static double calories_value = -1.1;
+    private static String sleep_value = "unknown";
     //Handler handler =new Handler(); //updating UI
-    private String json_str=""; //"{'t':'0','hr':'0','bph':'0','bpl':'0'}";
-    private int Nrows=0;
-    private String  toplines="{'us':'USER','pass':'PASSWORDxx','db':'IoT','collection':'hrbp'}\n"+
+    private static String json_str=""; //"{'t':'0','hr':'0','bph':'0','bpl':'0'}";
+    private static int Nrows=0;
+    private static String  toplines="{'us':'USER','pass':'PASSWORDxx','db':'IoT','collection':'hrbp'}\n"+
             "{'mac':'"+ smartbandAddress + "'}\n";
-    private String folderPath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp_hr" +  File.separator + "cache" + File.separator;
-    Lock lock= new ReentrantLock(true);
+    private static String folderPath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp_hr" +  File.separator + "cache" + File.separator;
+    static Lock lock= new ReentrantLock(true);
     static Timer gztimer;  //Timer for uploading data
-    TimerTask gztimerTask; //Timer task for uploading data
+    static TimerTask gztimerTask; //Timer task for uploading data
 
 
     @Override
@@ -148,27 +146,8 @@ public class SmartBandSetupActivityFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_tab_smartband, container, false);
     }
 
-
-
-    FloatingActionButton fab = null;
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        //////from onCreate in VPBluetooth///////
-        tv_time = (TextView) view.findViewById(R.id.smartband_value_time);
-        tv_hr = (TextView) view.findViewById(R.id.smartband_value_hr);
-        tv_bpl = (TextView) view.findViewById(R.id.smartband_value_bpl);
-        tv_bph = (TextView) view.findViewById(R.id.smartband_value_bph);
-        tv_mac = (TextView) view.findViewById(R.id.smartband_value_mac);
-
-        tv_steps = (TextView) view.findViewById(R.id.smartband_value_steps);
-        tv_distance = (TextView) view.findViewById(R.id.smartband_value_distance);
-        tv_calories = (TextView) view.findViewById(R.id.smartband_value_calories);
-        tv_sleep = (TextView) view.findViewById(R.id.smartband_value_sleep);
-        tv_location = (TextView) view.findViewById(R.id.smartband_value_gps);
-
+    //TODO Check stability
+    public static void initializationOfTheConnectionWithSmartband(){
         //****Initializing****
         //Password verifying
         boolean is24Hourmodel = false;
@@ -238,8 +217,29 @@ public class SmartBandSetupActivityFragment extends Fragment {
             });
             startTimer();
         }
-        //////from onCreate in VPBluetooth///////
+    }
 
+    FloatingActionButton fab = null;
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //////from onCreate in VPBluetooth///////
+        tv_time = (TextView) view.findViewById(R.id.smartband_value_time);
+        tv_hr = (TextView) view.findViewById(R.id.smartband_value_hr);
+        tv_bpl = (TextView) view.findViewById(R.id.smartband_value_bpl);
+        tv_bph = (TextView) view.findViewById(R.id.smartband_value_bph);
+        tv_mac = (TextView) view.findViewById(R.id.smartband_value_mac);
+
+        tv_steps = (TextView) view.findViewById(R.id.smartband_value_steps);
+        tv_distance = (TextView) view.findViewById(R.id.smartband_value_distance);
+        tv_calories = (TextView) view.findViewById(R.id.smartband_value_calories);
+        tv_sleep = (TextView) view.findViewById(R.id.smartband_value_sleep);
+        tv_location = (TextView) view.findViewById(R.id.smartband_value_gps);
+
+        //****Initializing****
+        initializationOfTheConnectionWithSmartband();
 
         fab = view.findViewById(R.id.fabSmartBandfav);
         if (smartbandAddress == null) {
@@ -299,7 +299,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
     //Timer
     private static boolean istimeron=false; //confirm if the timer is runing or not
     private static boolean isgztimeron=false; //
-    public void startTimer() {
+    public static void startTimer() {
         if(MainActivity.isSmartbandConnected()) {
             if (!istimeron) {
                 timer = new Timer(); //set a new Timer
@@ -319,6 +319,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
                 tv_sleep.setText(sleep_value);
                 tv_location.setText(location);
                 tv_mac.setText(smartbandAddress);
+                tv_time.setTextColor(Color.parseColor("#FF99CC00"));
                 tv_mac.setTextColor(Color.parseColor("#FF99CC00"));
 
                 Log.i("Timer", "started!!!");
@@ -346,10 +347,6 @@ public class SmartBandSetupActivityFragment extends Fragment {
             //Stop BP measuring
             VPOperateManager.getMangerInstance(mContext).stopDetectBP(writeResponse, EBPDetectModel.DETECT_MODEL_PUBLIC);
 
-            if(!MainActivity.isSmartbandConnected()){
-                tv_mac.setText("Disconnected");
-            }
-
             tv_time.setText("Stopped");
             tv_hr.setText("Stopped");
             tv_bpl.setText(".");
@@ -359,7 +356,9 @@ public class SmartBandSetupActivityFragment extends Fragment {
             tv_calories.setText("Stopped");
             tv_sleep.setText("Stopped");
             tv_location.setText("Stopped");
+            tv_time.setTextColor(Color.parseColor("#FFCC0000"));
             tv_mac.setTextColor(Color.parseColor("#FFCC0000"));
+
         }
 
         if (isgztimeron){
@@ -368,7 +367,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
         }
     }
     //lo cambia cada minuto en la pantalla
-    public void initializeTimerTask() {
+    public static void initializeTimerTask() {
 
         if(MainActivity.isSmartbandConnected()) {
             timerTask = new TimerTask() {
@@ -500,6 +499,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
                                             bplow = Integer.toString(bpData.getLowPressure());
                                             //Log.i("*******BPhigh*******:", bphigh);
                                             tv_time.setText(time_now);
+                                            tv_time.setTextColor(Color.parseColor("#FF99CC00"));
                                             tv_hr.setText(heartrate);
                                             tv_bpl.setText(bplow);
                                             tv_bph.setText(bphigh);
@@ -568,7 +568,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
     }
 
     //MongoDB
-    public void initializegzTimerTask() {
+    public static void initializegzTimerTask() {
         gztimerTask = new TimerTask() {
             public void run() {
                 //***Get file list in the folder // stackoverflow.com/questions/8646984/how-to-list-files-in-an-android-directory
@@ -624,7 +624,8 @@ public class SmartBandSetupActivityFragment extends Fragment {
     }
 
     //Function to Get the GPS information from the phone. //Reference: http://blog.csdn.net/cjjky/article/details/6557561
-    private String refresh_phone_Location(){
+    @SuppressLint("MissingPermission")
+    private static String refresh_phone_Location(){
         double latitude=0.0;
         double longitude =0.0;
         double altitude =0.0;
@@ -638,19 +639,22 @@ public class SmartBandSetupActivityFragment extends Fragment {
         //solved by getting the LocationManager from TabWearablesActivity
         LocationManager locationManager = TabWearablesActivity.getLocationManager();
         LocationListener locationListener = new LocationListener() {
-            // Provider的状态在可用、暂时不可用和无服务三个状态直接切换时触发此函数
+
+            //Provider's state triggers this function when the three states of available, temporarily unavailable and no service are directly switched
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
             }
-            // Provider被enable时触发此函数，比如GPS被打开
-            @Override
+
+            // This function is triggered when the Provider is enabled, such as GPS is turned on            @Override
             public void onProviderEnabled(String provider) {
             }
-            // Provider被disable时触发此函数，比如GPS被关闭
+
+            //This function is triggered when the Provider is disabled, such as GPS is turned off
             @Override
             public void onProviderDisabled(String provider) {
             }
-            //当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
+
+            //This function is triggered when the coordinates change, if the Provider passes the same coordinates, it will not be triggered
             @Override
             public void onLocationChanged(Location location) {
                 //TODO uncomment?
@@ -663,10 +667,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
             }
         };
 
-        if (ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
+        if (MainActivity.isLocationPermissionsGranted()) {  //Permissions are explicitely checked on MainActivity
             if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,300, 0,locationListener);
                 Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -680,10 +681,10 @@ public class SmartBandSetupActivityFragment extends Fragment {
                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,300, 0,locationListener);
                 Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                 if(location != null){
-                    latitude = location.getLatitude(); //经度
-                    longitude = location.getLongitude(); //纬度
-                    altitude=location.getAltitude(); //海拔
-                    accuracy=location.getAccuracy(); //精度, in meters
+                    latitude = location.getLatitude(); //Latitude
+                    longitude = location.getLongitude(); //Longitude
+                    altitude=location.getAltitude(); //Altitude
+                    accuracy=location.getAccuracy(); //Accuracy, in meters
                 }
             }
         }
@@ -699,14 +700,14 @@ public class SmartBandSetupActivityFragment extends Fragment {
      * 密码验证获取以下信息
      * Password verification to get the following information
      */
-    int watchDataDay = 3;
-    int contactMsgLength = 0;
-    int allMsgLenght = 4;
-    private int deviceNumber = -1;
-    private String deviceVersion;
-    private String deviceTestVersion;
+    static int watchDataDay = 3;
+    static int contactMsgLength = 0;
+    static int allMsgLenght = 4;
+    private static int deviceNumber = -1;
+    private static String deviceVersion;
+    private static String deviceTestVersion;
     boolean isOadModel = false;
-    boolean isNewSportCalc = false;
+    static boolean isNewSportCalc = false;
 
 
     //button Start to start data collecting process
@@ -750,6 +751,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
     }
 
     public static void deviceDisconnected(){
+        tv_time.setTextColor(Color.parseColor("#FFCC0000"));
         tv_mac.setTextColor(Color.parseColor("#FFCC0000"));
         if(MainActivity.isSmartbandConnected()) {
             //Toast.makeText(mContext, "Device disconnected", Toast.LENGTH_SHORT).show();
@@ -757,6 +759,12 @@ public class SmartBandSetupActivityFragment extends Fragment {
             MainActivity.setSmartbandConnected(false);
         }
         stopTimer();
+    }
+
+    public static void drawingReconnectingLayout(){
+        tv_time.setText("Reconnecting...");
+        tv_time.setTextColor(Color.parseColor("#FF7E00"));
+        tv_mac.setTextColor(Color.parseColor("#FF7E00"));
     }
 
 
@@ -776,7 +784,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
 
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd_HHmmss"); //Set the format
     //Change the date format
-    private String getUintAsTimestamp(Long uint) {
+    private static String getUintAsTimestamp(Long uint) {
         //return DATE_FORMAT.format(new Date(uint.longValue() * 1000L)).toString();
         //uint=uint+tmadrid.getOffset(uint);
         //DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("GMT+1"));
@@ -786,7 +794,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
     //Date format to compare if the sleeping data coming from the smartband is from today or last days
     private static final DateFormat DATE_FORMAT2 = new SimpleDateFormat("yyyy-MM-dd"); //Set the format
     //Change the date format
-    private String getUintAsDatestamp(Long uint) {
+    private static String getUintAsDatestamp(Long uint) {
         //return DATE_FORMAT.format(new Date(uint.longValue() * 1000L)).toString();
         //uint=uint+tmadrid.getOffset(uint);
         //DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("GMT+1"));
@@ -795,7 +803,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
 
 
     //Gzip a text file http://examples.javacodegeeks.com/core-java/io/fileinputstream/compress-a-file-in-gzip-format-in-java/
-    public String gzipFile(String source_filepath, String destinaton_zip_filepath) {
+    public static String gzipFile(String source_filepath, String destinaton_zip_filepath) {
         System.out.println("Compressing "+ source_filepath+"...........");
         byte[] buffer = new byte[256];
         File textfile = new File(source_filepath);
@@ -844,7 +852,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
         }
     }
 
-    public String countgz(String filepath){
+    public static String countgz(String filepath){
         File txtfile = new File (filepath);
         String fullname = txtfile.getName();
         String folderpath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp_hr" +  File.separator + "cache"+File.separator;
@@ -861,7 +869,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
     }
 
     //find all the .txt files in a folder. http://stackoverflow.com/questions/1384947/java-find-txt-files-in-specified-folder
-    public File[] finder( String dirName){
+    public static File[] finder( String dirName){
         File dir = new File(dirName);
         return dir.listFiles(new FilenameFilter() {
             public boolean accept(File dir, String filename)
@@ -870,7 +878,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
     }
 
     //find .gz file
-    public File[] findergz( String dirName){
+    public static File[] findergz( String dirName){
         File dir = new File(dirName);
         return dir.listFiles(new FilenameFilter() {
             public boolean accept(File dir, String filename)
@@ -879,7 +887,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
     }
 
     //Check if a file is been written.10 seconds since last modification.
-    private boolean isCompletelyWritten(File file) {
+    private static boolean isCompletelyWritten(File file) {
         long currenttime=System.currentTimeMillis();
         long lastmodify=file.lastModified();
         if (currenttime-lastmodify>(10000)){
@@ -938,11 +946,11 @@ public class SmartBandSetupActivityFragment extends Fragment {
         Intent stopIntent = new Intent(owner, MyService.class);
         owner.stopService(stopIntent);
         //System.out.println("service is stopped!");
-        System.exit(0);
+        //System.exit(0);
     }
 
-    private void updateTopLines() {
-        toplines = "{'us':'IoT','pass':'WISEST#2019','db':'IoT','collection':'hrbp'}\n" +
+    private static void updateTopLines() {
+        toplines = "{'us':'USER','pass':'PASSWORDxx','db':'IoT','collection':'hrbp'}\n" +
                 "{'mac':'" + smartbandAddress + "','appversion':'" + MainActivity.getStringAppVersion() + "'," + location +"}\n";
     }
 

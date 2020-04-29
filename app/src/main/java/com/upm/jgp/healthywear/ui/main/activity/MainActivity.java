@@ -33,7 +33,7 @@ import com.mbientlab.metawear.MetaWearBoard;
 import com.mbientlab.metawear.android.BtleService;
 import com.upm.jgp.healthywear.R;
 import com.upm.jgp.healthywear.ui.main.DataModule.FavouriteObject;
-import com.upm.jgp.healthywear.ui.main.fragments.mmr.MyService;
+import com.upm.jgp.healthywear.ui.main.fragments.common.MyService;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -73,11 +73,13 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     //private int[] grantResults_gps = null;
 
     //create more variables if more devices are implemented
-    //TODO change the value of these variables to true when the devices are connected
+    //TODO change the value of these variables to true when the devices are connected DONE
     private static boolean smartbandConnected = false;
     private static boolean mmrConnected = false;
-    //TODO change the value of these variables to false when the devices are disconnected (those buttons are not yet implemented)
+    //TODO change the value of these variables to false when the devices are disconnected DONE
     /////Control variables to know state of devices/////
+
+    private static boolean locationPermissionsGranted = false;
 
     private static String smartband_mac_global = null;
     private static BluetoothDevice mmr_device_global = null;
@@ -176,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
      * Check APP's permissions
      * */
     private void checkPermissions() {
-        //TODO check messages
+
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             //Lo que tengas que hacer con el STORAGE
             Log.d("Storage Permission", "granted");
@@ -206,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
             }
         }
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            //Lo que tengas que hacer con el Loaction
+            //Lo que tengas que hacer con el Location
             Log.d("Location Permission", "granted");
         }else{
             // Should we show an explanation?
@@ -234,6 +236,13 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
             }
         }
 
+        //To solve some problem when disconnecting and connecting devices without closing the app
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            locationPermissionsGranted = true;
+        }
     }
 
     /*      OnClickListeners      */
@@ -504,4 +513,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         return stringAppVersion;
     }
 
+    public static boolean isLocationPermissionsGranted() {
+        return locationPermissionsGranted;
+    }
 }

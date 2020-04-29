@@ -1,15 +1,17 @@
 package com.upm.jgp.healthywear.ui.main.adapter;
 
 import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.inuker.bluetooth.library.search.SearchResult;
 import com.upm.jgp.healthywear.R;
+import com.upm.jgp.healthywear.ui.main.activity.MainActivity;
 
 import java.util.List;
 
@@ -34,7 +36,13 @@ public class BleScanViewAdapter extends RecyclerView.Adapter<BleScanViewAdapter.
 
     @Override
     public void onBindViewHolder(NormalTextViewHolder holder, int position) {
-        holder.mBleRssi.setText(itemData.get(position).getName() + "-" + itemData.get(position).getAddress() + "-" + itemData.get(position).rssi);
+        String mac = itemData.get(position).getAddress();
+        //holder.mBleRssi.setText(itemData.get(position).getName() + "-" + itemData.get(position).getAddress() + "-" + itemData.get(position).rssi);
+        if (MainActivity.checkFavouriteDevice(mac)) {
+            holder.mBleRssi.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, android.R.drawable.star_big_on, 0);
+            holder.mBleRssi.setCompoundDrawablePadding(25);
+        }
+        holder.mBleRssi.setText("MAC: " + itemData.get(position).getAddress());
     }
 
 

@@ -1,8 +1,8 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.upm.jgp.healthywear"
-4    android:versionCode="161"
-5    android:versionName="1.6.1" >
+4    android:versionCode="173"
+5    android:versionName="1.7.3" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
@@ -91,25 +91,25 @@
 48-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:38:27-74
 49            </intent-filter>
 50        </activity>
-51        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ScanSmartBandActivity" />
-51-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:9-76
-51-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:19-73
+51        <activity android:name="com.upm.jgp.healthywear.ui.main.fragments.smartband.ScanSmartBandActivity" />
+51-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:9-87
+51-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:41:19-84
 52        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity" />
 52-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:42:9-75
 52-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:42:19-72
 53        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ChooseDeviceToScanActivity" />
 53-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:43:9-81
 53-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:43:19-78
-54        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ScanMMRActivity" />
-54-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:44:9-70
-54-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:44:19-67
+54        <activity android:name="com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMRActivity" />
+54-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:44:9-75
+54-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:44:19-72
 55        <activity android:name="com.upm.jgp.healthywear.ui.main.activity.FavouriteDevices" />
 55-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:45:9-71
 55-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:45:19-68
 56
-57        <service android:name="com.upm.jgp.healthywear.ui.main.fragments.mmr.MyService" />
-57-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:47:9-76
-57-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:47:18-65
+57        <service android:name="com.upm.jgp.healthywear.ui.main.fragments.common.MyService" />
+57-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:47:9-79
+57-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:47:18-68
 58
 59        <uses-library
 59-->C:\Users\garga\Desktop\HealthyWear\app\src\main\AndroidManifest.xml:49:9-51:39

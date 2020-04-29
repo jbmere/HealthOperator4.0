@@ -38,13 +38,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.activity.ScanSmartBandActivity" />
+        <activity android:name=".ui.main.fragments.smartband.ScanSmartBandActivity" />
         <activity android:name=".ui.main.activity.TabWearablesActivity" />
         <activity android:name=".ui.main.activity.ChooseDeviceToScanActivity" />
-        <activity android:name=".ui.main.activity.ScanMMRActivity" />
+        <activity android:name=".ui.main.fragments.mmr.ScanMMRActivity" />
         <activity android:name=".ui.main.activity.FavouriteDevices" />
 
-        <service android:name=".ui.main.fragments.mmr.MyService"></service>
+        <service android:name=".ui.main.fragments.common.MyService"></service>
 
         <uses-library
             android:name="org.apache.http.legacy"

@@ -10,6 +10,7 @@ import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -35,7 +36,7 @@ import com.mbientlab.metawear.android.BtleService;
 import com.upm.jgp.healthywear.R;
 import com.upm.jgp.healthywear.ui.main.fragments.mmr.MMRSetupActivityFragment;
 import com.upm.jgp.healthywear.ui.main.fragments.smartband.SmartBandSetupActivityFragment;
-import com.upm.jgp.healthywear.ui.main.fragments.tabs.SectionsPagerAdapter;
+import com.upm.jgp.healthywear.ui.main.fragments.tabs.SectionsTabsAdapter;
 
 import bolts.Continuation;
 
@@ -60,6 +61,15 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
     public final static String EXTRA_BT_DEVICE= "com.mbientlab.metawear_mmr.starter.DeviceSetupActivity.EXTRA_BT_DEVICE";
     public static String mac_address_mmr;
 
+
+    SectionsTabsAdapter sectionsTabsAdapter;
+    public static ViewPager viewPager;
+    //Refresh Tabs//
+    private static boolean refreshingTabs;
+    private static int currentRefreshingTab;
+    //Refresh Tabs//
+
+    //TODO not always working with the MMR
     public static class ReconnectDialogFragment extends DialogFragment implements  ServiceConnection {
         private static final String KEY_BLUETOOTH_DEVICE = "com.mbientlab.metawear_mmr.starter.DeviceSetupActivity.ReconnectDialogFragment.KEY_BLUETOOTH_DEVICE";
 
@@ -125,9 +135,9 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
         setSupportActionBar(toolbar);   //placing toolbar in place of actionbar
         //////Toolbar Settings//////
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
+        sectionsTabsAdapter = new SectionsTabsAdapter(this, getSupportFragmentManager());
+        viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsTabsAdapter);
         tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
@@ -150,6 +160,8 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
             btDevice_mmr = getIntent().getParcelableExtra(EXTRA_BT_DEVICE);
             getApplicationContext().bindService(new Intent(this, BtleService.class), this, BIND_AUTO_CREATE);
             //}
+            //Sets the second tab on the UI
+            viewPager.setCurrentItem(1);
         }
         /////MMRData App/////
 
@@ -190,7 +202,8 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
                             //TODO case for disconnection of smartband device
                             SmartBandSetupActivityFragment.deviceDisconnected();
                             Toast.makeText(this, "SmartBand disconnected", Toast.LENGTH_SHORT).show();
-
+                            //TODO change the view of that tab to device disconnected, if there is other device still connected
+                            refreshTabs(0);
                         }else{
                             Toast.makeText(this, "No SmartBand is connected", Toast.LENGTH_SHORT).show();
                         }
@@ -208,7 +221,8 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
                             Toast.makeText(this, "MMR device disconnected", Toast.LENGTH_SHORT).show();
                             MainActivity.setMmrConnected(false);
                             MainActivity.setMmr_device_global(null);   //Set device's MAC
-                            //TODO change the view of that tab to device disconnected
+                            //TODO change the view of that tab to device disconnected, if there is other device still connected
+                            refreshTabs(1);
 
                         }else{
                             Toast.makeText(this, "No MMR device is connected", Toast.LENGTH_SHORT).show();
@@ -270,16 +284,6 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
             // Finally, show the popup window at the center location of root relative layout
             popupInfo.showAtLocation(customView, Gravity.CENTER,0,0);
 
-    }
-
-    private void checkFavourites(){
-
-        if(MainActivity.isSmartbandConnected()){
-            //boolean
-        }
-        if(MainActivity.isMmrConnected()) {
-            //boolean
-        }
     }
 
     private View.OnClickListener closeButton_listener = new View.OnClickListener() {
@@ -368,4 +372,44 @@ public class TabWearablesActivity extends AppCompatActivity implements ServiceCo
         return locationManager;
     }
 
+    //This function is used to refresh//update the UI when the second device is connected, Smartband is reconnected or devices are disconnected.
+    public static void refreshTabs(int tabToRefresh){
+        int currentTab = viewPager.getCurrentItem();
+        System.out.println("Pagina actual: " + currentTab);
+        //TODO the difference of the tab number should be in absolute value for future releases
+        int diff = currentTab-tabToRefresh;
+        System.out.println("diff: " + diff);
+
+        if(diff<2) {
+            //if the tab to refresh is not created, it is because the currentTab is 2 or more tabs away.
+            setRefreshingTabs(true);
+            currentRefreshingTab = tabToRefresh;
+            System.out.println("Pagina a refrescar: " + currentRefreshingTab);
+            viewPager.setCurrentItem(currentRefreshingTab + 2);
+        }else{
+            //Tab to refresh is not currently created, so we just move to that tab
+            Handler uiHandler = new Handler();
+            uiHandler.post(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    System.out.println("Handler");
+                    TabWearablesActivity.viewPager.setCurrentItem(currentRefreshingTab, true);
+                }
+            });
+        }
+    }
+
+    //Getters and Setters
+    public static boolean isRefreshingTabs() {
+        return refreshingTabs;
+    }
+    public static void setRefreshingTabs(boolean value) {
+        refreshingTabs = value;
+    }
+
+    public static int getCurrentRefreshingTab(){
+        return currentRefreshingTab;
+    }
 }

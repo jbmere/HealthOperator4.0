@@ -191,7 +191,7 @@
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
     <color name="colorAccent">#002030</color>
-    <color name="colorPrimary">#05C6FD</color>
+    <color name="colorPrimary">#00C6FF</color>
     <color name="colorPrimaryDark">#005380</color>
     <color name="design_bottom_navigation_shadow_color">#14000000</color>
     <color name="design_default_color_primary">#3F51B5</color>
@@ -212,6 +212,7 @@
     <color name="error_color_material_light">#ff5722</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
+    <color name="grey">#838383</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="ic_launcher_background">#05C6FD</color>
@@ -613,7 +614,7 @@
     <string name="action_disconnect">Disconnect</string>
     <string name="activity_main_imageView_description">HealthyWear App version </string>
     <string name="altitude">Altitude (m):   </string>
-    <string name="app_description">The HealthyWear app lets the user connect his smartphone with multiple wearable devices. The app will periodically send data to a MongoDB identified by the Mac address of the phone.
+    <string name="app_description">The HealthyWear app let the user connect his smartphone with multiple wearable devices. The app will periodically send data to a MongoDB identified by the Mac address of the phone.
         <br/>It works as follows:</string>
     <string name="app_information">Warning: The user has to give Bluetooth and Location privileges to the app. This settings shall be activated for a proper function of the app.</string>
     <string name="app_name">HealthyWear</string>
@@ -625,12 +626,14 @@
     <string name="ble_scan">Scan</string>
     <string name="ble_scan_cancel">Cancel</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
+    <string name="calories_tv">Calories:  </string>
     <string name="character_counter_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="choose_device">Which device would you like to connect?</string>
     <string name="connect_button">Connect</string>
     <string name="data_from">Data from:   </string>
     <string name="dialog_title_error">Error</string>
+    <string name="distance_tv">Distance (Km):  </string>
     <string name="ellipsis">...</string>
     <string name="error_invalid_mac_address">Invalid MAC Address</string>
     <string name="error_location_access">In order to perform a bluetooth scan in the background, Android M requires the app to have location permissions.</string>
@@ -638,19 +641,24 @@
     <string name="error_scanner_listener">must implement the ScannerListener interface</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
+    <string name="favDev_mainTitle">Favourite Devices</string>
     <string name="fav_button">FAV</string>
     <string name="fav_button_description"><b><i>FAV button</i></b>: pressing this button brings you to a new screen where you will be able to check your favourite wearable devices.</string>
+    <string name="heart_rate_tv">Heart Rate:  </string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
+    <string name="high_blood_pressure_tv">Blood Pressure (High):  </string>
     <string name="ib_close_description">CloseButton</string>
     <string name="illuminance">Illuminance (Lux):  </string>
     <string name="instruction_enter_mac_address">Alternatively, you can still connect to the device by entering the device\'s MAC address, in the form XX:XX:XX:XX:XX:XX</string>
     <string name="label_unknown_device">Unknown Device</string>
     <string name="location">Location (Lat, Lng):   </string>
+    <string name="low_blood_pressure_tv">Blood Pressure (Low):  </string>
     <string name="main_title">Healthy Wear</string>
-    <string name="menu_back_to_scan">Back to Scan</string>
+    <string name="menu_back_to_scan">Scan new wearable</string>
     <string name="menu_disconnect">Disconnect device</string>
     <string name="menu_info">Info</string>
     <string name="message_wait">Please wait</string>
+    <string name="minus_eins_tv">-1</string>
     <string name="mmrdevice">MMR Devices</string>
     <string name="mtrl_chip_close_icon_content_description">Remove %1$s</string>
     <string name="others">Other Devices</string>
@@ -659,23 +667,28 @@
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
+    <string name="remove_button">Remove</string>
     <string name="scan_button">SCAN</string>
     <string name="scan_button_description"><b><i>SCAN button</i></b>: pressing this button brings you to a new screen where you will be able to look for the available wearable devices near you.</string>
     <string name="search_menu_title">Search</string>
+    <string name="sleeping_hours_tv">Sleeping hours:  </string>
     <string name="smartband">SmartBand</string>
     <string name="start_button">Start</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="steps_tv">Steps:  </string>
     <string name="stop_button">Stop</string>
-    <string name="tab_text_1">SmartBand</string>
+    <string name="tab_text_1">SmartBnd</string>
     <string name="tab_text_2">MMR</string>
     <string name="tab_text_3">Others</string>
     <string name="temperature">Temperature (\u2103):  </string>
+    <string name="time_tv">Time:  </string>
     <string name="title_connecting">Connecting</string>
     <string name="title_mac_address">MAC Address Entry</string>
     <string name="title_reconnect_attempt">Reconnecting</string>
     <string name="title_request_permission">Permission Request</string>
     <string name="title_scanned_devices">Scanned Devices</string>
     <string name="triple_0">000</string>
+    <string name="waiting_tv">waiting</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
