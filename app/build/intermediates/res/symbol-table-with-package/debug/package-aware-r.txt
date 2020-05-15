@@ -629,6 +629,7 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color green
 color grey
 color highlighted_text_material_dark
 color highlighted_text_material_light
@@ -673,6 +674,7 @@ color mtrl_textinput_filled_box_default_background_color
 color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
+color orange
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -681,6 +683,7 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color red
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -1011,6 +1014,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable distance1
 drawable flame_orange
+drawable green_circle
 drawable heart_icon
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -1034,7 +1038,10 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable orange_circle
+drawable red_circle
 drawable refresh
+drawable rounded_circle
 drawable sleepzzz
 drawable smartband_square
 drawable steps
@@ -1112,7 +1119,9 @@ id activity_main_info_popup
 id activity_main_scan_button
 id activity_main_titleTextView
 id activity_main_versionTextView
+id activity_mmr_info_popup
 id activity_scan_devices_scan_button
+id activity_smartband_info_popup
 id add
 id alertTitle
 id all
@@ -1226,6 +1235,7 @@ id middle
 id mini
 id mmr_acc_start
 id mmr_acc_stop
+id mmr_description_textview
 id mmr_lab_acc
 id mmr_lab_alt
 id mmr_lab_arm
@@ -1303,6 +1313,7 @@ id smartband_acc_stop
 id smartband_bp_high
 id smartband_bp_low
 id smartband_calories
+id smartband_description_textview
 id smartband_distance
 id smartband_heart_rate
 id smartband_iv_calories
@@ -1437,8 +1448,10 @@ layout activity_choose_device_to_scan
 layout activity_choose_favourite_device
 layout activity_main
 layout activity_main_info_popup
+layout activity_mmr_info_popup
 layout activity_scan_mmr
 layout activity_scan_smartband
+layout activity_smartband_info_popup
 layout activity_tab_wearables
 layout adapter_item_fav_devices
 layout adapter_item_grid
@@ -1560,6 +1573,7 @@ string fab_transformation_sheet_behavior
 string favDev_mainTitle
 string fav_button
 string fav_button_description
+string green_color_description
 string heart_rate_tv
 string hide_bottom_view_on_scroll_behavior
 string high_blood_pressure_tv
@@ -1575,20 +1589,25 @@ string menu_disconnect
 string menu_info
 string message_wait
 string minus_eins_tv
+string mmr_description
 string mmrdevice
 string mtrl_chip_close_icon_content_description
+string orange_mmr_color_description
+string orange_smartband_color_description
 string others
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string red_color_description
 string remove_button
 string scan_button
 string scan_button_description
 string search_menu_title
 string sleeping_hours_tv
 string smartband
+string smartband_description
 string start_button
 string status_bar_notification_info_overflow
 string steps_tv

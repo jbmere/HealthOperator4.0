@@ -2,6 +2,19 @@ package com.upm.jgp.healthywear.ui.main.DataModule;
 
 import java.io.Serializable;
 
+/**
+ * This Class contains a serializable favourite object.
+ *
+ * It is a custom object type to store and compare the favourite devices
+ * Currently only two values are used for device types.
+ * 1 is related with SmartBand devices
+ * 2 is related with MMR devices
+ * New valuesshould be added for future devices
+ *
+ * @author Jorge Garcia Paredes (yoryidan)
+ * @version 175
+ * @since 2020
+ */
 public class FavouriteObject implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -75,6 +88,7 @@ public class FavouriteObject implements Serializable {
             case 2:
                 device += "MMR";
                 break;
+            //TODO case 3... for other devices' type
             default:
                 device += "";
                 break;

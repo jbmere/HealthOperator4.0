@@ -47,10 +47,16 @@ import java.util.Map;
 
 import bolts.Task;
 
-//import android.support.v4.app.ActivityCompat;
-//import android.support.v4.content.ContextCompat;
-//import android.support.v7.app.AppCompatActivity;
-
+/**
+ * MainActivity
+ *
+ * From this screen it is possible to go to Fav devices or to scan devices. It displays also a Popupwindow with help information
+ * This activity contains the connection state (smartbandConnected, mmrConnected) of the two different types: SmartBand or MMR.
+ *
+ * @author Jorge Garcia Paredes (yoryidan)
+ * @version 175
+ * @since 2020
+ */
 public class MainActivity extends AppCompatActivity implements ServiceConnection {
 
     Context mContext = MainActivity.this;
@@ -59,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     FloatingActionButton helpFAB;
     PopupWindow popupInfo = null;
     ImageButton closeButton;
-    private static Map<String, FavouriteObject> favouritesMap = new HashMap<>();    //TODO use the map to store the favourite devices
+    private static Map<String, FavouriteObject> favouritesMap = new HashMap<>();    //Use the map to store the favourite devices
     private static String favFilePath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp";;
     private static String favDevicesFileName = favFilePath + "favouriteWearables.txt";
 
@@ -72,11 +78,11 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     //private int[] grantResults_stg = null;
     //private int[] grantResults_gps = null;
 
-    //create more variables if more devices are implemented
-    //TODO change the value of these variables to true when the devices are connected DONE
+    //TODO Create more variables if more devices are implemented
+    //Change the value of these variables to false when the devices are disconnected DONE for Smartband and MMR
     private static boolean smartbandConnected = false;
     private static boolean mmrConnected = false;
-    //TODO change the value of these variables to false when the devices are disconnected DONE
+    //Change the value of these variables to false when the devices are disconnected DONE for Smartband and MMR
     /////Control variables to know state of devices/////
 
     private static boolean locationPermissionsGranted = false;
@@ -107,10 +113,9 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         //check if the app has write_storage and access_Location permissions
         checkPermissions();
 
-        //TODO read favourite devices from list, if the file exists
+        //Read favourite devices from list, if the file exists
         favouritesMap = readFavouriteDevices();
 
-        //TODO initiate somewhere common to all devices (Main or choose scan)
         //start MyService **background service**
         Intent startIntent = new Intent(this, MyService.class);
         startService(startIntent);
@@ -169,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
     /**
      * Private method that initializes the activity's view
+     * Currently not in use
      * */
     private void initMainActivityView() {
         //TODO add here the onCreate-code fot this part
@@ -176,6 +182,9 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
     /**
      * Check APP's permissions
+     * This function checks the App's needed permissions for its proper function
+     * Currently Storage Permission and Location
+     *
      * */
     private void checkPermissions() {
 
@@ -183,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
             //Lo que tengas que hacer con el STORAGE
             Log.d("Storage Permission", "granted");
         }else{
-            // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
@@ -211,7 +219,6 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
             //Lo que tengas que hacer con el Location
             Log.d("Location Permission", "granted");
         }else{
-            // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
@@ -248,7 +255,9 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     /*      OnClickListeners      */
 
     /**
-     * PopUp Window of the Help button on the main screen
+     * PopUp Window of the Help button (FAB) on the main screen
+     *
+     * This method displays the PopUpWindow with help information
      */
     private View.OnClickListener activity_main_infoFAB_listener = new View.OnClickListener() {
         public void onClick(View view) {
@@ -340,7 +349,6 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         }
     }
 
-    //TODO create when MyService is working
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -371,7 +379,12 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         return board.connectAsync().continueWithTask(task -> task.isFaulted() ? reconnect(board) : task);
     }
 
-    //sets a new fav object in the map and saves the map on file
+    /**
+     * This method sets a new fav object in the map and saves the map on file
+     * @param mac String of the device to be deleted from favourites devices
+     * @param type int which indicates the type of the device (1 for smartband, 2 for mmr)
+     * @return correct boolean which indicates if the device was properly deleted from the favourite devices' list
+     * */
     public static boolean putFavouriteDevice(String mac, int type){
         boolean correct;
 
@@ -387,7 +400,11 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         return correct;
     }
 
-    //deletes a fav object from the map and saves the map on file
+    /**
+     * This method deletes a fav object from the map and saves the map on file
+     * @param mac String of the device to be deleted from favourites devices
+     * @return correct boolean which indicates if the device was properly deleted from the favourite devices' list
+     * */
     public static boolean deleteFavouriteDevice(String mac){
         boolean correct;
 
@@ -401,7 +418,10 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         return correct;
     }
 
-    //Get the list of favourite devices, otherwise return null
+    /**
+     * This method returns the list of favourite devices
+     * @return map the list of favourite devices, otherwise it returns null
+     * */
     private Map<String, FavouriteObject> readFavouriteDevices() {
         Map<String, FavouriteObject> map = new HashMap<>();
 
@@ -423,12 +443,15 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         } catch (IOException e) {
             System.out.println("readFavouriteDevices: Error initializing stream");
         } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return map;
     }
 
+    /**
+     * This method saves the current list of favourite devices on the file
+     * @return correct returns a boolean which indicates if the file could be properly saved
+     * */
     public static boolean saveFavouriteDevices(){
         boolean correct = true;
 
@@ -438,8 +461,6 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
             // Write objects to file
             oos.writeObject(favouritesMap);
-
-            //System.out.println("saveFavouriteDevices: Favourites Map saved on File");
 
             oos.close();
             fos.close();
@@ -454,6 +475,11 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         return correct;
     }
 
+    /**
+     * This method checks if a device is stored in the list of favourite devices
+     * @param mac String of the device to be checked
+     * @return deviceIsFav returns a boolean which indicates if the device with the given mac is a favourite device or not
+     * */
     public static boolean checkFavouriteDevice(String mac){
 
         boolean deviceIsFav = favouritesMap.containsKey(mac);
@@ -468,7 +494,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         return favouritesMap;
     }
 
-    /////Control variables to know state of devices/////
+    //Control variables to know state of devices//
     public static boolean isSmartbandConnected() {
         return smartbandConnected;
     }
@@ -484,6 +510,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     public static void setMmrConnected(boolean mmrConnected_input) {
         mmrConnected = mmrConnected_input;
     }
+    //Control variables to know state of devices//
 
     public static String getSmartband_mac_global() {
         return smartband_mac_global;
@@ -516,4 +543,6 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     public static boolean isLocationPermissionsGranted() {
         return locationPermissionsGranted;
     }
+    //////Getters and Setters//////
+
 }

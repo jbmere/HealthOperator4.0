@@ -79,6 +79,17 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.zip.GZIPOutputStream;
 
+/**
+ * This Fragment contains the communication with the SmartBand
+ *
+ * It periodically gets the SmartBand information on the background. When a few values are collected, they are compressed on a file and saved in to the phone's storage.
+ * Then, they can be posted into the MongoDB by the Service RetrievedFeedTask.
+ *
+ * Based on OperaterActivity class of VPBluetoothSDKDemo by timaimee on 2017/2/8.
+ * @author Jorge Garcia Paredes (yoryidan)
+ * @version 175
+ * @since 2020
+ */
 public class SmartBandSetupActivityFragment extends Fragment {
     private final static String TAG = SmartBandSetupActivityFragment.class.getSimpleName();
     static TextView tv_time, tv_hr, tv_bpl, tv_bph, tv_mac, tv_steps, tv_distance, tv_calories, tv_sleep, tv_location;
@@ -93,8 +104,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
     private static int FREQUENCY = 1; //Measure every n minutes
     static Timer timer;
     static TimerTask timerTask;
-    Timer UItimer;
-    TimerTask UIupdate;
+
     private static String heartrate = "measuring";
     private static String bphigh = "...";
     private static String bplow = "...";
@@ -110,12 +120,27 @@ public class SmartBandSetupActivityFragment extends Fragment {
     //Handler handler =new Handler(); //updating UI
     private static String json_str=""; //"{'t':'0','hr':'0','bph':'0','bpl':'0'}";
     private static int Nrows=0;
-    private static String  toplines="{'us':'USER','pass':'PASSWORDxx','db':'IoT','collection':'hrbp'}\n"+
+    //TODO Modify USER, PASSWORD and DBNAME from your MongoDB
+    private static String  toplines="{'us':'USER','pass':'PASSWORD','db':'DBNAME','collection':'hrbp'}\n"+
             "{'mac':'"+ smartbandAddress + "'}\n";
     private static String folderPath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp_hr" +  File.separator + "cache" + File.separator;
     static Lock lock= new ReentrantLock(true);
     static Timer gztimer;  //Timer for uploading data
     static TimerTask gztimerTask; //Timer task for uploading data
+
+    FloatingActionButton fab = null;
+
+    /**
+     * Password verification to get the following information
+     */
+    static int watchDataDay = 3;
+    static int contactMsgLength = 0;
+    static int allMsgLenght = 4;
+    private static int deviceNumber = -1;
+    private static String deviceVersion;
+    private static String deviceTestVersion;
+    boolean isOadModel = false;
+    static boolean isNewSportCalc = false;
 
 
     @Override
@@ -146,7 +171,9 @@ public class SmartBandSetupActivityFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_tab_smartband, container, false);
     }
 
-    //TODO Check stability
+    /**
+     * This function initializes the connection between the smartphone and the smartband for a proper communication
+     * */
     public static void initializationOfTheConnectionWithSmartband(){
         //****Initializing****
         //Password verifying
@@ -218,8 +245,6 @@ public class SmartBandSetupActivityFragment extends Fragment {
             startTimer();
         }
     }
-
-    FloatingActionButton fab = null;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -299,6 +324,10 @@ public class SmartBandSetupActivityFragment extends Fragment {
     //Timer
     private static boolean istimeron=false; //confirm if the timer is runing or not
     private static boolean isgztimeron=false; //
+
+    /**
+     * This function starts the timer to get data from the smartband and compressing it into a .gz file
+     * */
     public static void startTimer() {
         if(MainActivity.isSmartbandConnected()) {
             if (!istimeron) {
@@ -337,6 +366,9 @@ public class SmartBandSetupActivityFragment extends Fragment {
         }
     }
 
+    /**
+     * This function stops the timer and the communication with the smartband, but not its connection
+     * */
     public static void stopTimer(){
         //startTimer(); //start timer for zipping data
         if (istimeron){
@@ -366,7 +398,9 @@ public class SmartBandSetupActivityFragment extends Fragment {
             isgztimeron=false;
         }
     }
-    //lo cambia cada minuto en la pantalla
+    /**
+     * The information is changed on the UI aprox. every minute (when some tasks are done)
+     * */
     public static void initializeTimerTask() {
 
         if(MainActivity.isSmartbandConnected()) {
@@ -567,7 +601,9 @@ public class SmartBandSetupActivityFragment extends Fragment {
         }
     }
 
-    //MongoDB
+    /**
+     * This function activates a timer to compress the data into a file
+     * */
     public static void initializegzTimerTask() {
         gztimerTask = new TimerTask() {
             public void run() {
@@ -623,6 +659,9 @@ public class SmartBandSetupActivityFragment extends Fragment {
         };
     }
 
+    /**
+     * This function gets the location information from the mobile phone
+     * */
     //Function to Get the GPS information from the phone. //Reference: http://blog.csdn.net/cjjky/article/details/6557561
     @SuppressLint("MissingPermission")
     private static String refresh_phone_Location(){
@@ -635,8 +674,8 @@ public class SmartBandSetupActivityFragment extends Fragment {
         //t_gps=utcTime+tmadrid.getOffset(utcTime);
 
         t_gps=utcTime;
-        //TODO attach this fragment to Activity, when disconnecting smartband and connecting again, the getActivity method is retuning null object
-        //solved by getting the LocationManager from TabWearablesActivity
+        //To DO Attach this fragment to Activity, when disconnecting smartband and connecting again, the getActivity method is retuning null object
+        //SOLVED by getting the LocationManager from TabWearablesActivity
         LocationManager locationManager = TabWearablesActivity.getLocationManager();
         LocationListener locationListener = new LocationListener() {
 
@@ -645,7 +684,8 @@ public class SmartBandSetupActivityFragment extends Fragment {
             public void onStatusChanged(String provider, int status, Bundle extras) {
             }
 
-            // This function is triggered when the Provider is enabled, such as GPS is turned on            @Override
+            // This function is triggered when the Provider is enabled, such as GPS is turned on
+            @Override
             public void onProviderEnabled(String provider) {
             }
 
@@ -695,30 +735,6 @@ public class SmartBandSetupActivityFragment extends Fragment {
         return location;
     }
 
-
-    /**
-     * 密码验证获取以下信息
-     * Password verification to get the following information
-     */
-    static int watchDataDay = 3;
-    static int contactMsgLength = 0;
-    static int allMsgLenght = 4;
-    private static int deviceNumber = -1;
-    private static String deviceVersion;
-    private static String deviceTestVersion;
-    boolean isOadModel = false;
-    static boolean isNewSportCalc = false;
-
-
-    //button Start to start data collecting process
-    public void startTimerTask(View view) {
-        startTimer(); //start timer for zipping data
-    }
-    public void stopTimerTask(View view) {
-        stopTimer();
-    }
-
-
     /**
      * Write status returned
      */
@@ -729,8 +745,7 @@ public class SmartBandSetupActivityFragment extends Fragment {
             switch (code){
                 case -1:
                     //deviceDisconnected();
-                    //TODO reconnection code??
-                    //made on MainActivity.java
+                    //reconnection code made on MainActivity.java
                     //Here it would jump more than once without a timer...
                     break;
             }
@@ -801,7 +816,9 @@ public class SmartBandSetupActivityFragment extends Fragment {
         return DATE_FORMAT2.format(new Date(uint)).toString();
     }
 
-
+    /**
+     * This function is compressing the data into a file when enough data was collected
+     * */
     //Gzip a text file http://examples.javacodegeeks.com/core-java/io/fileinputstream/compress-a-file-in-gzip-format-in-java/
     public static String gzipFile(String source_filepath, String destinaton_zip_filepath) {
         System.out.println("Compressing "+ source_filepath+"...........");
@@ -950,7 +967,8 @@ public class SmartBandSetupActivityFragment extends Fragment {
     }
 
     private static void updateTopLines() {
-        toplines = "{'us':'USER','pass':'PASSWORDxx','db':'IoT','collection':'hrbp'}\n" +
+        //TODO Modify USER, PASSWORD and DBNAME from your MongoDB
+        toplines = "{'us':'USER','pass':'PASSWORD','db':'DBNAME','collection':'hrbp'}\n" +
                 "{'mac':'" + smartbandAddress + "','appversion':'" + MainActivity.getStringAppVersion() + "'," + location +"}\n";
     }
 

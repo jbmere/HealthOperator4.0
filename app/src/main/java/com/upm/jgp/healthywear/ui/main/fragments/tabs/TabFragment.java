@@ -20,8 +20,15 @@ import com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMRActivity;
 import com.upm.jgp.healthywear.ui.main.fragments.smartband.ScanSmartBandActivity;
 import com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity;
 
+
 /**
- * A placeholder fragment containing a simple view.
+ * A placeholder TabFragment containing a simple view.
+ *
+ * Using 4 Tabs necessary to update second device interface, part of refreshing tabs is made in the onDestroyView method
+ *
+ * @author Jorge Garcia Paredes (yoryidan)
+ * @version 175
+ * @since 2020
  */
 public class TabFragment extends Fragment {
 
@@ -46,22 +53,6 @@ public class TabFragment extends Fragment {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
         tabViewModel.setIndex(index);
-        /*switch (index){
-            case 1:
-                tabViewModel.setIndex(index);
-
-                break;
-
-            case 2:
-                tabViewModel.setIndex(index);
-
-                break;
-            case 3:
-                tabViewModel.setIndex(index);
-
-                break;
-        }*/
-
     }
 
     @Override
@@ -149,7 +140,7 @@ public class TabFragment extends Fragment {
         int currentDestroyedTab = getArguments().getInt(ARG_SECTION_NUMBER);
         System.out.println("onDestroyView. Tab:" + currentDestroyedTab);
 
-        //Todo come back to refreshed view if it was refreshing tabs
+        //Come back to refreshed view if it was refreshing tabs
         if(TabWearablesActivity.isRefreshingTabs()){
             int currentRefreshingTab = TabWearablesActivity.getCurrentRefreshingTab();
             if(currentRefreshingTab==currentDestroyedTab){

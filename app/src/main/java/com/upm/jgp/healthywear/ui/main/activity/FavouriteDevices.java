@@ -18,6 +18,16 @@ import com.upm.jgp.healthywear.ui.main.adapter.FavDevAdapter;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * Activity that shows the favourite devices stored on the mobile
+ *
+ * Currently they can be of two different types: SmartBand or MMR
+ * The connection option from this screen is to be implemented
+ *
+ * @author Jorge Garcia Paredes (yoryidan)
+ * @version 175
+ * @since 2020
+ */
 public class FavouriteDevices extends AppCompatActivity{
 
     ListView lv_favDev;

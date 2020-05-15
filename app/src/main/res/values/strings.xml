@@ -62,6 +62,17 @@
     <string name="distance_tv">Distance (Km):&#160;&#160;</string>
     <string name="calories_tv">Calories:&#160;&#160;</string>
     <string name="sleeping_hours_tv">Sleeping hours:&#160;&#160;</string>
+    <string name="smartband_description">This tab allocates the information of a SmartBand device (when connected).
+        <br/>First it shows the MAC address of the device and two main buttons, which Start or Stop the information exchange between the device and the smartphone and also between the smartphone and the database.
+        <br/>The data is collected aprox. every minute.
+        <br/>The colors of the MAC address and time mean the following:</string>
+    <string name="mmr_description">This tab allocates the information of an MMR device (when connected).
+        <br/>First it shows the MAC address of the device and two main buttons, which Start or Stop the information exchange between the device and the smartphone and also between the smartphone and the database.
+        <br/>The colors of the MAC address mean the following:</string>
+    <string name="green_color_description">The green color indicates that the device is properly connected and the smartphone is collecting data and sending it to the DataBase.</string>
+    <string name="orange_smartband_color_description">The orange color indicates that the smartphone is trying to reconnect the smartphone. It will be reconnected when it is within the range of the smartphone.</string>
+    <string name="orange_mmr_color_description">The orange color indicates that the smartphone is trying to reconnect the MMR. The reconnetion will star after 4min without receiving dta to collect, or by pressing the Stop button.</string>
+    <string name="red_color_description">The red color indicates that the data collecting is stopped.</string>
 
 
 </resources>

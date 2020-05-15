@@ -51,6 +51,16 @@ import java.util.List;
 
 import static java.lang.Thread.sleep;
 
+/**
+ * Activity to scan SmartBand devices (H-Band) and connect to a selected one.
+ *
+ * It also handles the reconnection of the SmartBand for better stability
+ *
+ * Based on MainActivity class of VPBluetoothSDKDemo by timaimee on 2017/2/8.
+ * @author Modified by Jorge Garcia Paredes (yoryidan)
+ * @version 175
+ * @since 2020
+ */
 public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, OnRecycleViewClickCallback {
     private final static String TAG = MainActivity.class.getSimpleName();
     private final static String YOUR_APPLICATION = "jgp";
@@ -216,7 +226,7 @@ public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRef
     /**
      * Detect if Bluetooth device is on
      *
-     * @return
+     * @return boolean
      */
     private boolean checkBLE() {
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -302,7 +312,7 @@ public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRef
 
     /**
      * Scan for BLE devices
-     * @return
+     * @return boolean
      */
     private boolean scanDevice() {
         if (!mListAddress.isEmpty()) {
@@ -321,6 +331,10 @@ public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRef
         return false;
     }
 
+    /**
+     * This function connects the smartphone with the selected smartband.
+     * It also handles the reconnection of the smartband.
+     * */
     private void connectDevice(final String mac) {
 
         mVpoperateManager.registerConnectStatusListener(mac, mBleConnectStatusListener);
@@ -332,7 +346,7 @@ public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRef
                 if (code == Code.REQUEST_SUCCESS) {
                     //Bluetooth connection status with the device
                     Logger.t(TAG).i("CONNECTION SUCCEED!");
-                    //Logger.t(TAG).i("是否是固件升级模式 Whether it is firmware upgrade mode?=" + isoadModel);
+                    //Logger.t(TAG).i("Whether it is firmware upgrade mode?=" + isoadModel);
                     mIsOadModel = isoadModel;
                 } else {
                     Logger.t(TAG).i("CONNECTION FAILED");
@@ -360,7 +374,7 @@ public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRef
                         }
                     }else{
                         //If we come from reconnecting, activity is already created, so it is necessary to just start service again, but this gives a PwdData{mStatus=CHECK_FAIL and does not read any data from the smartband
-                        //TODO maybe go to last tab and come back programmatically to first tab (0)
+                        //PwdData{mStatus=CHECK_FAIL error was solved by checking the password after reconnection with the following function
                         SmartBandSetupActivityFragment.initializationOfTheConnectionWithSmartband();
                         //TabWearablesActivity.refreshTabs(0);
                         //SmartBandSetupActivityFragment.deviceReconnected();
@@ -383,7 +397,10 @@ public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRef
         }
     }
 
-    //tries to reconnect the device every x time (current 1 minute)
+    /**
+     *  Tries to reconnect the device every x time (current 1 minute)
+     *  It is called every time the connection state gives FAILED
+     */
     private void reconnectDevice(final String mac){
         MainActivity.setReconnectingSmartband(true);
 

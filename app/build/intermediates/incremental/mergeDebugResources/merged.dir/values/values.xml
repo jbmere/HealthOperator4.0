@@ -212,6 +212,7 @@
     <color name="error_color_material_light">#ff5722</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
+    <color name="green">#55CC00</color>
     <color name="grey">#838383</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
@@ -238,6 +239,7 @@
     <color name="mtrl_textinput_hovered_box_stroke_color">#DE000000</color>
     <color name="notification_action_color_filter">#ffffffff</color>
     <color name="notification_icon_bg_color">#ff9e9e9e</color>
+    <color name="orange">#FF7E00</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
     <color name="primary_material_dark">@color/material_grey_900</color>
@@ -246,6 +248,7 @@
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
+    <color name="red">#CC0000</color>
     <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
@@ -644,6 +647,7 @@
     <string name="favDev_mainTitle">Favourite Devices</string>
     <string name="fav_button">FAV</string>
     <string name="fav_button_description"><b><i>FAV button</i></b>: pressing this button brings you to a new screen where you will be able to check your favourite wearable devices.</string>
+    <string name="green_color_description">The green color indicates that the device is properly connected and the smartphone is collecting data and sending it to the DataBase.</string>
     <string name="heart_rate_tv">Heart Rate:  </string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string name="high_blood_pressure_tv">Blood Pressure (High):  </string>
@@ -659,20 +663,30 @@
     <string name="menu_info">Info</string>
     <string name="message_wait">Please wait</string>
     <string name="minus_eins_tv">-1</string>
+    <string name="mmr_description">This tab allocates the information of an MMR device (when connected).
+        <br/>First it shows the MAC address of the device and two main buttons, which Start or Stop the information exchange between the device and the smartphone and also between the smartphone and the database.
+        <br/>The colors of the MAC address mean the following:</string>
     <string name="mmrdevice">MMR Devices</string>
     <string name="mtrl_chip_close_icon_content_description">Remove %1$s</string>
+    <string name="orange_mmr_color_description">The orange color indicates that the smartphone is trying to reconnect the MMR. The reconnetion will star after 4min without receiving dta to collect, or by pressing the Stop button.</string>
+    <string name="orange_smartband_color_description">The orange color indicates that the smartphone is trying to reconnect the smartphone. It will be reconnected when it is within the range of the smartphone.</string>
     <string name="others">Other Devices</string>
     <string name="password_toggle_content_description">Show password</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
+    <string name="red_color_description">The red color indicates that the data collecting is stopped.</string>
     <string name="remove_button">Remove</string>
     <string name="scan_button">SCAN</string>
     <string name="scan_button_description"><b><i>SCAN button</i></b>: pressing this button brings you to a new screen where you will be able to look for the available wearable devices near you.</string>
     <string name="search_menu_title">Search</string>
     <string name="sleeping_hours_tv">Sleeping hours:  </string>
     <string name="smartband">SmartBand</string>
+    <string name="smartband_description">This tab allocates the information of a SmartBand device (when connected).
+        <br/>First it shows the MAC address of the device and two main buttons, which Start or Stop the information exchange between the device and the smartphone and also between the smartphone and the database.
+        <br/>The data is collected aprox. every minute.
+        <br/>The colors of the MAC address and time mean the following:</string>
     <string name="start_button">Start</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="steps_tv">Steps:  </string>

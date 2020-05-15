@@ -8,14 +8,18 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.upm.jgp.healthywear.R;
 
+
 /**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
+ * A SectionsTabsAdapter that returns a fragment corresponding to
+ * one of the tabs.
+ *
+ * Using 4 Tabs necessary to update second device interface
+ *
+ * @author Jorge Garcia Paredes (yoryidan)
+ * @version 175
+ * @since 2020
  */
 public class SectionsTabsAdapter extends FragmentPagerAdapter {
-
-    //TODO using 4 Tabs necessary to update second device interface
-    //TODO Check Indexes of Tabs in other places, weird behavior
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3, R.string.ellipsis};
     private final Context mContext;
 

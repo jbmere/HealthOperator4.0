@@ -17,7 +17,9 @@ import java.util.List;
 
 
 /**
+ * Bluetooth scanViewAdapter used for the Smartband device. It shows a star next to the Mac if the device is stored as favourite
  * Created by timaimee on 2016/7/25.
+ * Modified by yoryidan 2020
  */
 public class BleScanViewAdapter extends RecyclerView.Adapter<BleScanViewAdapter.NormalTextViewHolder> {
     private final LayoutInflater mLayoutInflater;
@@ -38,6 +40,7 @@ public class BleScanViewAdapter extends RecyclerView.Adapter<BleScanViewAdapter.
     public void onBindViewHolder(NormalTextViewHolder holder, int position) {
         String mac = itemData.get(position).getAddress();
         //holder.mBleRssi.setText(itemData.get(position).getName() + "-" + itemData.get(position).getAddress() + "-" + itemData.get(position).rssi);
+        //Checks if the MAC is stored on the favourite devices' list before adding it in to the list.
         if (MainActivity.checkFavouriteDevice(mac)) {
             holder.mBleRssi.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, android.R.drawable.star_big_on, 0);
             holder.mBleRssi.setCompoundDrawablePadding(25);

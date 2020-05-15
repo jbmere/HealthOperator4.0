@@ -14,6 +14,16 @@ import com.upm.jgp.healthywear.R;
 import com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMRActivity;
 import com.upm.jgp.healthywear.ui.main.fragments.smartband.ScanSmartBandActivity;
 
+/**
+ * Activity to select which device type is going to be scanned
+ *
+ * Currently it can be of two different types: SmartBand or MMR
+ * It will redirect to the scan activity of the selected type
+ *
+ * @author Jorge Garcia Paredes (yoryidan)
+ * @version 175
+ * @since 2020
+ */
 public class ChooseDeviceToScanActivity extends AppCompatActivity {
 
     @Override

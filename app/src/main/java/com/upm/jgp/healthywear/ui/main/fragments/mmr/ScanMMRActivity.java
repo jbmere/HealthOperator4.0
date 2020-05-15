@@ -26,8 +26,17 @@ import com.upm.jgp.healthywear.ui.main.fragments.common.MyService;
 
 import java.util.UUID;
 
+/**
+ * Activity to scan MMR devices (mbientlab) and connect to a selected one.
+ *
+ * It also handles the reconnection of the MMR for better stability
+ *
+ * Based on MainActivity class of MetaWear-SDK-Android by mbientlab
+ * @author Modified by Jorge Garcia Paredes (yoryidan)
+ * @version 175
+ * @since 2020
+ */
 public class ScanMMRActivity extends AppCompatActivity implements BleScannerFragment.ScannerCommunicationBus {
-    //TODO check if it is duplicated in the
     private static final int REQUEST_START_APP= 1;
 
     private MetaWearBoard metawear = null;

@@ -86,7 +86,17 @@ import bolts.Task;
  * */
 
 /**
- * A placeholder fragment containing a simple view.
+ * Fragment with the communication with MMR device (mbientlab).
+ *
+ * It periodically gets the MMR information on the background. When a few values are collected, they are compressed on a file and saved in to the phone's storage.
+ * Then, they can be posted into the MongoDB by the Service RetrievedFeedTask.
+ * It also handles the reconnection of the MMR for better stability (without DialogFragment).
+ * The reconnection is called when the RetrievedFeedTask didn't found any new data to post into the database for around 5min
+ *
+ * Based on MainActivity class of MetaWear-SDK-Android by mbientlab
+ * @author Modified by Jorge Garcia Paredes (yoryidan)
+ * @version 175
+ * @since 2020
  */
 public class MMRSetupActivityFragment extends Fragment implements ServiceConnection {
     public interface FragmentSettings {
@@ -97,6 +107,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
     private FragmentSettings settings;
     private String mmrMAC = null;
     private final int TYPEMMR = 2;
+    private static Activity owner;
 
     public MMRSetupActivityFragment() {
     }
@@ -105,7 +116,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Activity owner= getActivity();
+        owner= getActivity();
         if (!(owner instanceof FragmentSettings)) {
             throw new ClassCastException("Owning activity must implement the FragmentSettings interface");
         }
@@ -169,7 +180,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
     private String GYRO ="000";
     private Double arm;
 
-    TextView tv_mac = null;
+    static TextView tv_mac = null;
     TextView tv_temp = null;
     TextView tv_illm = null;
     TextView tv_alt = null;
@@ -185,8 +196,6 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
         fab = view.findViewById(R.id.fabMMRfav);
 
-        //TODO It will not work when the metawear has not stablished the connection properly at the beginning (no onServiceConnected has jumped)
-        // (which makes mmrMAC = null)
         if(mmrMAC==null){
             fab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_dialog_alert));
         }else {
@@ -202,14 +211,14 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
             public void onClick(View view) {
                 if(mmrMAC != null){
                     if(MainActivity.checkFavouriteDevice(mmrMAC)) {
-                        //TODO take device out from the list
+                        //Take device out from the list
                         if(MainActivity.deleteFavouriteDevice(mmrMAC)) {
                             fab.setImageDrawable(getResources().getDrawable(android.R.drawable.star_big_off));
                             Snackbar.make(view, "Device removed from favourites", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                         }
                     }else{
-                    //TODO add device to the list
+                    //Add device to the list
                         if(MainActivity.putFavouriteDevice(mmrMAC, TYPEMMR)) {
                             fab.setImageDrawable(getResources().getDrawable(android.R.drawable.btn_star_big_on));
                             Snackbar.make(view, "Device added to favourites", Snackbar.LENGTH_LONG)
@@ -220,7 +229,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
             }
         });
 
-        //textview to show data
+        //Textview to show data
         tv_mac = view.findViewById(R.id.mmr_value_mac);     //device MAC
         tv_temp = view.findViewById(R.id.mmr_value_temp);	//Temp data
         tv_illm = view.findViewById(R.id.mmr_value_illum);	//Illum data
@@ -305,7 +314,8 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                                         }
                                     });
                                     String shortname=getUintAsTimestamp(time_now); //timestam
-                                    String toplines="{'us':'USER','pass':'PASSWORDxx','db':'IoT','collection':'mmr_acc'}\n"+
+                                    //TODO Modify USER, PASSWORD and DBNAME from your MongoDB
+                                    String toplines="{'us':'USER','pass':'PASSWORD','db':'DBNAME','collection':'mmr_acc'}\n"+
                                             "{'mac':'"+metawear.getMacAddress() + "','appversion':'" + MainActivity.getStringAppVersion() + "'," + location + ",'alt':'" + ALT + "','t_end':'" +shortname+ "','temp':'" + TEMP+ "','illum':'" + ILLUM+"'}\n";
                                     Log.i("Toplines:", toplines);
 
@@ -383,7 +393,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                         source.stream(new Subscriber() {
                             @Override
                             public void apply(Data data, Object ... env) {
-                                //Log.i("MainActivity", data.value(AngularVelocity.class).toString());
+                                //Log.i("MMRSetupActivityFragmen", data.value(AngularVelocity.class).toString());
                             }
                         });
                     }
@@ -405,7 +415,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                             @Override
                             public void apply(Data data, Object ... env) {
                                 ALT = String.format("%.2f",(data.value(Float.class)));
-                               //Log.i("MainActivity", "Altitude (m) = " + data.value(Float.class));
+                               //Log.i("MMRSetupActivityFragmen", "Altitude (m) = " + data.value(Float.class));
                                 new Handler(Looper.getMainLooper()).post(new Runnable(){
                                     @Override
                                     public void run() {
@@ -432,7 +442,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                         source.stream(new Subscriber() {
                             @Override
                             public void apply(Data data, Object ... env) {
-                                Log.i("MainActivity", "Humidity = " + data.value(Float.class));
+                                Log.i("MMRSetupActivityFragmen", "Humidity = " + data.value(Float.class));
                             }
                         });
                     }
@@ -457,7 +467,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                             @Override
                             public void apply(Data data, Object ... env) {
                                 TEMP = String.valueOf(data.value(Float.class));
-                                //Log.i("MainActivity", "Temperature (C) = " + data.value(Float.class));
+                                //Log.i("MMRSetupActivityFragmen", "Temperature (C) = " + data.value(Float.class));
                                 new Handler(Looper.getMainLooper()).post(new Runnable(){
                                     @Override
                                     public void run() {
@@ -478,8 +488,6 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
 */
 
-
-
                 // Illuminance Data
                 // Illuminance data is categorized as an async data producer; data is interpreted as a float value and is in units of lux (lx).
                 alsLtr329.illuminance().addRouteAsync(new RouteBuilder() {
@@ -489,7 +497,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                             @Override
                             public void apply(Data data, Object... env) {
                                 ILLUM = String.format(Locale.US, "%.2f", data.value(Float.class));
-                                //Log.i("MainActivity", String.format(Locale.US, "illuminance = %.3f lx", data.value(Float.class)));
+                                //Log.i("MMRSetupActivityFragmen", String.format(Locale.US, "illuminance = %.3f lx", data.value(Float.class)));
                                 new Handler(Looper.getMainLooper()).post(new Runnable(){
                                     @Override
                                     public void run() {
@@ -562,8 +570,10 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                     baroBosch.stop();
                     alsLtr329.illuminance().stop();
                 }else{
-                    tv_mac.setText("Disconnected");
-                    onServiceDisconnected();
+                    tv_mac.setTextColor(Color.parseColor("#FF7E00"));
+                    reconnection();
+                    //tv_mac.setText("Disconnected");
+                    //onServiceDisconnected();
                 }
             }
         });
@@ -577,6 +587,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
             metawear = ((BtleService.LocalBinder) service).getMetaWearBoard(settings.getBtDevice_mmr());
             System.out.println("Metawearrrrrr before: "+metawear);
             mmrMAC = metawear.getMacAddress();
+            unexpectedDisconnection();
         }else{
             //Try to get it from global variable, probably when it is the second device connected, it was not taken from the Intent...
             metawear = ((BtleService.LocalBinder) service).getMetaWearBoard(MainActivity.getMmr_device_global());
@@ -585,7 +596,6 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
             }
         }
         System.out.println("Metawearrrrrr after : "+metawear);
-
 
         //check if the device is on favourites devices when pressing start button
         if (MainActivity.checkFavouriteDevice(mmrMAC)) {
@@ -599,7 +609,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                 .odr(25f)       // Set sampling frequency to 25Hz, or closest valid ODR
                 .range(4f)      // Set data range to +/-4g, or closet valid range
                 .commit();
-        Log.i("MainActivity", "Actual Odr = " + accelerometer.getOdr());
+        Log.i("MMRSetupActivityFragmen", "Actual Odr = " + accelerometer.getOdr());
 
         logging=metawear.getModule(Logging.class);
 
@@ -670,9 +680,64 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
             Log.i("ExternalStorageWritable", "********NO!!!!!");
         }
 */
-
-
     }
+
+    /**
+     * This function jumps whenever there is an unexpectedisconnection of the MMR (it was only working when the MMR is connected in first place)
+     * */
+    private void unexpectedDisconnection() {
+        metawear.onUnexpectedDisconnect(status -> {
+            //System.out.println("!!!!!!!!!UNEXPECTEDDISCONNECTION!!!!!!!");
+            tv_mac.setTextColor(Color.parseColor("#FF7E00"));
+            //ReconnectDialogFragment dialogFragment = ReconnectDialogFragment.newInstance(settings.getBtDevice_mmr());
+            //dialogFragment.show(getActivity().getSupportFragmentManager(), RECONNECT_DIALOG_TAG);
+            metawear.connectAsync().continueWithTask(task -> task.isCancelled() || !task.isFaulted() ? task : MainActivity.reconnect(metawear))
+                    .continueWith((Continuation<Void, Void>) task -> {
+                        if (!task.isCancelled()) {
+                           getActivity().runOnUiThread(() -> {
+                                tv_mac.setTextColor(Color.parseColor("#FF99CC00"));
+                                //((DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag(RECONNECT_DIALOG_TAG)).dismiss();
+                                //This was giving NullPointerException, but the call to this function is not necessary right now because it is currently empty
+                                //((MMRSetupActivityFragment) getSupportFragmentManager().findFragmentById(R.id.mmr_setup_fragment)).reconnected();
+                            });
+                        } else {
+                            tv_mac.setTextColor(Color.parseColor("#FFCC0000"));
+                            MainActivity.setMmrConnected(false);
+                            MainActivity.setMmr_device_global(null);   //Set device's MAC
+                            //finish();
+                        }
+
+                        return null;
+                    });
+        });
+    }
+
+    /**
+     * This function is called when the MMR is not finding new data for 5min
+     * */
+    public static void reconnection() {
+        //System.out.println("!!!!!!!!!RECONNECTION!!!!!!!");
+        tv_mac.setTextColor(Color.parseColor("#FF7E00"));
+        //ReconnectDialogFragment dialogFragment = ReconnectDialogFragment.newInstance(settings.getBtDevice_mmr());
+        //dialogFragment.show(getActivity().getSupportFragmentManager(), RECONNECT_DIALOG_TAG);
+        metawear.connectAsync().continueWithTask(task -> task.isCancelled() || !task.isFaulted() ? task : MainActivity.reconnect(metawear))
+                .continueWith((Continuation<Void, Void>) task -> {
+                    if (!task.isCancelled()) {
+                       owner.runOnUiThread(() -> {
+                            tv_mac.setTextColor(Color.parseColor("#FF99CC00"));
+                        });
+                    } else {
+                        tv_mac.setTextColor(Color.parseColor("#FFCC0000"));
+                        MainActivity.setMmrConnected(false);
+                        MainActivity.setMmr_device_global(null);   //Set device's MAC
+                        //finish();
+                    }
+
+                    return null;
+                });
+    }
+
+
     /* Checks if external storage is available for read and write */
   /*  public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
@@ -692,8 +757,6 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         return file;
     }*/
 
-
-
     //setup temp sensor  // https://github.com/mbientlab/MetaWear-SampleApp-Android/blob/master/app/src/main/java/com/mbientlab/metawear/app/TemperatureFragment.java#L228
     private com.mbientlab.metawear.module.Timer timerModule;
     private com.mbientlab.metawear.module.Timer.ScheduledTask scheduledTask;
@@ -712,7 +775,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
             new Handler(Looper.getMainLooper()).post(new Runnable(){
                 @Override
                 public void run() {
-                    //TODO when changing the Tab the Data on the fragment is deleted, so we write it again when temp value is updated...
+                    //When changing the Tab the Data on the fragment is deleted, so we write it again when temp value is updated...
                     tv_mac.setTextColor(Color.parseColor("#FF99CC00"));
                     tv_mac.setText(mmrMAC);
                     tv_temp.setText(TEMP);
@@ -740,26 +803,19 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         timer.cancel();
     }
 
-    public void onServiceDisconnected() {
-        MainActivity.setMmrConnected(false);
-        MainActivity.setMmr_device_global(null);   //Set device's MAC
-
-        tv_mac.setText("Disconnected");
-        timer.cancel();
-    }
-
     public static void disconnection(){
         metawear.disconnectAsync();
     }
 
     /**
      * Called when the app has reconnected to the board
-     * TODO Right now not called
+     * Right now not called, but not necessary
      */
     public void reconnected() { startTimer(); }
 
-
-
+    /**
+     * This function starts the timer to get data from the MMR and compressing it into a .gz file
+     * */
     //Timer for zipping data
     public void startTimer() {
         timerstatus=true;
@@ -769,6 +825,9 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         timer.schedule(timerTask, 5000, 60000);
     }
 
+    /**
+     * This function gets the location information from the mobile phone
+     * */
     //Function to Get the GPS information from the phone. //Reference: http://blog.csdn.net/cjjky/article/details/6557561
     private String refresh_phone_Location(){
         double latitude=0.0;
@@ -784,19 +843,19 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         //solved by getting the LocationManager from TabWearablesActivity
         LocationManager locationManager = TabWearablesActivity.getLocationManager();
         LocationListener locationListener = new LocationListener() {
-            // Provider的状态在可用、暂时不可用和无服务三个状态直接切换时触发此函数
+            //Provider's state triggers this function when the three states of available, temporarily unavailable and no service are directly switched
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
             }
-            // Provider被enable时触发此函数，比如GPS被打开
+            // This function is triggered when the Provider is enabled, such as GPS is turned on
             @Override
             public void onProviderEnabled(String provider) {
             }
-            // Provider被disable时触发此函数，比如GPS被关闭
+            //This function is triggered when the Provider is disabled, such as GPS is turned off
             @Override
             public void onProviderDisabled(String provider) {
             }
-            //当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
+            //This function is triggered when the coordinates change, if the Provider passes the same coordinates, it will not be triggered
             @Override
             public void onLocationChanged(Location location) {
                 //TODO uncomment?
@@ -839,7 +898,10 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         return location;
     }
 
-    //task to zip data files
+    /**
+     * This task periodically stores the incoming data into files
+     * The information is changed on the UI often
+     * */
     public void initializeTimerTask() {
         timerTask = new TimerTask() {
             public void run() {

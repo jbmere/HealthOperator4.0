@@ -18,6 +18,13 @@ import com.upm.jgp.healthywear.ui.main.activity.MainActivity;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This Activity contains the adapter to list the stored favourite devices with its MAC address and its type
+ *
+ * @author Jorge Garcia Paredes (yoryidan)
+ * @version 175
+ * @since 2020
+ */
 public class FavDevAdapter extends ArrayAdapter {
 
     public static class ViewHolder{

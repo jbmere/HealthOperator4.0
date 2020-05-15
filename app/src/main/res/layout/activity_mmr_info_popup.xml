@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_mmr_info_popup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginVertical="25dp"
+    android:background="#444444"
+    android:paddingHorizontal="10dp"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/ib_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="8dp"
+        android:background="@null"
+        android:contentDescription="@string/ib_close_description"
+        />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:layout_below="@id/ib_close">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            >
+
+            <TextView
+                android:id="@+id/mmr_description_textview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:text="@string/mmr_description"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/scan_button_description_textview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:text="@string/green_color_description"
+                android:drawableStart="@drawable/green_circle"
+                android:layout_marginBottom="10dp"
+                android:drawablePadding="10sp"
+                />
+
+
+            <TextView
+                android:id="@+id/fav_button_description_textview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/orange_circle"
+                android:drawablePadding="10sp"
+                android:text="@string/orange_mmr_color_description"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_marginBottom="10dp"/>
+
+
+            <TextView
+                android:id="@+id/app_information_textview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:text="@string/red_color_description"
+                android:drawableStart="@drawable/red_circle"
+                android:drawablePadding="10sp"
+                />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
