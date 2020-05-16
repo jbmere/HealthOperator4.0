@@ -17,4 +17,6 @@ Once downloaded, you sould use Android-Studio to interact and to generate the pr
 according to the interesting Android releases.
 
 =====
-Madrid 29/04/2020
+
+Madrid 16/05/2020
+
