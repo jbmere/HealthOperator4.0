@@ -1,3 +1,6 @@
+![RFCS Logo](/images/rfcs.png)
+--:![ECDGresearch Logo](/images/dgri_ec.png)
+
 # HealthOperator4.0
 Repository holding the sensor fusion and proposed architecture created within the WISEST RFCS funded EU project.
 
