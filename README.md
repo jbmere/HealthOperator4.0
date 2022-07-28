@@ -13,7 +13,7 @@ including
 * Higher stability
 * Usage of a middleware for ingesting data streams in mongoDB
 
-The next big improvement was implemented by Raquel Prous and J. Ordieres in 2022through the release v2.1.0
+The next big improvement was implemented by Raquel Prous and J. Ordieres in 2022 through the release v2.1.0
 
 * Enabling more than one accelerometer
 * Update the middleware to ingest data into InfluxDB
