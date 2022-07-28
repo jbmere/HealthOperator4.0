@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.upm.jgp.healthywear.R;
 import com.upm.jgp.healthywear.ui.main.activity.MainActivity;
+import com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMR2Activity;
 import com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMRActivity;
 import com.upm.jgp.healthywear.ui.main.fragments.smartband.ScanSmartBandActivity;
 import com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity;
@@ -27,7 +28,8 @@ import com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity;
  * Using 4 Tabs necessary to update second device interface, part of refreshing tabs is made in the onDestroyView method
  *
  * @author Jorge Garcia Paredes (yoryidan)
- * @version 175
+ * Modified by Raquel Prous 2022
+ * @version 210
  * @since 2020
  */
 public class TabFragment extends Fragment {
@@ -100,8 +102,26 @@ public class TabFragment extends Fragment {
                 }
                 break;
             }
-
             case 2: {
+                if(MainActivity.isMmr2Connected()) {
+                    root = inflater.inflate(R.layout.content_tab_mmr2, container, false);
+                }else{
+                    root = inflater.inflate(R.layout.fragment_textview_tabs, container, false);
+                    simpleTab(root);
+                    //Add new MMR
+                    mFab = root.findViewById(R.id.fab_tabs_section_label);
+                    mFab.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(view.getContext(), ScanMMR2Activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+                break;
+            }
+
+            case 3: {
                 root = inflater.inflate(R.layout.fragment_textview_tabs, container, false);
                 simpleTab(root);
                 //TODO add other devices

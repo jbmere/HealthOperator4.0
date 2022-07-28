@@ -87,15 +87,16 @@ import bolts.Task;
 
 /**
  * Fragment with the communication with MMR device (mbientlab).
- *
+ * <p>
  * It periodically gets the MMR information on the background. When a few values are collected, they are compressed on a file and saved in to the phone's storage.
  * Then, they can be posted into the MongoDB by the Service RetrievedFeedTask.
  * It also handles the reconnection of the MMR for better stability (without DialogFragment).
  * The reconnection is called when the RetrievedFeedTask didn't found any new data to post into the database for around 5min
- *
+ * <p>
  * Based on MainActivity class of MetaWear-SDK-Android by mbientlab
+ *
  * @author Modified by Jorge Garcia Paredes (yoryidan)
- * @version 175
+ * @version 210
  * @since 2020
  */
 public class MMRSetupActivityFragment extends Fragment implements ServiceConnection {
@@ -116,12 +117,12 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        owner= getActivity();
+        owner = getActivity();
         if (!(owner instanceof FragmentSettings)) {
             throw new ClassCastException("Owning activity must implement the FragmentSettings interface");
         }
 
-        settings= (FragmentSettings) owner;
+        settings = (FragmentSettings) owner;
         owner.getApplicationContext().bindService(new Intent(owner, BtleService.class), this, Context.BIND_AUTO_CREATE);
 
     }
@@ -154,11 +155,11 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
     private Logging logging;
     private static final String LOG_TAG = "Logging";
 
-    private long time_now=0;
-    private int n =0;
+    private long time_now = 0;
+    private int n = 0;
     //public static  String mac_address_mmr = "D2:01:2C:D9:BC:76"; //Defined in DeviceSetupActivity.java
-    Lock lock= new ReentrantLock(true); //Define a lock to avoid the concurrency problem when writing data to txt file
-    private String folderPath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" +  File.separator + "cache" + File.separator;
+    Lock lock = new ReentrantLock(true); //Define a lock to avoid the concurrency problem when writing data to txt file
+    private String folderPath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" + File.separator + "cache" + File.separator;
     //private String folderPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath()+ File.separator + "tmp" +  File.separator + "cache" + File.separator;
     //private String folderPath = getPublicDownloadStorageDir("cache").getPath();
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd_HHmmss"); //Set the format of the .txt file name.
@@ -168,16 +169,16 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
     //Timer timer_peb_app;
     //TimerTask timerTask_peb_app;
     //private static Boolean wificon=false;
-    private static Boolean timerstatus=false;
-    static String pass="1314";
-    static String op="ADD";
+    private static Boolean timerstatus = false;
+    static String pass = "1314";
+    static String op = "ADD";
 
-    private String TEMP="0"; //TEMPETURE
-    private String ILLUM="0"; //Illumnition
-    private String ALT="0"; //ALTITUDE
-    private String armangle ="0";
+    private String TEMP = "0"; //TEMPETURE
+    private String ILLUM = "0"; //Illumnition
+    private String ALT = "0"; //ALTITUDE
+    private String armangle = "0";
     private String location = "'lat':'-000.000000','lng':'-000.000000'";
-    private String GYRO ="000";
+    private String GYRO = "000";
     private Double arm;
 
     static TextView tv_mac = null;
@@ -196,9 +197,9 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
         fab = view.findViewById(R.id.fabMMRfav);
 
-        if(mmrMAC==null){
+        if (mmrMAC == null) {
             fab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_dialog_alert));
-        }else {
+        } else {
             if (MainActivity.checkFavouriteDevice(mmrMAC)) {
                 fab.setImageDrawable(getResources().getDrawable(android.R.drawable.star_big_on));
             } else {
@@ -209,17 +210,17 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mmrMAC != null){
-                    if(MainActivity.checkFavouriteDevice(mmrMAC)) {
+                if (mmrMAC != null) {
+                    if (MainActivity.checkFavouriteDevice(mmrMAC)) {
                         //Take device out from the list
-                        if(MainActivity.deleteFavouriteDevice(mmrMAC)) {
+                        if (MainActivity.deleteFavouriteDevice(mmrMAC)) {
                             fab.setImageDrawable(getResources().getDrawable(android.R.drawable.star_big_off));
                             Snackbar.make(view, "Device removed from favourites", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                         }
-                    }else{
-                    //Add device to the list
-                        if(MainActivity.putFavouriteDevice(mmrMAC, TYPEMMR)) {
+                    } else {
+                        //Add device to the list
+                        if (MainActivity.putFavouriteDevice(mmrMAC, TYPEMMR)) {
                             fab.setImageDrawable(getResources().getDrawable(android.R.drawable.btn_star_big_on));
                             Snackbar.make(view, "Device added to favourites", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
@@ -231,12 +232,12 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
         //Textview to show data
         tv_mac = view.findViewById(R.id.mmr_value_mac);     //device MAC
-        tv_temp = view.findViewById(R.id.mmr_value_temp);	//Temp data
-        tv_illm = view.findViewById(R.id.mmr_value_illum);	//Illum data
-        tv_alt =  view.findViewById(R.id.mmr_value_alt);	//Altitude data
-        tv_arm =  view.findViewById(R.id.mmr_value_arm);    //arm angle
-        tv_acc =  view.findViewById(R.id.mmr_value_acc);    //acceleration
-        tv_gps =  view.findViewById(R.id.mmr_value_gps);    //location gps
+        tv_temp = view.findViewById(R.id.mmr_value_temp);    //Temp data
+        tv_illm = view.findViewById(R.id.mmr_value_illum);    //Illum data
+        tv_alt = view.findViewById(R.id.mmr_value_alt);    //Altitude data
+        tv_arm = view.findViewById(R.id.mmr_value_arm);    //arm angle
+        tv_acc = view.findViewById(R.id.mmr_value_acc);    //acceleration
+        tv_gps = view.findViewById(R.id.mmr_value_gps);    //location gps
 
 
         view.findViewById(R.id.mmr_acc_start).setOnClickListener(new View.OnClickListener() {
@@ -249,7 +250,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                 //Log.i("*****MAC****", DeviceSetupActivity.MAC);
 
                 //change color to green if start on click
-                if(metawear.isConnected()) {
+                if (metawear.isConnected()) {
                     tv_mac.setTextColor(Color.parseColor("#FF99CC00"));
                     tv_mac.setText(mmrMAC);
                 }
@@ -262,34 +263,44 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                         //saveLog();//timer task to save the log data
                         //Method to calculate timestamp https://mbientlab.com/community/discussion/1934/metahub-timestamps#latest
                         source.stream(new Subscriber() {
-                        //source.log(new Subscriber() {
+                            //source.log(new Subscriber() {
                             @Override
                             public void apply(Data data, Object... env) {
                                 time_now = System.currentTimeMillis();
                                 n++;
+
                                 //Log.i("counter", String.valueOf(n));
                                 //Log.i("acc_x", String.valueOf(data.value(Acceleration.class).x()) ); //print acc.x
-                                String dataString = "{'x':" + String.format("%.3f",(data.value(Acceleration.class).x())) +
-                                        ",'y':" + String.format("%.3f",(data.value(Acceleration.class).y())) +
-                                        ",'z':" + String.format("%.3f",(data.value(Acceleration.class).z())) +
-                                        ",'t':" + getUintAsTimestampGPS(time_now) +"}";  //timestamp when the data arrived Android
-                                //Log.i("JSON:", dataString); //print complete acc vector
-                                arm = 180-Math.acos(data.value(Acceleration.class).y())* 180f / Math.PI;
-                                if (Double.isNaN(arm)){
+                                String dataString1 = "{'x':" + String.format("%.3f", (data.value(Acceleration.class).x()));
+                                String float_con_punto1= dataString1.replace(',', '.');
+
+                                String dataString2 = "'y':" + String.format("%.3f", (data.value(Acceleration.class).y()));
+                                String float_con_punto2= dataString2.replace(',', '.');
+
+                                String dataString3 = "'z':" + String.format("%.3f", (data.value(Acceleration.class).z()));
+                                String float_con_punto3= dataString3.replace(',', '.');
+
+                                String dataString4 =  "'t':" + getUintAsTimestampGPS(time_now) + "}";
+                                String float_con_punto4= dataString4.replace(',', '.');
+
+                                String dataString = float_con_punto1 + ", " + float_con_punto2 + ", " + float_con_punto3 + ", " + float_con_punto4;
+
+                                arm = 180 - Math.acos(data.value(Acceleration.class).y()) * 180f / Math.PI;
+                                if (Double.isNaN(arm)) {
                                     arm = 0.0;
                                 }
                                 armangle = String.format("%.2f", arm);
-                                if (n%25==0){
+                                if (n % 25 == 0) {
                                     //Log.i("Arm Angle:", armangle);
                                     //https://stackoverflow.com/questions/47041396/only-the-original-thread-that-created-a-view-hierarchy-can-touch-its-views
-                                    new Handler(Looper.getMainLooper()).post(new Runnable(){
+                                    new Handler(Looper.getMainLooper()).post(new Runnable() {
                                         @Override
                                         public void run() {
                                             //if (Float.valueOf(armangle)>90){
-                                            if (arm>90.0){
+                                            if (arm > 90.0) {
                                                 //change color to red if angle >90
                                                 tv_arm.setTextColor(Color.parseColor("#FFFF0000"));
-                                            } else{
+                                            } else {
                                                 tv_arm.setTextColor(Color.parseColor("#FF00DDFF")); //ANGLE <90 change back to blue
                                             }
                                             tv_arm.setText(armangle);
@@ -303,23 +314,23 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                                 sb.append(dataString);
                                 sb.append("\n");
 
-                                if (n%750==0){
+                                if (n % 750 == 0) {
 
                                     //get gps location
-                                    new Handler(Looper.getMainLooper()).post(new Runnable(){
+                                    new Handler(Looper.getMainLooper()).post(new Runnable() {
                                         @Override
                                         public void run() {
-                                            location= refresh_phone_Location(); //get location
+                                            location = refresh_phone_Location(); //get location
                                             tv_gps.setText(location); //update UI
                                         }
                                     });
-                                    String shortname=getUintAsTimestamp(time_now); //timestam
+                                    String shortname = getUintAsTimestamp(time_now); //timestam
                                     //TODO Modify USER, PASSWORD and DBNAME from your MongoDB
-                                    String toplines="{'us':'USER','pass':'PASSWORD','db':'DBNAME','collection':'mmr_acc'}\n"+
-                                            "{'mac':'"+metawear.getMacAddress() + "','appversion':'" + MainActivity.getStringAppVersion() + "'," + location + ",'alt':'" + ALT + "','t_end':'" +shortname+ "','temp':'" + TEMP+ "','illum':'" + ILLUM+"'}\n";
+                                    String toplines = "{'us':'USER','pass':'PASSWORD','db':'DBNAME','collection':'mmr1_acc'}\n" +
+                                            "{'mac':'" + metawear.getMacAddress() + "','appversion':'" + MainActivity.getStringAppVersion() + "'," + location + ",'alt':'" + ALT + "','t_end':'" + shortname + "','temp':'" + TEMP + "','illum':'" + ILLUM + "'}\n";
                                     Log.i("Toplines:", toplines);
 
-                                    String input=toplines+sb.toString();
+                                    String input = toplines + sb.toString();
 
                                     //***Create text file and write data into it***
                                     System.out.println("writting to text file");
@@ -330,23 +341,23 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
 
                                     // 20190409
-                                    String txtname=folderPath + shortname;
+                                    String txtname = folderPath + shortname;
                                     //create folder if not exist
-                                    File folderfile= new File(folderPath);
-                                    if (!folderfile.exists()){
+                                    File folderfile = new File(folderPath);
+                                    if (!folderfile.exists()) {
                                         folderfile.mkdirs();
                                     }
 
-                                    File txtfile=new File(txtname+".txt");
-                                    if (txtfile.exists()){                 //check if txt file already existed
-                                        File ftxt=new File(folderPath);    //if exist count the number of files with this name
-                                        int ntxt=0;
-                                        for (File file : ftxt.listFiles()){
+                                    File txtfile = new File(txtname + ".txt");
+                                    if (txtfile.exists()) {                 //check if txt file already existed
+                                        File ftxt = new File(folderPath);    //if exist count the number of files with this name
+                                        int ntxt = 0;
+                                        for (File file : ftxt.listFiles()) {
                                             if (file.isFile() && (file.getName().startsWith(shortname)) && (file.getName().endsWith(".txt"))) {
                                                 ntxt++;
                                             }
                                         }
-                                        txtname=txtname+Integer.toString(ntxt);
+                                        txtname = txtname + Integer.toString(ntxt);
                                     }
 
 
@@ -362,7 +373,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                                         bufferWritter.write(input);
                                         bufferWritter.close();
                                     } catch (IOException e) {
-                                        System.out.println("Error writing to and closing file:"+e.getMessage());
+                                        System.out.println("Error writing to and closing file:" + e.getMessage());
                                         lock.unlock(); //Release lock
                                         return;
                                     }
@@ -408,31 +419,33 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 */
 
                 //barometer altitude value
-                baroBosch.altitude().addRouteAsync(new RouteBuilder() {
-                    @Override
-                    public void configure(RouteComponent source) {
-                        source.stream(new Subscriber() {
-                            @Override
-                            public void apply(Data data, Object ... env) {
-                                ALT = String.format("%.2f",(data.value(Float.class)));
-                               //Log.i("MMRSetupActivityFragmen", "Altitude (m) = " + data.value(Float.class));
-                                new Handler(Looper.getMainLooper()).post(new Runnable(){
-                                    @Override
-                                    public void run() {
-                                        tv_alt.setText(ALT);
-                                    }
-                                });
-                            }
-                        });
-                    }
-                }).continueWith(new Continuation<Route, Void>() {
-                    @Override
-                    public Void then(Task<Route> task) throws Exception {
-                        baroBosch.altitude().start();
-                        baroBosch.start();
-                        return null;
-                    }
-                });
+                if ((baroBosch = metawear.getModule(BarometerBosch.class)) != null) {
+                    baroBosch.altitude().addRouteAsync(new RouteBuilder() {
+                        @Override
+                        public void configure(RouteComponent source) {
+                            source.stream(new Subscriber() {
+                                @Override
+                                public void apply(Data data, Object... env) {
+                                    ALT = String.format("%.2f", (data.value(Float.class)));
+                                    //Log.i("MMRSetupActivityFragmen", "Altitude (m) = " + data.value(Float.class));
+                                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            tv_alt.setText(ALT);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }).continueWith(new Continuation<Route, Void>() {
+                        @Override
+                        public Void then(Task<Route> task) throws Exception {
+                            baroBosch.altitude().start();
+                            baroBosch.start();
+                            return null;
+                        }
+                    });
+                }
 /*
                 //MMR doesn't have HUMIDITY sensor, Uncomment this section when necessary for other models
                 // Relative humidity data is a float value from 0 to 100 percent and is represented as a forced data producer.
@@ -490,30 +503,32 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
                 // Illuminance Data
                 // Illuminance data is categorized as an async data producer; data is interpreted as a float value and is in units of lux (lx).
-                alsLtr329.illuminance().addRouteAsync(new RouteBuilder() {
-                    @Override
-                    public void configure(RouteComponent source) {
-                        source.stream(new Subscriber() {
-                            @Override
-                            public void apply(Data data, Object... env) {
-                                ILLUM = String.format(Locale.US, "%.2f", data.value(Float.class));
-                                //Log.i("MMRSetupActivityFragmen", String.format(Locale.US, "illuminance = %.3f lx", data.value(Float.class)));
-                                new Handler(Looper.getMainLooper()).post(new Runnable(){
-                                    @Override
-                                    public void run() {
-                                        tv_illm.setText(ILLUM);
-                                    }
-                                });
-                            }
-                        });
-                    }
-                }).continueWith(new Continuation<Route, Void>() {
-                    @Override
-                    public Void then(Task<Route> task) throws Exception {
-                        alsLtr329.illuminance().start();
-                        return null;
-                    }
-                });
+                if ((alsLtr329 = metawear.getModule(AmbientLightLtr329.class)) != null) {
+                    alsLtr329.illuminance().addRouteAsync(new RouteBuilder() {
+                        @Override
+                        public void configure(RouteComponent source) {
+                            source.stream(new Subscriber() {
+                                @Override
+                                public void apply(Data data, Object... env) {
+                                    ILLUM = String.format(Locale.US, "%.2f", data.value(Float.class));
+                                    //Log.i("MMRSetupActivityFragmen", String.format(Locale.US, "illuminance = %.3f lx", data.value(Float.class)));
+                                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            tv_illm.setText(ILLUM);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }).continueWith(new Continuation<Route, Void>() {
+                        @Override
+                        public Void then(Task<Route> task) throws Exception {
+                            alsLtr329.illuminance().start();
+                            return null;
+                        }
+                    });
+                }
 
 /*
                 //SENSOR FUSION
@@ -552,13 +567,14 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
             @Override
             public void onClick(View v) {
 
-                if(timer!=null)
+                if (timer != null)
                     timer.cancel();
                 //change color to red if stop on click
                 tv_mac.setTextColor(Color.parseColor("#FFCC0000"));
 
-                if(metawear.isConnected()) {
-                    tv_mac.setText("Stopped");accelerometer.stop();
+                if (metawear.isConnected()) {
+                    tv_mac.setText("Stopped");
+                    accelerometer.stop();
 
                     accelerometer.acceleration().stop();
                     //sensorFusion.quaternion().stop();
@@ -566,10 +582,14 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                     //logging.stop(); //stop logging
                     metawear.tearDown();
 
-                    baroBosch.altitude().stop();
-                    baroBosch.stop();
-                    alsLtr329.illuminance().stop();
-                }else{
+                    if ((baroBosch = metawear.getModule(BarometerBosch.class)) != null) {
+                        baroBosch.altitude().stop();
+                        baroBosch.stop();
+                    }
+                    if ((alsLtr329 = metawear.getModule(AmbientLightLtr329.class)) != null) {
+                        alsLtr329.illuminance().stop();
+                    }
+                } else {
                     tv_mac.setTextColor(Color.parseColor("#FF7E00"));
                     reconnection();
                     //tv_mac.setText("Disconnected");
@@ -583,19 +603,19 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
 
-        if(settings.getBtDevice_mmr()!=null) {
+        if (settings.getBtDevice_mmr() != null) {
             metawear = ((BtleService.LocalBinder) service).getMetaWearBoard(settings.getBtDevice_mmr());
-            System.out.println("Metawearrrrrr before: "+metawear);
+            System.out.println("Metawearrrrrr before: " + metawear);
             mmrMAC = metawear.getMacAddress();
             unexpectedDisconnection();
-        }else{
+        } else {
             //Try to get it from global variable, probably when it is the second device connected, it was not taken from the Intent...
             metawear = ((BtleService.LocalBinder) service).getMetaWearBoard(MainActivity.getMmr_device_global());
-            if(metawear!=null){
+            if (metawear != null) {
                 mmrMAC = metawear.getMacAddress();
             }
         }
-        System.out.println("Metawearrrrrr after : "+metawear);
+        System.out.println("Metawearrrrrr after : " + metawear);
 
         //check if the device is on favourites devices when pressing start button
         if (MainActivity.checkFavouriteDevice(mmrMAC)) {
@@ -604,14 +624,14 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
             fab.setImageDrawable(getResources().getDrawable(android.R.drawable.btn_star_big_off));
         }
 
-        accelerometer= metawear.getModule(Accelerometer.class);
+        accelerometer = metawear.getModule(Accelerometer.class);
         accelerometer.configure()
                 .odr(25f)       // Set sampling frequency to 25Hz, or closest valid ODR
                 .range(4f)      // Set data range to +/-4g, or closet valid range
                 .commit();
         Log.i("MMRSetupActivityFragmen", "Actual Odr = " + accelerometer.getOdr());
 
-        logging=metawear.getModule(Logging.class);
+        logging = metawear.getModule(Logging.class);
 
         // use ndof mode with +/-16g acc range and 2000dps gyro range
         sensorFusion = metawear.getModule(SensorFusionBosch.class);
@@ -621,13 +641,15 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                 .gyroRange(GyroRange.GR_2000DPS)
                 .commit();
 
-        baroBosch = metawear.getModule(BarometerBosch.class);
-        // configure the barometer with suggested values for indoor navigation
-        baroBosch.configure()
-                .filterCoeff(BarometerBosch.FilterCoeff.AVG_16)
-                .pressureOversampling(BarometerBosch.OversamplingMode.ULTRA_HIGH)
-                .standbyTime(0.5f)
-                .commit();
+        if ((baroBosch = metawear.getModule(BarometerBosch.class)) != null) {
+            baroBosch = metawear.getModule(BarometerBosch.class);
+            // configure the barometer with suggested values for indoor navigation
+            baroBosch.configure()
+                    .filterCoeff(BarometerBosch.FilterCoeff.AVG_16)
+                    .pressureOversampling(BarometerBosch.OversamplingMode.ULTRA_HIGH)
+                    .standbyTime(0.5f)
+                    .commit();
+        }
 
         //humidity = metawear.getModule(HumidityBme280.class);
         // set oversampling to 16x
@@ -640,13 +662,13 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         //tempSensor = temperature.findSensors(Temperature.SensorType.BOSCH_ENV)[1];
         //Temperature.Sensor tempSensor = temperature.findSensors(Temperature.SensorType.PRESET_THERMISTOR)[0];
         //tempSensor = temperature.findSensors(Temperature.SensorType.EXT_THERMISTOR)[0];
-        timerModule= metawear.getModule(com.mbientlab.metawear.module.Timer.class);
-
-
+        timerModule = metawear.getModule(com.mbientlab.metawear.module.Timer.class);
 
 
         //Light
-        alsLtr329 = metawear.getModule(AmbientLightLtr329.class);
+        if ((alsLtr329 = metawear.getModule(AmbientLightLtr329.class)) != null) {
+            alsLtr329 = metawear.getModule(AmbientLightLtr329.class);
+
         // Set the gain to 8x
         // Set integration time to 250ms
         // Set measurement rate to 50ms
@@ -655,7 +677,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                 .integrationTime(IntegrationTime.LTR329_TIME_250MS)
                 .measurementRate(MeasurementRate.LTR329_RATE_500MS)
                 .commit();
-
+    }
         //Gyro
         gyroBmi160 = metawear.getModule(GyroBmi160.class);
         // set the data rat to 50Hz and the
@@ -666,10 +688,10 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                 .commit();
 
         //check if folder exist, create them if not
-        File cachefolder = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" +  File.separator + "cache");
+        File cachefolder = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" + File.separator + "cache");
         if (!cachefolder.exists())
             cachefolder.mkdirs();
-        File backfolder = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" +  File.separator + "backup");
+        File backfolder = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" + File.separator + "backup");
         if (!backfolder.exists())
             backfolder.mkdirs();
 
@@ -684,7 +706,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
     /**
      * This function jumps whenever there is an unexpectedisconnection of the MMR (it was only working when the MMR is connected in first place)
-     * */
+     */
     private void unexpectedDisconnection() {
         metawear.onUnexpectedDisconnect(status -> {
             //System.out.println("!!!!!!!!!UNEXPECTEDDISCONNECTION!!!!!!!");
@@ -694,7 +716,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
             metawear.connectAsync().continueWithTask(task -> task.isCancelled() || !task.isFaulted() ? task : MainActivity.reconnect(metawear))
                     .continueWith((Continuation<Void, Void>) task -> {
                         if (!task.isCancelled()) {
-                           getActivity().runOnUiThread(() -> {
+                            getActivity().runOnUiThread(() -> {
                                 tv_mac.setTextColor(Color.parseColor("#FF99CC00"));
                                 //((DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag(RECONNECT_DIALOG_TAG)).dismiss();
                                 //This was giving NullPointerException, but the call to this function is not necessary right now because it is currently empty
@@ -714,7 +736,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
     /**
      * This function is called when the MMR is not finding new data for 5min
-     * */
+     */
     public static void reconnection() {
         //System.out.println("!!!!!!!!!RECONNECTION!!!!!!!");
         tv_mac.setTextColor(Color.parseColor("#FF7E00"));
@@ -723,7 +745,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         metawear.connectAsync().continueWithTask(task -> task.isCancelled() || !task.isFaulted() ? task : MainActivity.reconnect(metawear))
                 .continueWith((Continuation<Void, Void>) task -> {
                     if (!task.isCancelled()) {
-                       owner.runOnUiThread(() -> {
+                        owner.runOnUiThread(() -> {
                             tv_mac.setTextColor(Color.parseColor("#FF99CC00"));
                         });
                     } else {
@@ -760,10 +782,11 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
     //setup temp sensor  // https://github.com/mbientlab/MetaWear-SampleApp-Android/blob/master/app/src/main/java/com/mbientlab/metawear/app/TemperatureFragment.java#L228
     private com.mbientlab.metawear.module.Timer timerModule;
     private com.mbientlab.metawear.module.Timer.ScheduledTask scheduledTask;
+
     protected void readTEMP() {
-        byte gpioDataPin= 0, gpioPulldownPin= 1;
-        boolean activeHigh= false;
-        int TEMP_SAMPLE_PERIOD= 1000;  //UPDATE FREQUENCY
+        byte gpioDataPin = 0, gpioPulldownPin = 1;
+        boolean activeHigh = false;
+        int TEMP_SAMPLE_PERIOD = 1000;  //UPDATE FREQUENCY
         Temperature.Sensor tempSensor = temperature.sensors()[0];
         if (tempSensor.type() == Temperature.SensorType.EXT_THERMISTOR) {
             ((Temperature.ExternalThermistor) temperature.sensors()[0]).configure(gpioDataPin, gpioPulldownPin, activeHigh);
@@ -772,7 +795,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
             TEMP = String.valueOf(data.value(Float.class));
 
             //Update UI
-            new Handler(Looper.getMainLooper()).post(new Runnable(){
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
                     //When changing the Tab the Data on the fragment is deleted, so we write it again when temp value is updated...
@@ -803,7 +826,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         timer.cancel();
     }
 
-    public static void disconnection(){
+    public static void disconnection() {
         metawear.disconnectAsync();
     }
 
@@ -811,14 +834,16 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
      * Called when the app has reconnected to the board
      * Right now not called, but not necessary
      */
-    public void reconnected() { startTimer(); }
+    public void reconnected() {
+        startTimer();
+    }
 
     /**
      * This function starts the timer to get data from the MMR and compressing it into a .gz file
-     * */
+     */
     //Timer for zipping data
     public void startTimer() {
-        timerstatus=true;
+        timerstatus = true;
         timer = new Timer(); //set a new Timer
         initializeTimerTask(); //initialize the TimerTask's job
         //schedule the timer, after the first 5000ms the TimerTask will run every 60000ms
@@ -827,18 +852,18 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
     /**
      * This function gets the location information from the mobile phone
-     * */
+     */
     //Function to Get the GPS information from the phone. //Reference: http://blog.csdn.net/cjjky/article/details/6557561
-    private String refresh_phone_Location(){
-        double latitude=0.0;
-        double longitude =0.0;
-        double altitude =0.0;
-        float accuracy=0;
-        long t_gps=0;
+    private String refresh_phone_Location() {
+        double latitude = 0.0;
+        double longitude = 0.0;
+        double altitude = 0.0;
+        float accuracy = 0;
+        long t_gps = 0;
         long utcTime = System.currentTimeMillis();
         //t_gps=utcTime+tmadrid.getOffset(utcTime);
 
-        t_gps=utcTime;
+        t_gps = utcTime;
         //TODO attach this fragment to Activity, when disconnecting smartband and connecting again, the getActivity method is retuning null object
         //solved by getting the LocationManager from TabWearablesActivity
         LocationManager locationManager = TabWearablesActivity.getLocationManager();
@@ -847,14 +872,17 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
             }
+
             // This function is triggered when the Provider is enabled, such as GPS is turned on
             @Override
             public void onProviderEnabled(String provider) {
             }
+
             //This function is triggered when the Provider is disabled, such as GPS is turned off
             @Override
             public void onProviderDisabled(String provider) {
             }
+
             //This function is triggered when the coordinates change, if the Provider passes the same coordinates, it will not be triggered
             @Override
             public void onLocationChanged(Location location) {
@@ -871,29 +899,29 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
         //after Reconnection it was jumping an error here: java.lang.NullPointerException
         //SOLVED Permission checked when app is opened
         if (MainActivity.isLocationPermissionsGranted()) {
-            if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,300, 0,locationListener);
+            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 300, 0, locationListener);
                 Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                if(location != null){
+                if (location != null) {
                     latitude = location.getLatitude();
                     longitude = location.getLongitude();
                     altitude = location.getAltitude();
-                    accuracy=location.getAccuracy();
+                    accuracy = location.getAccuracy();
                 }
-            }else{
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,300, 0,locationListener);
+            } else {
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 300, 0, locationListener);
                 Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                if(location != null){
+                if (location != null) {
                     latitude = location.getLatitude(); //经度
                     longitude = location.getLongitude(); //纬度
-                    altitude=location.getAltitude(); //海拔
-                    accuracy=location.getAccuracy(); //精度, in meters
+                    altitude = location.getAltitude(); //海拔
+                    accuracy = location.getAccuracy(); //精度, in meters
                 }
             }
         }
 
         //String location="'lat':'"+String.format("%.6f",(latitude))+"','lng':'"+String.format("%.6f",(longitude)) +"','t_gps':'"+getUintAsTimestampGPS(t_gps)+"'";
-        location ="'lat':'"+String.format("%.6f",(latitude))+"','lng':'"+String.format("%.6f",(longitude)) +"'";
+        location = "'lat':'" + String.format("%.6f", (latitude)) + "','lng':'" + String.format("%.6f", (longitude)) + "'";
         //Toast.makeText(this, location, Toast.LENGTH_SHORT).show();
         return location;
     }
@@ -901,30 +929,30 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
     /**
      * This task periodically stores the incoming data into files
      * The information is changed on the UI often
-     * */
+     */
     public void initializeTimerTask() {
         timerTask = new TimerTask() {
             public void run() {
                 //***Get file list in the folder // stackoverflow.com/questions/8646984/how-to-list-files-in-an-android-directory
-                String folderpath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" +  File.separator + "cache";
-                String bkpfolder = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" +  File.separator + "backup";
+                String folderpath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" + File.separator + "cache";
+                String bkpfolder = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" + File.separator + "backup";
 
                 try {
                     //File file[] = f.listFiles();
                     File filegz[] = findergz(folderpath);   //get all the .gz file
                     //if (filegz.length>0) {			// If there are .gz files, upload them
-                    if (filegz!=null && filegz.length>0){
+                    if (filegz != null && filegz.length > 0) {
                         for (int j = 0; j < filegz.length; j++) {
                             String datapathgz = bkpfolder + File.separator + filegz[j].getName();
                             File bkpfile = new File(datapathgz);
                             //new RetrieveFeedTask_mmr().execute(datapathgz);
                             filegz[j].renameTo(bkpfile);
                         }
-                    } else{
+                    } else {
                         try {
                             File file[] = finder(folderpath);  //get all the .txt file
                             //if (file.length > 0) {
-                            if (file!=null && file.length > 0) {
+                            if (file != null && file.length > 0) {
                                 for (int i = 0; i < file.length; i++) //Send all the files to the server one by one.
                                 {
                                     Log.d("Files", "FileName:" + file[i].getName());
@@ -939,27 +967,27 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                                         String despath0 = srcpath.substring(0, srcpath.indexOf(".")) + ".gz";
                                         //String despath=datapath[0]+".gz";
                                         String gzfile = gzipFile(srcpath, despath0);
-                                       //Log.d("GZFILE", gzfile);
-                                        if (!isNullOrEmpty(gzfile)){   //in case that gzfile is null
+                                        //Log.d("GZFILE", gzfile);
+                                       // if (!isNullOrEmpty(gzfile)) {   //in case that gzfile is null
                                             File zip = new File(gzfile);
                                             String despath = bkpfolder + File.separator + zip.getName();
                                             File newzip = new File(despath);
                                             zip.renameTo(newzip);
-                                        }
+                                      //  }
                                     }
                                 }
                             }
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
-                            Log.d("Files", e.getLocalizedMessage() );
+                            Log.d("Files", e.getLocalizedMessage());
                         }
                     }
 
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                    Log.d("Files", e.getLocalizedMessage() );
+                    Log.d("Files", e.getLocalizedMessage());
                 }
             }
         };
@@ -967,7 +995,7 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
     //Function to check a string is Null or Empty
     public static boolean isNullOrEmpty(String str) {
-        if(str != null && !str.trim().isEmpty())
+        if (str != null && !str.trim().isEmpty())
             return false;
         return true;
     }
@@ -975,10 +1003,10 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
 
     //Gzip a text file http://examples.javacodegeeks.com/core-java/io/fileinputstream/compress-a-file-in-gzip-format-in-java/
     public String gzipFile(String source_filepath, String destinaton_zip_filepath) {
-        System.out.println("Compressing "+ source_filepath+"...........");
+        System.out.println("Compressing " + source_filepath + "...........");
         byte[] buffer = new byte[1024];
         File textfile = new File(source_filepath);
-        if (textfile.exists() && textfile.length()>1000) {
+        if (textfile.exists() && textfile.length() > 1000) {
             String gzfile = countgz(source_filepath);
             destinaton_zip_filepath = source_filepath.substring(0,
                     source_filepath.indexOf(".")) + "_" + gzfile + ".gz";
@@ -1017,54 +1045,57 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
                 ex.printStackTrace();
                 return null;
             }
-        }else{
-            if (textfile.exists()){
+        } else {
+            if (textfile.exists()) {
                 textfile.delete();
             }
             return null;
         }
     }
 
-    public String countgz(String filepath){
-        File txtfile = new File (filepath);
+    public String countgz(String filepath) {
+        File txtfile = new File(filepath);
         String fullname = txtfile.getName();
-        String folderpath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" +  File.separator + "cache"+File.separator;
-        String firstname=fullname.substring(0, fullname.indexOf("."));
+        String folderpath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" + File.separator + "cache" + File.separator;
+        String firstname = fullname.substring(0, fullname.indexOf("."));
         //System.out.println("fullname:"+fullname+"folderpath:"+folderpath+"firstname:"+firstname);
-        File gzf=new File(folderpath);
-        int count=0;
-        for (File file : gzf.listFiles()){
+        File gzf = new File(folderpath);
+        int count = 0;
+        for (File file : gzf.listFiles()) {
             if (file.isFile() && (file.getName().startsWith(firstname)) && (file.getName().endsWith(".gz"))) {
                 count++;
             }
         }
         return Integer.toString(count);
     }
+
     //find all the .txt files in a folder. http://stackoverflow.com/questions/1384947/java-find-txt-files-in-specified-folder
-    public File[] finder( String dirName){
+    public static File[] finder(String dirName) {
         File dir = new File(dirName);
         return dir.listFiles(new FilenameFilter() {
-            public boolean accept(File dir, String filename)
-            { return filename.endsWith(".txt"); }
-        } );
+            public boolean accept(File dir, String filename) {
+                return filename.endsWith(".txt");
+            }
+        });
     }
 
     //find .gz file
-    public File[] findergz( String dirName){
+    public File[] findergz(String dirName) {
         File dir = new File(dirName);
         return dir.listFiles(new FilenameFilter() {
-            public boolean accept(File dir, String filename)
-            { return filename.endsWith(".gz"); }
-        } );
+            public boolean accept(File dir, String filename) {
+                return filename.endsWith(".gz");
+            }
+        });
     }
 
     //Check if a file is been written.10 seconds since last modification.
     private boolean isCompletelyWritten(File file) {
-        long currenttime=System.currentTimeMillis();
-        long lastmodify=file.lastModified();
-        if (currenttime-lastmodify>(10000)){
+        long currenttime = System.currentTimeMillis();
+        long lastmodify = file.lastModified();
+        if (currenttime - lastmodify > (10000)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -1078,13 +1109,13 @@ public class MMRSetupActivityFragment extends Fragment implements ServiceConnect
     }
 
     private static final DateFormat DATE_FORMAT_GPS = new SimpleDateFormat("yyyyMMddHHmmssSSS"); //Set the format of the .txt file name.
+
     private String getUintAsTimestampGPS(Long uint) {
         //return DATE_FORMAT.format(new Date(uint.longValue() * 1000L)).toString();
         //DATE_FORMAT_GPS.setTimeZone(TimeZone.getTimeZone("GMT+0")); //set timezone*******?
         //uint=uint+tmadrid.getOffset(uint); //added in the function
         return DATE_FORMAT_GPS.format(new Date(uint)).toString();
     }
-    
 
 
 }

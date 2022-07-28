@@ -16,11 +16,14 @@ public class PageViewModel extends ViewModel {
         public String apply(Integer input) {
             String aux = null;
             switch (input){
-                case 1:
+                case 0:
                     aux = "There is no wearable connected  for this tab (" + input + ")\n" + "Press + to add SmartBand.";
                     break;
-                case 2:
+                case 1:
                     aux = "There is no wearable connected  for this tab (" + input + ")\n" + "Press + to add MMR device.";
+                    break;
+                case 2:
+                    aux = "There is no wearable connected  for this tab (" + input + ")\n" + "Press + to add MMR2 device.";
                     break;
                 case 3:
                     aux = "There is no wearable connected  for this tab (" + input + ")\n" + "Press + to add other device.";

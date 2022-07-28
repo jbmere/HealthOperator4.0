@@ -1052,10 +1052,12 @@ id CTRL
 id CV_card_selection_1
 id CV_card_selection_2
 id CV_card_selection_3
+id CV_card_selection_4
 id FUNCTION
 id LL_card_selection_1
 id LL_card_selection_2
 id LL_card_selection_3
+id LL_card_selection_4
 id META
 id SHIFT
 id SYM
@@ -1119,6 +1121,7 @@ id activity_main_info_popup
 id activity_main_scan_button
 id activity_main_titleTextView
 id activity_main_versionTextView
+id activity_mmr2_info_popup
 id activity_mmr_info_popup
 id activity_scan_devices_scan_button
 id activity_smartband_info_popup
@@ -1179,6 +1182,7 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id fabMMR2fav
 id fabMMRfav
 id fabSmartBandfav
 id fab_tabs_section_label
@@ -1233,6 +1237,24 @@ id menuInfo
 id message
 id middle
 id mini
+id mmr2_acc_start
+id mmr2_acc_stop
+id mmr2_description_textview
+id mmr2_lab_acc
+id mmr2_lab_alt
+id mmr2_lab_arm
+id mmr2_lab_gps
+id mmr2_lab_illum
+id mmr2_lab_temp
+id mmr2_mac
+id mmr2_setup_fragment
+id mmr2_value_acc
+id mmr2_value_alt
+id mmr2_value_arm
+id mmr2_value_gps
+id mmr2_value_illum
+id mmr2_value_mac
+id mmr2_value_temp
 id mmr_acc_start
 id mmr_acc_stop
 id mmr_description_textview
@@ -1285,6 +1307,7 @@ id save_scale_type
 id scan_button_description_textview
 id scan_header
 id scanner_fragment
+id scanner_fragment2
 id screen
 id scroll
 id scrollIndicatorDown
@@ -1448,8 +1471,10 @@ layout activity_choose_device_to_scan
 layout activity_choose_favourite_device
 layout activity_main
 layout activity_main_info_popup
+layout activity_mmr2_info_popup
 layout activity_mmr_info_popup
 layout activity_scan_mmr
+layout activity_scan_mmr2
 layout activity_scan_smartband
 layout activity_smartband_info_popup
 layout activity_tab_wearables
@@ -1459,6 +1484,7 @@ layout adapter_item_main
 layout blescan_device_list
 layout blescan_entry
 layout content_tab_mmr
+layout content_tab_mmr2
 layout content_tab_smartband
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -1476,6 +1502,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fragment_tab_mmr
+layout fragment_tab_mmr2
 layout fragment_tab_smartband
 layout fragment_textview_tabs
 layout mac_address_entry
@@ -1550,6 +1577,7 @@ string app_name
 string app_version
 string appbar_scrolling_view_behavior
 string arm_angle
+string available_mmr2_devices
 string available_mmr_devices
 string available_smartband_devices
 string ble_scan
@@ -1589,9 +1617,12 @@ string menu_disconnect
 string menu_info
 string message_wait
 string minus_eins_tv
+string mmr2_description
+string mmr2device
 string mmr_description
 string mmrdevice
 string mtrl_chip_close_icon_content_description
+string orange_mmr2_color_description
 string orange_mmr_color_description
 string orange_smartband_color_description
 string others
@@ -1615,6 +1646,7 @@ string stop_button
 string tab_text_1
 string tab_text_2
 string tab_text_3
+string tab_text_4
 string temperature
 string time_tv
 string title_connecting

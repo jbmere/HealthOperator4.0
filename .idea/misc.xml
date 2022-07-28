@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_choose_device_to_scan.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/activity_choose_favourite_device.xml" value="0.4822916666666667" />
+        <entry key="app/src/main/res/layout/activity_main_info_popup.xml" value="0.4822916666666667" />
+        <entry key="app/src/main/res/layout/activity_mmr2_info_popup.xml" value="0.4822916666666667" />
+        <entry key="app/src/main/res/layout/activity_mmr_info_popup.xml" value="0.4822916666666667" />
+        <entry key="app/src/main/res/layout/activity_scan_mmr.xml" value="0.4822916666666667" />
+        <entry key="app/src/main/res/layout/activity_scan_mmr2.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/activity_scan_smartband.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/activity_smartband_info_popup.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/activity_tab_wearables.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/content_tab_mmr.xml" value="0.4822916666666667" />
+        <entry key="app/src/main/res/layout/fragment_tab_mmr.xml" value="0.4822916666666667" />
+        <entry key="app/src/main/res/layout/fragment_tab_mmr2.xml" value="0.4822916666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -39,21 +39,22 @@
             android:contentDescription="Refresh button"/-->
     </RelativeLayout>
 
-    <RelativeLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/scan_header"
-        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         tools:context="com.example.mmrdata.MainActivity">
 
-        <fragment xmlns:tools="http://schemas.android.com/tools" android:id="@+id/scanner_fragment"
+        <fragment xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/scanner_fragment"
             android:name="com.mbientlab.bletoolbox.scanner.BleScannerFragment"
-            tools:layout="@layout/blescan_device_list" android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/blescan_device_list" />
     </RelativeLayout>
 
 </RelativeLayout>

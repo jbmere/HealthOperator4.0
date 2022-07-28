@@ -87,7 +87,7 @@ import java.util.zip.GZIPOutputStream;
  *
  * Based on OperaterActivity class of VPBluetoothSDKDemo by timaimee on 2017/2/8.
  * @author Jorge Garcia Paredes (yoryidan)
- * @version 175
+ * @version 210
  * @since 2020
  */
 public class SmartBandSetupActivityFragment extends Fragment {

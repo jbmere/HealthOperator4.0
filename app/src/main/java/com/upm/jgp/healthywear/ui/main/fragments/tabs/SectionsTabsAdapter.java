@@ -16,11 +16,11 @@ import com.upm.jgp.healthywear.R;
  * Using 4 Tabs necessary to update second device interface
  *
  * @author Jorge Garcia Paredes (yoryidan)
- * @version 175
+ * @version 210
  * @since 2020
  */
 public class SectionsTabsAdapter extends FragmentPagerAdapter {
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3, R.string.ellipsis};
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3,R.string.tab_text_4, R.string.ellipsis};
     private final Context mContext;
 
     public SectionsTabsAdapter(Context context, FragmentManager fm) {
@@ -42,7 +42,7 @@ public class SectionsTabsAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 4 total pages.
-        return 4;
+        // Show 5 total pages.
+        return 5;
     }
 }

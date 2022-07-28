@@ -3,13 +3,14 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:foregroundTintMode="screen"
     android:foregroundTint="@color/colorPrimaryDark">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/myToolbar_choose_scan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <RelativeLayout
         android:id="@+id/choose_scan_header"
@@ -41,117 +42,145 @@
     </RelativeLayout>
 
     <GridLayout
-        android:columnCount="1"
-        android:rowCount="3"
-        android:alignmentMode="alignMargins"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="40dp"
-        android:background="@color/colorPrimaryDark"
-        android:layout_centerInParent="true"
         android:layout_below="@id/choose_scan_header"
-        >
+        android:layout_centerInParent="true"
+        android:alignmentMode="alignMargins"
+        android:background="@color/colorPrimaryDark"
+        android:columnCount="1"
+        android:padding="40dp"
+        android:rowCount="3">
 
-    <!--Row 1-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/CV_card_selection_1"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="0"
-        android:layout_margin="16dp"
-        android:onClick="onClick"
-        >
-        <LinearLayout
-            android:id="@+id/LL_card_selection_1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onClick"
-            >
-            <ImageView
-                android:contentDescription="@string/smartband"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:padding="10dp"
-                android:src="@drawable/smartband_square"
-                />
-            <TextView
+        <!--Row 1-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CV_card_selection_1"
+            android:layout_rowWeight="0"
+            android:layout_columnWeight="1"
+            android:layout_margin="16dp"
+            android:onClick="onClick">
+
+            <LinearLayout
+                android:id="@+id/LL_card_selection_1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/smartband"
-                android:textAlignment="center"
-                android:layout_gravity="center"
-                android:textSize="24sp"
-                android:paddingEnd="10dp"
-                android:textColor="@color/colorAccent"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                android:layout_height="match_parent"
+                android:onClick="onClick">
 
-    <!--Row 2-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/CV_card_selection_2"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="0"
-        android:layout_margin="16dp"
-        android:onClick="onClick"
-        >
-        <LinearLayout
-            android:id="@+id/LL_card_selection_2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onClick"
-            >
-            <ImageView
-                android:contentDescription="@string/mmrdevice"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:padding="10dp"
-                android:src="@drawable/mmr_square_rotated_hq"
-                />
-            <TextView
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:contentDescription="@string/smartband"
+                    android:padding="10dp"
+                    android:src="@drawable/smartband_square" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingEnd="10dp"
+                    android:text="@string/smartband"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="24sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!--Row 2-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CV_card_selection_2"
+            android:layout_rowWeight="0"
+            android:layout_columnWeight="1"
+            android:layout_margin="16dp"
+            android:onClick="onClick">
+
+            <LinearLayout
+                android:id="@+id/LL_card_selection_2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/mmrdevice"
-                android:textAlignment="center"
-                android:layout_gravity="center"
-                android:textSize="24sp"
-                android:paddingEnd="10dp"
-                android:textColor="@color/colorAccent"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                android:layout_height="match_parent"
+                android:onClick="onClick">
 
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:contentDescription="@string/mmrdevice"
+                    android:padding="10dp"
+                    android:src="@drawable/mmr_square_rotated_hq" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingEnd="10dp"
+                    android:text="@string/mmrdevice"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="24sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
         <!--Row 3-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/CV_card_selection_3"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="0"
-        android:layout_margin="16dp"
-        >
-        <LinearLayout
-            android:id="@+id/LL_card_selection_3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:onClick="onClick"
-            >
-            <ImageView
-                android:contentDescription="@string/others"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:padding="16dp"
-                android:src="@color/grey"
-                />
-            <TextView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CV_card_selection_3"
+            android:layout_rowWeight="0"
+            android:layout_columnWeight="1"
+            android:layout_margin="16dp"
+            android:onClick="onClick">
+
+            <LinearLayout
+                android:id="@+id/LL_card_selection_3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/others"
-                android:textAlignment="center"
+                android:layout_height="match_parent"
+                android:onClick="onClick">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:contentDescription="@string/mmr2device"
+                    android:padding="10dp"
+                    android:src="@drawable/mmr_square_rotated_hq" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingEnd="10dp"
+                    android:text="@string/mmr2device"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="24sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!--Row 4-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CV_card_selection_4"
+            android:layout_rowWeight="0"
+            android:layout_columnWeight="1"
+            android:layout_margin="16dp">
+
+            <LinearLayout
+                android:id="@+id/LL_card_selection_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:textSize="24sp"
-                android:paddingEnd="10dp"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                android:onClick="onClick">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:contentDescription="@string/others"
+                    android:padding="16dp"
+                    android:src="@color/grey" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingEnd="10dp"
+                    android:text="@string/others"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </GridLayout>
 
 </RelativeLayout>

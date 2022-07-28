@@ -22,7 +22,7 @@ import java.util.Map;
  * This Activity contains the adapter to list the stored favourite devices with its MAC address and its type
  *
  * @author Jorge Garcia Paredes (yoryidan)
- * @version 175
+ * @version 210
  * @since 2020
  */
 public class FavDevAdapter extends ArrayAdapter {
@@ -63,6 +63,10 @@ public class FavDevAdapter extends ArrayAdapter {
                 break;
 
             case 2: //MMR
+                m_viewHolder.iv_type.setImageDrawable(getContext().getResources().getDrawable(R.drawable.mmr_square_rotated_hq));
+                break;
+
+            case 3: //MMR2
                 m_viewHolder.iv_type.setImageDrawable(getContext().getResources().getDrawable(R.drawable.mmr_square_rotated_hq));
                 break;
 

@@ -54,8 +54,9 @@ import bolts.Task;
  * This activity contains the connection state (smartbandConnected, mmrConnected) of the two different types: SmartBand or MMR.
  *
  * @author Jorge Garcia Paredes (yoryidan)
- * @version 175
- * @since 2020
+ *  Modified by Raquel Prous 2022
+ *  @version 210
+ *  @since 2020
  */
 public class MainActivity extends AppCompatActivity implements ServiceConnection {
 
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     private static String favDevicesFileName = favFilePath + "favouriteWearables.txt";
 
     public static BtleService.LocalBinder serviceBinder;
+    public static BtleService.LocalBinder serviceBinder2;
     private static boolean reconnectingSmartband = false;
 
     // Variables for requesting permissions, API 25+
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     //Change the value of these variables to false when the devices are disconnected DONE for Smartband and MMR
     private static boolean smartbandConnected = false;
     private static boolean mmrConnected = false;
+    private static boolean mmr2Connected = false;
     //Change the value of these variables to false when the devices are disconnected DONE for Smartband and MMR
     /////Control variables to know state of devices/////
 
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
     private static String smartband_mac_global = null;
     private static BluetoothDevice mmr_device_global = null;
-
+    private static BluetoothDevice mmr2_device_global = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -369,6 +372,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
         serviceBinder = (BtleService.LocalBinder) service;
+        serviceBinder2 = (BtleService.LocalBinder) service;
     }
 
     @Override
@@ -510,6 +514,15 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     public static void setMmrConnected(boolean mmrConnected_input) {
         mmrConnected = mmrConnected_input;
     }
+
+    public static boolean isMmr2Connected() {
+        return mmr2Connected;
+    }
+
+    public static void setMmr2Connected(boolean mmr2Connected_input) {
+        mmr2Connected = mmr2Connected_input;
+    }
+
     //Control variables to know state of devices//
 
     public static String getSmartband_mac_global() {
@@ -526,6 +539,14 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
     public static void setMmr_device_global(BluetoothDevice mmr_device_global) {
         MainActivity.mmr_device_global = mmr_device_global;
+    }
+
+    public static BluetoothDevice getMmr2_device_global() {
+        return mmr2_device_global;
+    }
+
+    public static void setMmr2_device_global(BluetoothDevice mmr2_device_global) {
+        MainActivity.mmr2_device_global = mmr2_device_global;
     }
 
     public static boolean isReconnectingSmartband() {

@@ -19,6 +19,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.upm.jgp.healthywear.ui.main.activity.MainActivity;
+import com.upm.jgp.healthywear.ui.main.fragments.mmr.MMR2SetupActivityFragment;
 import com.upm.jgp.healthywear.ui.main.fragments.mmr.MMRSetupActivityFragment;
 
 import org.apache.http.HttpEntity;
@@ -46,7 +47,8 @@ import java.util.concurrent.TimeUnit;
  * Currently it contains two RetrievedFeedTask, one for each device type: SmartBand or MMR
  *
  * @author modified by Jorge Garcia Paredes (yoryidan)
- * @version 175
+ * Modified by Raquel Prous 2022
+ * @version 210
  */
 public class MyService extends Service {
 	
@@ -57,6 +59,7 @@ public class MyService extends Service {
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd_HHmmss"); //Set the format of the .txt file name.
 	private long lastdata_time=0;
 	private long lastmmrfiles_time=0;
+	private long lastmmr2files_time=0;
 	private long current_time=0;
 
     //final Context context=getApplicationContext();
@@ -151,6 +154,7 @@ public class MyService extends Service {
 			public void run() {
 				//***Get file list in the folder // stackoverflow.com/questions/8646984/how-to-list-files-in-an-android-directory
 				String folderpath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" +  File.separator + "backup";
+				String folderpath2 = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp2" +  File.separator + "backup";
 				//SmartBand file list
 				String folderpath_SmartBand = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp_hr" +  File.separator + "backup";
 				try {
@@ -183,7 +187,35 @@ public class MyService extends Service {
 							}
 						}
 					}
-
+					//MMR2
+					if(MainActivity.isMmr2Connected()) {
+						//File file[] = f.listFiles();
+						System.out.println("Looking for MMR2 Files");
+						File filegz[] = findergz(folderpath2);   //get all the .gz file
+						if (filegz != null && filegz.length > 0) {            // If there are .gz files, upload them
+							for (int j = 0; j < filegz.length; j++) {
+								String datapathgz = folderpath2 + File.separator + filegz[j].getName();
+								new RetrieveFeedTask_mmr().execute(datapathgz);
+								//prepare the UI information
+								String Uistr = "Uploading file:" + filegz[j].getName();
+								sendBroadcastMessage(Uistr);
+							}
+							lastdata_time = System.currentTimeMillis();   //get the data coming time for restarting the pebble app
+							lastmmr2files_time = 0;
+						}else{
+							//save last time that were new files to upload
+							if(lastmmr2files_time==0) {
+								lastmmr2files_time = System.currentTimeMillis();
+							}else{
+								long timeSinceNoNewMMRFiles = System.currentTimeMillis() - lastmmr2files_time;
+								//If timeSinceNoNewMMRFiles bigger than 3min, then reconnect MMR
+								System.out.println("No MMR2 Files since: " + TimeUnit.MILLISECONDS.toMinutes(timeSinceNoNewMMRFiles));
+								if(TimeUnit.MILLISECONDS.toMinutes(timeSinceNoNewMMRFiles)>3){
+									MMR2SetupActivityFragment.reconnection();
+								}
+							}
+						}
+					}
 					//SmartBand
 					if(MainActivity.isSmartbandConnected()) {
 						System.out.println("Looking for SmartBand Files");
@@ -245,7 +277,7 @@ class RetrieveFeedTask_mmr extends AsyncTask<String, Void, Void> {
 				HttpClient client = new DefaultHttpClient(); //https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-not-permitted
 				try {
 					//TODO modify with your DataBase address
-                    HttpPost httpPost = new HttpPost("http://IP-ADDRESS/mmr/carga_mmr.py");
+                    HttpPost httpPost = new HttpPost("http://apii01.etsii.upm.es/mmr/carga_mmr_inf.py");
 					MultipartEntityBuilder builder = MultipartEntityBuilder
 							.create();
 					builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
@@ -300,7 +332,7 @@ class RetrieveFeedTask_SmartBand extends AsyncTask<String, Void, Void> {
 				HttpClient client = new DefaultHttpClient(); //https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-not-permitted
 				try {
 					//TODO modify with your DataBase address
-					HttpPost httpPost = new HttpPost("http://IP-ADDRESS/mmr/carga_heart.py");
+					HttpPost httpPost = new HttpPost("http://apii01.etsii.upm.es/smbnd/carga_heart_inf.py");
 					MultipartEntityBuilder builder = MultipartEntityBuilder
 							.create();
 					builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);

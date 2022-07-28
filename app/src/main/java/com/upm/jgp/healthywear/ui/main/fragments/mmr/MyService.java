@@ -37,6 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class MyService extends Service {
 	
@@ -140,6 +141,7 @@ public class MyService extends Service {
 			public void run() {
 				//***Get file list in the folder // stackoverflow.com/questions/8646984/how-to-list-files-in-an-android-directory
 				String folderpath = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp" +  File.separator + "backup";
+				String folderpath2 = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp2" +  File.separator + "backup";
 				//SmartBand file list
 				String folderpath_SmartBand = Environment.getExternalStorageDirectory().getPath() + File.separator + "tmp_hr" +  File.separator + "backup";
 				try {
@@ -159,7 +161,22 @@ public class MyService extends Service {
 							lastdata_time = System.currentTimeMillis();   //get the data coming time for restarting the pebble app
 						}
 					}
-
+					//MMR2
+					if(MainActivity.isMmr2Connected()) {
+						//File file[] = f.listFiles();
+						System.out.println("Looking for MMR2 Files");
+						File filegz[] = findergz(folderpath2);   //get all the .gz file
+						if (filegz != null && filegz.length > 0) {            // If there are .gz files, upload them
+							for (int j = 0; j < filegz.length; j++) {
+								String datapathgz = folderpath2 + File.separator + filegz[j].getName();
+								new RetrieveFeedTask_mmr().execute(datapathgz);
+								//prepare the UI information
+								String Uistr = "Uploading file:" + filegz[j].getName();
+								sendBroadcastMessage(Uistr);
+							}
+							lastdata_time = System.currentTimeMillis();   //get the data coming time for restarting the pebble app
+						}
+					}
 					//SmartBand
 					if(MainActivity.isSmartbandConnected()) {
 						System.out.println("Looking for SmartBand Files");

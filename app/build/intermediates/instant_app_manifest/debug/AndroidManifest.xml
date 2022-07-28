@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.upm.jgp.healthywear"
     android:targetSandboxVersion="2"
-    android:versionCode="175"
-    android:versionName="1.7.5" >
+    android:versionCode="210"
+    android:versionName=" 2.1.0" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -34,6 +34,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" > <!-- Starting with Android 9.0 (API level 28), cleartext support is disabled by default. -->
 
@@ -53,6 +54,7 @@
         <activity android:name="com.upm.jgp.healthywear.ui.main.activity.TabWearablesActivity" />
         <activity android:name="com.upm.jgp.healthywear.ui.main.activity.ChooseDeviceToScanActivity" />
         <activity android:name="com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMRActivity" />
+        <activity android:name="com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMR2Activity" />
         <activity android:name="com.upm.jgp.healthywear.ui.main.activity.FavouriteDevices" />
 
         <service android:name="com.upm.jgp.healthywear.ui.main.fragments.common.MyService" />

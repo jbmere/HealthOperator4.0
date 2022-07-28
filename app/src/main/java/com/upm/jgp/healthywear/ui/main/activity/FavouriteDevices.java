@@ -25,8 +25,9 @@ import java.util.Map;
  * The connection option from this screen is to be implemented
  *
  * @author Jorge Garcia Paredes (yoryidan)
- * @version 175
- * @since 2020
+ *  Modified by Raquel Prous 2022
+ *  @version 210
+ *  @since 2020
  */
 public class FavouriteDevices extends AppCompatActivity{
 
@@ -92,6 +93,11 @@ public class FavouriteDevices extends AppCompatActivity{
                     case 2:
                         //TODO connect to MMR devices
                         Snackbar.make(view, "Connecting MMR device... (TBD)", Snackbar.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 3:
+                        //TODO connect to MMR devices
+                        Snackbar.make(view, "Connecting MMR2 device... (TBD)", Snackbar.LENGTH_LONG)
                                 .show();
                         break;
                 }

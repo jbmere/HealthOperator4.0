@@ -16,7 +16,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     //TODO using 4 Tabs made the second device tab appear on the tab when moving between them...
     //TODO Check Indexes of Tabs in other places, weird behavior
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3, R.string.ellipsis};
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3,R.string.tab_text_4, R.string.ellipsis};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -38,7 +38,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 4 total pages.
-        return 4;
+        // Show 5 total pages.
+        return 5;
     }
 }

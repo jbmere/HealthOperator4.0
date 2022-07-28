@@ -7,7 +7,8 @@
     <string name="app_name">&app_name;</string>
     <string name="tab_text_1">SmartBnd</string>
     <string name="tab_text_2">MMR</string>
-    <string name="tab_text_3">Others</string>
+    <string name="tab_text_3">MMR2</string>
+    <string name="tab_text_4">Others</string>
     <string name="scan_button">&scan_button;</string>
     <string name="fav_button">&fav_button;</string>
     <string name="main_title">Healthy Wear</string>
@@ -19,6 +20,7 @@
     <string name="app_information">Warning: The user has to give Bluetooth and Location privileges to the app. This settings shall be activated for a proper function of the app.</string>
     <string name="ib_close_description">CloseButton</string>
     <string name="available_mmr_devices">Available MMR Devices</string>
+    <string name="available_mmr2_devices">Available MMR2 Devices</string>
     <string name="available_smartband_devices">Available SmartBands</string>
     <string name="menu_back_to_scan">Scan new wearable</string>
     <string name="menu_disconnect">Disconnect device</string>
@@ -26,13 +28,14 @@
     <string name="choose_device">Which device would you like to connect?</string>
     <string name="smartband">SmartBand</string>
     <string name="mmrdevice">MMR Devices</string>
+    <string name="mmr2device">MMR2 Devices</string>
     <string name="others">Other Devices</string>
     <string name="start_button">Start</string>
     <string name="stop_button">Stop</string>
     <string name="temperature">Temperature (\u2103):&#160;&#160;</string>
     <string name="illuminance">Illuminance (Lux):&#160;&#160;</string>
     <string name="altitude">Altitude (m):&#160;&#160;&#160;</string>
-    <string name="arm_angle">Arm Angle (\u00B0):&#160;&#160;&#160;</string>
+    <string name="arm_angle">Ankle Angle (\u00B0):&#160;&#160;&#160;</string>
     <string name="acceleration">Acceleration (x,y,z):&#160;&#160;&#160;</string>
     <string name="acceleration_init">{x:0, y:0, z:0}</string>
     <string name="location">Location (Lat, Lng):&#160;&#160;&#160;</string>
@@ -69,9 +72,13 @@
     <string name="mmr_description">This tab allocates the information of an MMR device (when connected).
         <br/>First it shows the MAC address of the device and two main buttons, which Start or Stop the information exchange between the device and the smartphone and also between the smartphone and the database.
         <br/>The colors of the MAC address mean the following:</string>
+    <string name="mmr2_description">This tab allocates the information of an MMR2 device (when connected).
+        <br/>First it shows the MAC address of the device and two main buttons, which Start or Stop the information exchange between the device and the smartphone and also between the smartphone and the database.
+        <br/>The colors of the MAC address mean the following:</string>
     <string name="green_color_description">The green color indicates that the device is properly connected and the smartphone is collecting data and sending it to the DataBase.</string>
     <string name="orange_smartband_color_description">The orange color indicates that the smartphone is trying to reconnect the smartphone. It will be reconnected when it is within the range of the smartphone.</string>
     <string name="orange_mmr_color_description">The orange color indicates that the smartphone is trying to reconnect the MMR. The reconnetion will star after 4min without receiving dta to collect, or by pressing the Stop button.</string>
+    <string name="orange_mmr2_color_description">The orange color indicates that the smartphone is trying to reconnect the MMR2. The reconnetion will star after 4min without receiving dta to collect, or by pressing the Stop button.</string>
     <string name="red_color_description">The red color indicates that the data collecting is stopped.</string>
 
 

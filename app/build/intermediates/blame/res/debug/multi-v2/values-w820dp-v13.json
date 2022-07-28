@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+            "outputFile": "/mnt/drive/home/rprous/HealthOperator4.0_New210/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w820dp-v13/values-w820dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\garga\\Desktop\\HealthyWear\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "source": "/mnt/drive/home/rprous/HealthOperator4.0_New210/app/src/main/res/values-w820dp/dimens.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "4",

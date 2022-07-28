@@ -33,7 +33,8 @@ import java.util.UUID;
  *
  * Based on MainActivity class of MetaWear-SDK-Android by mbientlab
  * @author Modified by Jorge Garcia Paredes (yoryidan)
- * @version 175
+ * Modified by Raquel Prous 2022
+ * @version 210
  * @since 2020
  */
 public class ScanMMRActivity extends AppCompatActivity implements BleScannerFragment.ScannerCommunicationBus {
@@ -160,6 +161,9 @@ public class ScanMMRActivity extends AppCompatActivity implements BleScannerFrag
                         startActivityForResult(navActivityIntent, REQUEST_START_APP);
                         //If it's the second device to connect, then it is necessary to refresh the view
                         if(MainActivity.isSmartbandConnected()){
+                            TabWearablesActivity.refreshTabs(1);
+                        }
+                        if(MainActivity.isMmr2Connected()){
                             TabWearablesActivity.refreshTabs(1);
                         }
                     }

@@ -11,7 +11,8 @@ import androidx.lifecycle.ViewModel;
  * Tabs initial view
  *
  * @author Jorge Garcia Paredes (yoryidan)
- * @version 175
+ * Modified by Raquel Prous 2022
+ * @version 210
  * @since 2020
  */
 public class TabViewModel extends ViewModel {
@@ -24,12 +25,16 @@ public class TabViewModel extends ViewModel {
         public String apply(Integer input) {
             String aux = null;
             switch (input){
-                case 1:
+                case 0:
                     aux = "There is no wearable connected  for this tab (" + input + ")\n" + "Press + to add SmartBand.";
                     break;
-                case 2:
+                case 1:
                     aux = "There is no wearable connected  for this tab (" + input + ")\n" + "Press + to add MMR device.";
                     break;
+                case 2:
+                    aux = "There is no wearable connected  for this tab (" + input + ")\n" + "Press + to add MMR2 device.";
+                    break;
+
                 case 3:
                     //TODO add other devices, for TAB2 "Others"
                     aux = "There is no wearable connected  for this tab (" + input + ")\n" + "Press + to add other device.";

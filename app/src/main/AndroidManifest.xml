@@ -42,6 +42,7 @@
         <activity android:name=".ui.main.activity.TabWearablesActivity" />
         <activity android:name=".ui.main.activity.ChooseDeviceToScanActivity" />
         <activity android:name=".ui.main.fragments.mmr.ScanMMRActivity" />
+        <activity android:name=".ui.main.fragments.mmr.ScanMMR2Activity" />
         <activity android:name=".ui.main.activity.FavouriteDevices" />
 
         <service android:name=".ui.main.fragments.common.MyService"></service>

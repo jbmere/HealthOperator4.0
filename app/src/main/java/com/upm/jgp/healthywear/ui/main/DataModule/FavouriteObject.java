@@ -9,10 +9,11 @@ import java.io.Serializable;
  * Currently only two values are used for device types.
  * 1 is related with SmartBand devices
  * 2 is related with MMR devices
- * New valuesshould be added for future devices
+ * 3 is related with MMR2 devices
+ * New values should be added for future devices
  *
  * @author Jorge Garcia Paredes (yoryidan)
- * @version 175
+ * @version 210
  * @since 2020
  */
 public class FavouriteObject implements Serializable {
@@ -20,7 +21,8 @@ public class FavouriteObject implements Serializable {
 
     private int mWearableType;      //value 1 for smartBand
                                     //value 2 for mmr
-                                    //TODO value 3 for others
+                                    //value 3 for mmr
+                                    //TODO value 4 for others
     private String mWearableName;
     private String mWearableMac;
 
@@ -88,7 +90,10 @@ public class FavouriteObject implements Serializable {
             case 2:
                 device += "MMR";
                 break;
-            //TODO case 3... for other devices' type
+            case 3:
+                device += "MMR2";
+                break;
+            //TODO case 4... for other devices' type
             default:
                 device += "";
                 break;

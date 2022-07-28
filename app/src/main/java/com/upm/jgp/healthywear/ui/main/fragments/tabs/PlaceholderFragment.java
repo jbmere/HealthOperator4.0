@@ -15,8 +15,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.upm.jgp.healthywear.R;
 import com.upm.jgp.healthywear.ui.main.activity.MainActivity;
-import com.upm.jgp.healthywear.ui.main.activity.ScanMMRActivity;
-import com.upm.jgp.healthywear.ui.main.activity.ScanSmartBandActivity;
+import com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMR2Activity;
+import com.upm.jgp.healthywear.ui.main.fragments.mmr.ScanMMRActivity;
+import com.upm.jgp.healthywear.ui.main.fragments.smartband.ScanSmartBandActivity;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -108,8 +109,26 @@ public class PlaceholderFragment extends Fragment {
                 }
                 break;
             }
-
             case 3: {
+                if(MainActivity.isMmr2Connected()) {
+                    root = inflater.inflate(R.layout.content_tab_mmr2, container, false);
+                }else{
+                    root = inflater.inflate(R.layout.fragment_textview_tabs, container, false);
+                    simpleTab(root);
+                    //Add new MMR
+                    mFab = root.findViewById(R.id.fab_tabs_section_label);
+                    mFab.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(view.getContext(), ScanMMR2Activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+                break;
+            }
+
+            case 4: {
                 root = inflater.inflate(R.layout.fragment_textview_tabs, container, false);
                 simpleTab(root);
                 //TODO add other devices

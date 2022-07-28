@@ -58,7 +58,7 @@ import static java.lang.Thread.sleep;
  *
  * Based on MainActivity class of VPBluetoothSDKDemo by timaimee on 2017/2/8.
  * @author Modified by Jorge Garcia Paredes (yoryidan)
- * @version 175
+ * @version 210
  * @since 2020
  */
 public class ScanSmartBandActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, OnRecycleViewClickCallback {
